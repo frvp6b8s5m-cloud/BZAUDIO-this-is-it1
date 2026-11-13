@@ -1,6 +1,6 @@
 # BZaudio Website — Task Breakdown
 
-**Status:** Proposed tasks for owner review. No implementation is authorized until `tasks/plan.md` and this task list are approved.
+**Status:** Approved by the owner. Implementation is authorized within the approved scope; production deployment and email activation remain separately gated.
 
 ## Phase 0 — Prerequisites and architecture decisions
 
