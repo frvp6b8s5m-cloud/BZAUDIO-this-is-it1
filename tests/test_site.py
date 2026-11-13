@@ -136,12 +136,15 @@ class WebsiteFoundationTests(unittest.TestCase):
                     if parts.path:
                         self.assertTrue((ROOT / parts.path).is_file(), f"{page_path.name}: broken local link {href}")
 
-    def test_no_page_publishes_unconfigured_contact_details(self):
+    def test_contact_page_uses_owner_supplied_email_only(self):
         for path in ROOT.glob("*.html"):
             with self.subTest(page=path.name):
                 html = path.read_text(encoding="utf-8").lower()
-                self.assertNotIn("mailto:", html)
                 self.assertNotIn("tel:", html)
+                if path.name == "contact.html":
+                    self.assertIn('href="mailto:benrz101@gmail.com?subject=bzaudio%20inquiry"', html)
+                else:
+                    self.assertNotIn("mailto:", html)
 
     def test_external_font_is_not_required_for_fallback(self):
         self.assertIn("'Helvetica Neue', sans-serif", self.css)
