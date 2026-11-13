@@ -135,7 +135,7 @@ The technical plan must identify actual test and build commands after stack insp
 
 ## Success criteria
 1. The BZaudio proposition and brand belief are immediately understandable.
-2. Visitors can find products/solutions and submit a quote or contact request without confusion.
+2. Visitors can understand the BZaudio proposition and find the next product/solution pathways. Email contact is activated after the owner supplies the address following launch.
 3. The experience is visually distinctive but calm, clear, and not overwhelming.
 4. All published product and company claims are supported by verified information.
 5. All public photography has documented usage rights.
