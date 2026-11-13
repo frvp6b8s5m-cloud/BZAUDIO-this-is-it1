@@ -14,7 +14,7 @@ Public BZaudio company website. Follow `VISION.md`, `ROADMAP.md`, `SPEC.md`, and
 - Static HTML, CSS, and vanilla JavaScript.
 - No framework, bundler, package manager, or runtime dependencies without an approved architecture change.
 - Local preview: `python3 -m http.server 8000`.
-- Tests: `python3 -m unittest discover -s tests -v`.
+- Tests: `python3 -m unittest discover -s tests -v`, `node --check script.js`, and `node --test tests/*.test.mjs` (Node.js 22 test-only tooling).
 - No build step; repository-root files are the static artifact.
 
 ## Product and brand constraints
