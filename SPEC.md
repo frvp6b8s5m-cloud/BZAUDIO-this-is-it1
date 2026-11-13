@@ -17,7 +17,7 @@ The site helps customers discover professional audio equipment and solutions, un
 5. Quote requests and contact are the initial conversion paths; do not invent checkout, prices, inventory, or product claims.
 6. Use properly licensed real photography. Do not use AI-generated imagery or synthetic-looking AI visuals. Document asset licenses and sources.
 7. Keep trading/barter out of the public experience.
-8. Present the BZaudio audio ecosystem (dedicated-device OS, desktop software, touchscreen controller) only with accurate status labels. Do not claim universal hardware compatibility or unverified functionality.
+8. Do not include a BZaudio OS system, dedicated-device operating system, desktop OS platform, or touchscreen OS controller as part of this company website.
 9. If /admin is included, it must use genuine authentication and protected management storage—not a decorative or client-only password gate.
 10. The site must work on mobile and desktop; no duplicate quizzes or overlapping tools.
 
@@ -25,9 +25,10 @@ The site helps customers discover professional audio equipment and solutions, un
 - Home: cinematic brand introduction, clear value proposition, product/solution pathways, quote/contact calls to action.
 - Products: professional audio categories and product details; specifications and availability must be sourced and verified.
 - Solutions: live-sound and system-use cases, with useful supporting imagery.
-- BZaudio ecosystem: grounded presentation of software/device/controller vision, distinguishing available, in-development, and planned capabilities.
+- Signature BZaudio experience: a distinctive, interactive sound-and-light installation (working title: The Sound Wall) that gives visitors a memorable way to explore audio. It should respond to user interaction and, where technically feasible, optional microphone input with explicit permission. No audio is recorded or uploaded; default experience works without microphone access.
 - About: company purpose, standards, and the belief that music brings life.
 - Contact / Request a Quote: validated forms, clear success/error states, configurable contact destination; no invented email address.
+- The Sound Wall is the proposed signature differentiator, subject to owner approval and a technical feasibility check. Include a graceful non-audio fallback and accessible controls.
 - Interactive tools only when explicitly approved and supported by verified data/calculations. Avoid redundant quizzes.
 
 ## Visual and Motion Direction
@@ -35,7 +36,8 @@ The site helps customers discover professional audio equipment and solutions, un
 - Cinematic presentation: intentional image crops, art direction, restrained parallax/reveal transitions, polished page transitions where useful.
 - Expressive editorial display typography paired with highly legible interface/body typography.
 - Real equipment photography with consistent lighting, detail crops, and contextual environments.
-- Motion must be purposeful, performant, reduced-motion aware, and never block navigation or content.
+- Motion must be purposeful, performant, reduced-motion aware, and never block navigation or content. Include a rich library of small, polished interactions across navigation, buttons, product reveals, section transitions, image treatments, hover/focus states, and page feedback. Motion quality should feel cohesive and intentional—not a pile of distracting effects.
+- Build a distinctive motion language: consistent easing, timing, stagger, depth, and transitions; use scroll-triggered reveals sparingly and provide reduced-motion alternatives. Keep interactions fast on mobile and avoid scroll hijacking.
 - Avoid generic gradient blobs, chatbot visuals, fake dashboards, excessive glassmorphism, and template-like card grids.
 
 ## Functional Requirements
@@ -107,8 +109,11 @@ Finalize after stack inspection. Maintain clear boundaries for routes/pages, reu
 6. Product, company, and ecosystem claims are accurate and qualified.
 7. Accessibility, responsive behavior, production build, and critical browser flows pass documented checks.
 8. Deployment and any admin/backend capabilities match the actual hosting architecture and security requirements.
+9. The signature sound experience is memorable, responsive, accessible, and usable without microphone permission.
+10. Micro-interactions feel consistent and refined, with reduced-motion support and no usability/performance regressions.
 
 ## Open Questions
+- Confirm whether the proposed Sound Wall signature experience is the right differentiator, or whether the owner prefers a different signature feature.
 - Confirm whether the guided PA Designer belongs in the initial release or should be deferred.
 - Confirm whether /admin and its authenticated content-management workflow are part of this repository's initial release.
 - Confirm the production hosting target if it differs from the existing BZaudio deployment.
