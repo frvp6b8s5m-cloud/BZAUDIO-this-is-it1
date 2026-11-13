@@ -1,0 +1,17 @@
+name: Website quality checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-site-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Run static-site tests
+        run: python3 -m unittest discover -s tests -v
