@@ -2,6 +2,10 @@
 
 The public BZaudio website: a premium, architectural and cinematic introduction to the company, its approach to professional audio, and the standards behind its recommendations.
 
+## Online preview
+
+[Open the current BZaudio preview](https://bzaudio-site-psko9iumd-frvp6b8s5m-cloud.vercel.app/). This is a review snapshot of `feature/website-foundation`, not the production site; later branch changes require a fresh preview deployment.
+
 ## Local preview
 
 Requires Python 3 (standard library only):
