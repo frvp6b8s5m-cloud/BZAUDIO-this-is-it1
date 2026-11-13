@@ -1,7 +1,7 @@
 # BZaudio Website — Technical Implementation Plan
 
 ## Status
-**For owner review and approval. No implementation is authorized by this document.**
+**Owner-approved. Implementation underway on `feature/website-foundation`; production deployment remains separately approval-gated.**
 
 This plan follows the approved BZaudio vision, staged roadmap, and website specification. The owner approved the first-release capability map and order:
 1. Brand experience
