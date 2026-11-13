@@ -43,7 +43,7 @@
 
 - [x] **Task 1.1: Establish minimal application foundation**
   - Acceptance: static root structure, local preview instructions, and Python standard-library regression tests are in place; no install or build step is required.
-  - Verify: `python3 -m unittest discover -s tests -v` passes all 12 tests.
+  - Verify: `python3 -m unittest discover -s tests -v` passes all 12 Python tests and 2 Node.js interaction tests; `node --check script.js` passes.
   - Dependencies: Phase 0 checkpoint.
   - Files likely touched: approximately 3–5 configuration/source files.
   - Scope: Medium.
