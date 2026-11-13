@@ -4,28 +4,28 @@
 
 ## Phase 0 — Prerequisites and architecture decisions
 
-- [ ] **Task 0.1: Configure GitHub Pages deployment approach (planning only)**
+- [x] **Task 0.1: Configure GitHub Pages deployment approach (planning only)**
   - Acceptance: GitHub Pages is the selected host; repository deployment source, custom-domain preference, preview workflow, and rollback approach are documented.
   - Verify: repository/Pages constraints are recorded; no production setting or DNS is changed.
   - Dependencies: None.
   - Files likely touched: `tasks/plan.md`, architecture decision notes.
   - Scope: Small.
 
-- [ ] **Task 0.2: Select the minimal frontend stack and quality tooling**
+- [x] **Task 0.2: Select the minimal frontend stack and quality tooling**
   - Acceptance: framework/static approach, versions, content strategy, accessibility approach, and exact install/build/test commands are documented with trade-offs.
   - Verify: selected approach is compatible with the confirmed host and repository workflow; no dependency is installed before plan approval.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.3: Define email-only contact activation**
+- [x] **Task 0.3: Define email-only contact activation**
   - Acceptance: contact section and quote-request email pathway have a configurable destination; no phone number or invented address is included; activation is deferred until the owner supplies the address after launch.
   - Verify: plan describes a tested mailto link/email draft and clearly states it opens the visitor's email app; no fake on-site form or third-party service is implied.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.4: Apply approved catalog and content workflow**
+- [x] **Task 0.4: Apply approved catalog and content workflow**
   - Acceptance: approved categories are documented (mixing consoles; speakers/subwoofers; microphones; wireless; headphones; processors/effects; amplifiers; cables/accessories); individual product data remains source-verified; GitHub commits are the initial content workflow; licensed photo provenance is tracked.
   - Verify: no unverified product facts or unlicensed public imagery are introduced.
   - Dependencies: None.
@@ -33,9 +33,9 @@
   - Scope: Small.
 
 ### Checkpoint — Architecture approval
-- [ ] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack and custom-domain preference are recorded.
-- [ ] Risks and decisions are recorded.
-- [ ] Owner approves the technical architecture before implementation tasks begin.
+- [x] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; default GitHub Pages URL is the initial target.
+- [x] Risks and decisions are recorded.
+- [x] Owner approves the technical architecture before implementation tasks begin.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
@@ -115,25 +115,25 @@
 - [ ] Guidance is appropriately qualified and links to next steps.
 - [ ] No unsupported engineering claims appear.
 
-## Phase 4 — C4 Customer contact
+## Phase 4 — C4 Customer contact (email activation after launch)
 
-- [ ] **Task 4.1: Build accessible quote/contact form UI and validation**
-  - Acceptance: approved fields, labels, inline validation, clear consent/privacy language, and success/error states are implemented accessibly.
-  - Verify: keyboard, screen-reader semantics, invalid inputs, and mobile layouts are checked.
-  - Dependencies: Phase 0 contact architecture approval; Task 1.3.
-  - Files likely touched: approximately 3–5 form/schema/component/test files.
-  - Scope: Medium.
+- [ ] **Task 4.1: Prepare a truthful contact section without a fake form**
+  - Acceptance: contact area is prepared for future email contact, but no inactive form, placeholder address, or phone number is displayed.
+  - Verify: no form submission affordance or unconfigured mail link appears in the rendered site.
+  - Dependencies: Task 1.3.
+  - Files likely touched: approximately 1–3 page/component/style files.
+  - Scope: Small.
 
-- [ ] **Task 4.2: Connect and verify real form delivery**
-  - Acceptance: valid submissions reach the approved configurable destination; secrets remain server-side; spam protection and failure handling are active.
-  - Verify: test submissions confirm delivery; provider/service failure is surfaced honestly and safely.
-  - Dependencies: Task 4.1 and approved contact service credentials/configuration supplied securely by owner.
-  - Files likely touched: approximately 2–5 server/config/test files.
-  - Scope: Medium.
+- [ ] **Task 4.2: Activate owner-supplied email after launch**
+  - Acceptance: once the owner supplies the address, a clear mailto link and quote-request draft are configured and verified.
+  - Verify: link opens the visitor's email application with the intended recipient and subject/body; no backend form delivery is claimed.
+  - Dependencies: owner supplies the email address after launch.
+  - Files likely touched: configuration and contact UI files.
+  - Scope: Small.
 
 ### Checkpoint — Customer contact
-- [ ] Email destination is supplied by the owner and the mailto link is tested before activation.
-- [ ] The visitor is told that the link opens their configured email app.
+- [ ] Email destination is owner-supplied and verified before activation.
+- [ ] The link clearly opens the visitor's email application.
 - [ ] No phone number, invented email, fake form submission, or exposed private data appears.
 
 ## Phase 5 — Integrated quality and release readiness
