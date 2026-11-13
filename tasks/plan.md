@@ -58,7 +58,7 @@ Build order: foundation → C1 → C2 → C3 → C4 → integrated quality revie
 The repository is documentation-only and the first release is a public marketing/catalog website on GitHub Pages. Use semantic HTML, CSS, and small vanilla JavaScript modules directly in the repository root. Do not introduce a frontend framework, package manager, bundler, or runtime dependencies unless a later approved requirement demonstrates a concrete need. This keeps the published artifact simple, fast, inspectable, and compatible with GitHub Pages.
 
 - **Local preview:** `python3 -m http.server 8000` (Python standard library).
-- **Automated tests:** `python3 -m unittest discover -s tests -v` (Python standard library).
+- **Automated tests:** `python3 -m unittest discover -s tests -v`, `node --check script.js`, and `node --test tests/*.test.mjs` (Python standard library plus Node.js 22 built-in test runner).
 - **Build:** no build step; the checked-in static files are the deployable artifact.
 - **Source layout:** `index.html`, `styles.css`, `script.js`, `tests/`, `docs/decisions/`, and `.github/workflows/` for quality checks only.
 - **Dependencies:** none for the site runtime or tests. External font loading is progressive enhancement with system fallbacks; content remains readable if the font host is unavailable.
@@ -88,7 +88,7 @@ Prioritize a short navigation, a clear primary call to action, concise pages, pr
 
 ## Implementation progress
 
-The first foundation increment is present on `feature/website-foundation`: static homepage, responsive layout, original inline SVG hero artwork, accessible mobile navigation, reduced-motion support, restrained cinematic motion, project instructions, and a standard-library test suite. The site intentionally has no product listings or contact details yet. Local verification passed 12 Python tests, `node --check script.js`, and CSS parsing with `tinycss2` (98 rules, no parse errors). GitHub Actions quality checks passed on the feature branch. A full interactive browser screenshot check is still pending; production Pages activation and deployment have not been performed.
+The first foundation increment is present on `feature/website-foundation`: static homepage, responsive layout, original inline SVG hero artwork, accessible mobile navigation, reduced-motion support, restrained cinematic motion, project instructions, and a standard-library test suite. The site intentionally has no product listings or contact details yet. Local verification passed 12 Python tests, 2 Node.js interaction tests, `node --check script.js`, and CSS parsing with `tinycss2` (98 rules, no parse errors). GitHub Actions quality checks passed on the feature branch. A full interactive browser screenshot check is still pending; production Pages activation and deployment have not been performed.
 
 ## Implementation phases and task index
 
