@@ -10,6 +10,7 @@ class SiteParser(HTMLParser):
         super().__init__()
         self.ids = []
         self.links = []
+        self.all_links = []
         self.headings = []
         self.landmarks = set()
 
@@ -17,8 +18,11 @@ class SiteParser(HTMLParser):
         attributes = dict(attrs)
         if "id" in attributes:
             self.ids.append(attributes["id"])
-        if tag == "a" and attributes.get("href", "").startswith("#"):
-            self.links.append(attributes["href"][1:])
+        if tag == "a":
+            href = attributes.get("href", "")
+            self.all_links.append(href)
+            if href.startswith("#"):
+                self.links.append(href[1:])
         if tag in {"header", "nav", "main", "footer"}:
             self.landmarks.add(tag)
         if tag in {"h1", "h2", "h3"}:
@@ -86,6 +90,41 @@ class WebsiteFoundationTests(unittest.TestCase):
 
     def test_no_fake_product_claims_or_testimonials(self):
         self.assertNotRegex(self.html.lower(), r"\b(5\.0 out of 5|customer reviews|in stock|buy now)\b")
+
+
+    def test_all_approved_pages_exist_and_have_one_clear_heading(self):
+        expected_pages = {
+            "index.html", "products.html", "solutions.html", "about.html", "contact.html"
+        }
+        self.assertTrue(expected_pages.issubset({path.name for path in ROOT.glob("*.html")}))
+        for page_name in expected_pages:
+            with self.subTest(page=page_name):
+                html = (ROOT / page_name).read_text(encoding="utf-8")
+                parser = SiteParser()
+                parser.feed(html)
+                self.assertRegex(html, r"<title>[^<]+</title>")
+                self.assertRegex(html, r'<meta name="description" content="[^"]+">')
+                self.assertEqual(parser.headings.count("h1"), 1)
+                self.assertTrue({"header", "nav", "main", "footer"}.issubset(parser.landmarks))
+                self.assertIn('href="styles.css"', html)
+                self.assertIn('src="script.js"', html)
+
+    def test_every_page_uses_the_same_five_page_navigation(self):
+        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html"}
+        for page_name in expected:
+            with self.subTest(page=page_name):
+                parser = SiteParser()
+                parser.feed((ROOT / page_name).read_text(encoding="utf-8"))
+                self.assertTrue(expected.issubset(set(parser.all_links)))
+                self.assertEqual(sum('aria-current="page"' in line for line in
+                                     (ROOT / page_name).read_text(encoding="utf-8").splitlines()), 1)
+
+    def test_no_page_publishes_unconfigured_contact_details(self):
+        for path in ROOT.glob("*.html"):
+            with self.subTest(page=path.name):
+                html = path.read_text(encoding="utf-8").lower()
+                self.assertNotIn("mailto:", html)
+                self.assertNotIn("tel:", html)
 
     def test_external_font_is_not_required_for_fallback(self):
         self.assertIn("'Helvetica Neue', sans-serif", self.css)
