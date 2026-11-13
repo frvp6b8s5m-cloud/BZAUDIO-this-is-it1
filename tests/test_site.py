@@ -66,6 +66,10 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("@keyframes object-float", self.css)
         self.assertIn("@keyframes orbit-turn", self.css)
 
+    def test_light_section_uses_contrast_safe_small_text_colors(self):
+        self.assertIn(".intro .section-label { color: #62625b; }", self.css)
+        self.assertIn(".intro .section-label span:first-child, .intro .eyebrow { color: #79542f; }", self.css)
+
     def test_responsive_breakpoints_are_defined(self):
         self.assertIn("@media (max-width: 980px)", self.css)
         self.assertIn("@media (max-width: 680px)", self.css)
