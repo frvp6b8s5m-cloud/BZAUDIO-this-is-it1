@@ -53,3 +53,16 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
 
   revealItems.forEach((item) => revealObserver.observe(item));
 }
+
+
+// PROJECT: ORIGIN public signal interaction. No product details are revealed.
+const originTrigger = document.querySelector("[data-origin-trigger]");
+const originResponse = document.querySelector("#origin-response");
+if (originTrigger && originResponse) {
+  originTrigger.addEventListener("click", () => {
+    const open = originTrigger.getAttribute("aria-expanded") === "true";
+    originTrigger.setAttribute("aria-expanded", String(!open));
+    originResponse.hidden = open;
+    originTrigger.querySelector(".trigger-arrow").textContent = open ? "↗" : "↘";
+  });
+}
