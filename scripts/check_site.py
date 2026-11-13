@@ -3,7 +3,6 @@
 
 from html.parser import HTMLParser
 from pathlib import Path
-import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,7 +77,7 @@ def main():
         errors.append(f"Expected exactly one h1; found {parser.h1_count}.")
     if not parser.has_header or not parser.has_main or not parser.has_footer:
         errors.append("Use semantic header, main, and footer landmarks.")
-    if any(not image.get("alt", "").strip() for image in parser.images):
+    if any("alt" not in image for image in parser.images):
         errors.append("Every image must have meaningful alt text or an explicit empty alt.")
     for button in parser.buttons:
         if not button.get("type"):
@@ -88,9 +87,9 @@ def main():
     for link in parser.links:
         if link.startswith("#") and link[1:] not in parser.ids:
             errors.append(f"Broken in-page link: {link}")
-    if re.search(r"href\\s*=\\s*['\"]tel:", html, re.IGNORECASE):
+    if 'href="tel:' in html.lower() or "href='tel:" in html.lower():
         errors.append("The approved website must not publish a phone number.")
-    if re.search(r"href\\s*=\\s*['\"]mailto:", html, re.IGNORECASE):
+    if 'href="mailto:' in html.lower() or "href='mailto:" in html.lower():
         errors.append("Email contact must remain unconfigured until the owner supplies it.")
     if "prefers-reduced-motion" not in css:
         errors.append("CSS must respect prefers-reduced-motion.")
