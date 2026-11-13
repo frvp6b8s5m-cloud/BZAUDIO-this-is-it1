@@ -62,6 +62,8 @@ button { font: inherit; }
 .hero-foot-right i { display: inline-block; width: 3rem; height: 1px; background: var(--accent); }
 .intro { position: relative; display: grid; grid-template-columns: .7fr 1.3fr; min-height: 620px; padding-top: clamp(6rem, 12vw, 11rem); padding-bottom: clamp(6rem, 12vw, 11rem); overflow: hidden; background: var(--paper); color: var(--ink); }
 .section-label { display: flex; gap: 1.4rem; color: #77776f; font: .58rem var(--mono); letter-spacing: .15em; }
+.intro .section-label { color: #62625b; }
+.intro .section-label span:first-child, .intro .eyebrow { color: #79542f; }
 .section-label span:first-child { color: #a77d52; }
 .intro-content { position: relative; z-index: 1; max-width: 850px; }
 .intro-content h2, .principles-heading h2, .closing h2 { margin: 1.5rem 0 0; font-size: clamp(3.3rem, 7vw, 7rem); font-weight: 700; letter-spacing: -.085em; line-height: .98; }
