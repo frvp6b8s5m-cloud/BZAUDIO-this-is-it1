@@ -31,6 +31,31 @@ The site helps customers discover professional audio equipment and solutions, un
 - The Sound Wall is the proposed signature differentiator, subject to owner approval and a technical feasibility check. Include a graceful non-audio fallback and accessible controls.
 - Interactive tools only when explicitly approved and supported by verified data/calculations. Avoid redundant quizzes.
 
+## Differentiating Features — Recommended Scope
+
+The owner requested adding practical features that make BZaudio more memorable and useful. Prioritize real utility over novelty. Build only against verified product/content data; where data or media is not yet available, provide a clearly labeled framework that can be populated later rather than inventing facts.
+
+### Signature experience: BZaudio Sound Wall
+- A browser-based interactive sound-and-light installation: visitors can tap, drag, and explore a responsive visual soundscape.
+- Optional microphone-reactive mode may be offered only after an explicit browser permission request. Microphone input is processed locally in the browser; do not record, store, or upload audio.
+- The experience must work fully without microphone permission, with touch/mouse/keyboard controls and a reduced-motion/static fallback.
+- Use Web Audio/browser capabilities only where supported; detect support and degrade gracefully. Do not claim studio-grade measurement or audio analysis.
+- Treat this as the leading signature-feature direction requested by the owner; confirm implementation feasibility during planning before committing to a specific technical approach.
+
+### Practical tools that create lasting value
+1. **BZaudio Rig Builder / Quote Builder** — let customers assemble a proposed system from verified catalog items, choose quantities, add venue/use-case notes, and submit one organized quote request. It is a guided inquiry tool, not checkout; never fabricate prices, stock, or compatibility.
+2. **Signal Flow Lab** — an interactive, educational signal-chain and routing visualizer for common live-audio setups. Start with clearly labeled generic examples; only publish console-specific routing, file exchange, or compatibility workflows after model-by-model verification.
+3. **Listening Room** — a curated listening experience for approved product demos, speaker comparisons, and audio examples. Use only BZaudio-owned or properly licensed recordings, disclose the playback context, and avoid unsupported claims that browser playback reproduces a calibrated listening test.
+4. **Venue & Application Explorer** — let visitors explore practical system approaches for worship spaces, clubs, schools, theaters, mobile events, and other verified target applications. Explain trade-offs and link to relevant products/quote requests; do not present estimates as engineered designs.
+5. **Technical Resource Library** — searchable guides, setup checklists, signal-flow diagrams, manuals, and downloadable resources with version/source information. Publish only verified material and respect manufacturer copyrights.
+6. **Product Compare** — side-by-side comparison of verified specifications, connectivity, dimensions, and intended use. Show missing data as unavailable rather than guessing.
+
+### Feature sequencing
+- **First release candidates:** Sound Wall, polished product discovery, Rig Builder / Quote Builder, Signal Flow Lab (generic examples), and a small verified resource library.
+- **Later, when assets/data are ready:** Listening Room, deeper Venue Explorer content, product comparison at scale, and any advanced PA design calculations.
+- A guided PA Designer remains a separate scope decision. It must not imply engineering certification or produce safety-critical rigging/power/coverage advice without validated inputs, documented assumptions, and qualified review.
+- Do not add an AI chatbot or pretend an automated recommendation is an expert engineer. Any future recommendation logic must be transparent, evidence-based, and clearly bounded.
+
 ## Visual and Motion Direction
 - Architectural composition: asymmetry, strong alignment, generous negative space, deep layered sections, large-scale imagery, disciplined grids.
 - Cinematic presentation: intentional image crops, art direction, restrained parallax/reveal transitions, polished page transitions where useful.
