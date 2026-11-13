@@ -33,15 +33,17 @@
   - Scope: Small.
 
 ### Checkpoint — Architecture approval
-- [ ] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack and custom-domain preference are recorded.
-- [ ] Risks and decisions are recorded.
-- [ ] Owner approves the technical architecture before implementation tasks begin.
+- [x] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack is recorded and custom-domain preference is explicitly left open.
+- [x] Risks and decisions are recorded.
+- [x] Owner approved the technical architecture on 2026-11-13.
+
+**Foundation note:** shared design tokens, responsive breakpoints, motion/reduced-motion rules, and the initial brand homepage are now present. Tasks 1.2–1.4 remain open until the full responsive visual and interactive browser review is completed.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
 - [x] **Task 1.1: Establish minimal application foundation**
   - Acceptance: static root structure, local preview instructions, and Python standard-library regression tests are in place; no install or build step is required.
-  - Verify: `python3 -m unittest discover -s tests -v` passes all 10 tests.
+  - Verify: `python3 -m unittest discover -s tests -v` passes all 12 tests.
   - Dependencies: Phase 0 checkpoint.
   - Files likely touched: approximately 3–5 configuration/source files.
   - Scope: Medium.
