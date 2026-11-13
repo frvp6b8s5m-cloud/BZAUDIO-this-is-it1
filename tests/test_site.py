@@ -1,5 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,6 +119,22 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertTrue(expected.issubset(set(parser.all_links)))
                 self.assertEqual(sum('aria-current="page"' in line for line in
                                      (ROOT / page_name).read_text(encoding="utf-8").splitlines()), 1)
+
+
+    def test_all_pages_have_valid_local_links_and_fragment_targets(self):
+        for page_path in ROOT.glob("*.html"):
+            with self.subTest(page=page_path.name):
+                html = page_path.read_text(encoding="utf-8")
+                parser = SiteParser()
+                parser.feed(html)
+                for href in parser.all_links:
+                    if not href or href.startswith(("http://", "https://", "mailto:", "tel:")):
+                        continue
+                    parts = urlsplit(href)
+                    if parts.fragment:
+                        self.assertIn(parts.fragment, parser.ids, f"{page_path.name}: broken fragment {href}")
+                    if parts.path:
+                        self.assertTrue((ROOT / parts.path).is_file(), f"{page_path.name}: broken local link {href}")
 
     def test_no_page_publishes_unconfigured_contact_details(self):
         for path in ROOT.glob("*.html"):
