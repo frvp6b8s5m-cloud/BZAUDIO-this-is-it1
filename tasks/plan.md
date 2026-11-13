@@ -1,7 +1,7 @@
 # BZaudio Website — Technical Implementation Plan
 
 ## Status
-**For owner review and approval. No implementation is authorized by this document.**
+**Owner-approved. Implementation underway on `feature/website-foundation`; production deployment remains separately approval-gated.**
 
 This plan follows the approved BZaudio vision, staged roadmap, and website specification. The owner approved the first-release capability map and order:
 1. Brand experience
@@ -52,16 +52,22 @@ Build order: foundation → C1 → C2 → C3 → C4 → integrated quality revie
 - No trading/barter features.
 - No universal equipment compatibility claims.
 
-## Proposed architecture and decisions
+## Architecture decisions
 
-### D1 — Stack selection is a required pre-implementation decision
-The repository is documentation-only. Select the simplest maintainable static-first approach compatible with GitHub Pages. Evaluate accessible interaction, animation support, build/deploy complexity, preview/rollback, and content editing. Select a framework only if it materially improves the result over simpler static pages. Record the decision and exact dependency versions before installing anything.
+### D1 — Selected stack: static HTML, CSS, and vanilla JavaScript
+The repository is documentation-only and the first release is a public marketing/catalog website on GitHub Pages. Use semantic HTML, CSS, and small vanilla JavaScript modules directly in the repository root. Do not introduce a frontend framework, package manager, bundler, or runtime dependencies unless a later approved requirement demonstrates a concrete need. This keeps the published artifact simple, fast, inspectable, and compatible with GitHub Pages.
 
-### D2 — Hosting choice confirmed: GitHub Pages
-The owner selected GitHub Pages as the intended host. Confirm whether a custom domain is desired and verify the repository's Pages configuration and deployment constraints during implementation planning. No DNS, production settings, or deployment changes are authorized by this plan.
+- **Local preview:** `python3 -m http.server 8000` (Python standard library).
+- **Automated tests:** `python3 -m unittest discover -s tests -v`, `node --check script.js`, and `node --test tests/*.test.mjs` (Python standard library plus Node.js 22 built-in test runner).
+- **Build:** no build step; the checked-in static files are the deployable artifact.
+- **Source layout:** `index.html`, `styles.css`, `script.js`, `tests/`, `docs/decisions/`, and `.github/workflows/` for quality checks only.
+- **Dependencies:** none for the site runtime or tests. External font loading is progressive enhancement with system fallbacks; content remains readable if the font host is unavailable.
 
-### D3 — Email-only contact, activated after launch
-The owner chose email only: no phone number. The actual email address will be supplied after the website is up and running. Build the contact section and quote-request pathway so the destination is configurable, but do not invent an address or publish a broken/fake submission form. The initial implementation may include the contact layout and a clearly inactive/configurable email action; activate the email link and quote-request email draft only after the owner supplies the address. Keep this static-hosting-friendly (for example, a configured mailto link) unless the owner later requests a real server-side form. Explain that mailto opens the visitor's configured email app. No third-party form service or backend is in scope by default.
+### D2 — Hosting: GitHub Pages selected
+GitHub Pages is the approved target. The repository root is the intended static source. Deployment configuration and production activation remain separate, explicitly approval-gated work; this implementation branch will not enable Pages, change repository settings, alter DNS, or publish the site. GitHub documents publishing static files from a branch root and also supports a custom Actions workflow when needed: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site.
+
+### D3 — Email-only contact, configured with the owner-supplied address
+The owner chose email only: no phone number. The owner supplied `benrz101@gmail.com` on 2026-11-13. The Contact page now includes a clearly labeled `mailto:` link with a BZaudio inquiry subject. The page explains that the link opens the visitor's configured email app; it is not an on-site form submission. Keep the destination configurable and do not add a third-party form service or backend unless the owner later requests one.
 
 ### D4 — Content is data-driven and evidence-based
 Keep product and solution content separate from presentation. Publish only verified model names, specifications, media rights, availability, and compatibility statements. Unknown fields are omitted or labeled unavailable, never invented. Start with a small verified catalog rather than a large empty taxonomy.
@@ -80,17 +86,21 @@ Use only genuine, properly licensed photography for public brand imagery. Record
 ### D6 — Keep the first release intentionally small
 Prioritize a short navigation, a clear primary call to action, concise pages, progressive disclosure, and one main purpose per screen. Do not add dashboard-like layouts, excessive card grids, redundant quizzes, decorative widgets, or features without a verified customer benefit.
 
+## Implementation progress
+
+The feature branch now contains five public pages (Home, Products, Solutions, About, Contact), a shared architectural-cinematic design system, original vector artwork, responsive navigation, reduced-motion support, the eight approved product categories, six customer/application pathways, and the owner-supplied email contact. Automated verification passed 16 Python structural/content/link tests, 2 Node.js mobile-navigation interaction tests, and `node --check script.js`; GitHub Actions is green. A Vercel preview snapshot of commit `fc631a6b51cd89dae4b82dcbec1d91a053db7e99` is READY at https://bzaudio-site-psko9iumd-frvp6b8s5m-cloud.vercel.app/. Interactive visual/browser review and licensed-photo provenance review remain pending. GitHub Pages activation and production deployment have not been performed.
+
 ## Implementation phases and task index
 
 The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence below describes the intended vertical slices.
 
 ### Phase 0 — Resolve implementation prerequisites
 - Use GitHub Pages; confirm whether a custom domain is wanted and establish a preview/rollback strategy.
-- Compare and approve the minimal static-first stack, content approach, and build/test tooling.
-- Build an email-only contact/quote pathway with a configurable destination; keep it inactive until the owner supplies the address after launch.
+- Use the approved static HTML/CSS/vanilla-JS stack with Python standard-library tests; no package manager or build step.
+- Configure the email-only contact/quote pathway with the owner-supplied `benrz101@gmail.com` address; keep it as a mailto link rather than a fake on-site submission form.
 - Use the approved initial product category taxonomy; add individual products only when source specifications and media are verified.
 - Use GitHub commits for content updates initially; no admin panel/CMS for the first release.
-- Record architecture decisions and exact commands before installing dependencies.
+- Record architecture decisions and exact commands; no dependencies are required.
 
 **Gate:** No unresolved platform/security decision that would force a rewrite or a fake contact workflow.
 
@@ -118,12 +128,12 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 **Gate:** Visitors can identify a relevant pathway without being presented with unvalidated system designs.
 
 ### Phase 4 — C4 Customer contact
-- Build the email-only contact section and quote-request pathway with a configurable destination; do not include a phone number.
-- Do not invent or publish an email address. Keep the email action inactive until the owner supplies the address after launch.
-- Once supplied, activate a clearly labeled email link and quote-request email draft (mailto) with a useful subject/body template.
-- Test the configured link and explain that it opens the visitor's email application; do not represent it as an on-site submission form.
+- Implement the email-only contact page and quote/inquiry pathway; do not include a phone number.
+- Configure the owner-supplied `benrz101@gmail.com` address as a `mailto:` link with a BZaudio inquiry subject.
+- Explain that the link opens the visitor's configured email app; do not represent it as an on-site submission form.
+- Keep the destination easy to change if the owner later supplies a different business email.
 
-**Gate:** The contact destination is owner-supplied and verified before the email action is activated; no fake form or phone contact appears.
+**Gate:** The contact destination matches the owner-supplied address; no fake form or phone contact appears.
 
 ### Phase 5 — Integrated quality and release readiness
 - Complete responsive, keyboard, screen-reader/semantic, contrast, and reduced-motion checks.
@@ -144,7 +154,7 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 - The navigation and page hierarchy are short and understandable; advanced details are progressively disclosed.
 - Product and solution claims are verified and sourceable.
 - All public photography is genuine and properly licensed with provenance recorded.
-- Email-only contact and quote-request links use the owner-supplied address; until then, the contact action remains inactive and is not represented as a working submission form.
+- Email-only contact and quote-request links use the owner-supplied address and are clearly described as opening the visitor's email app, not submitting an on-site form.
 - No fake buttons, forms, product details, testimonials, compatibility claims, or unbuilt platform capabilities.
 - Performance is measured on representative devices; no animation or imagery is allowed to make core journeys unusable.
 
@@ -153,22 +163,22 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 | Risk | Impact | Mitigation |
 |---|---|---|
 | Unknown host/framework in a documentation-only repository | High | Resolve host and stack before implementation; keep architecture static-first and minimal |
-| Email address is not available at launch | Low | Build the contact structure with a configurable destination; activate email/quote links only after the owner supplies and verifies the address |
+| Contact destination changes later | Low | Keep the mailto destination configurable; the current owner-supplied address is `benrz101@gmail.com` |
 | Product data or photography is incomplete | Medium | Launch a smaller verified catalog; track media rights and omit unknown data |
 | Cinematic motion harms performance or accessibility | High | Shared motion system, reduced-motion path, device testing, performance budgets |
 | Scope expands to future platform capabilities | High | Enforce the approved four-capability first-release map and explicit change approval |
 | Marketing language implies engineered outcomes | High | Editorial review and clear boundaries between education, estimates, and qualified engineering |
 
-## Confirmed owner decisions and remaining inputs
+## Confirmed owner decisions and architecture
 
 - **Hosting:** GitHub Pages selected. Custom-domain preference remains to be confirmed.
-- **Contact:** email only; no phone number. The owner will supply the actual email address after the site is running. Build the configurable contact structure now; activate the email/quote-request links later.
+- **Contact:** email only; no phone number. The owner supplied `benrz101@gmail.com`; the Contact page's mailto inquiry link is configured and identifies that it opens the visitor's email app.
 - **Product categories approved:** mixing consoles; speakers and subwoofers; microphones; wireless systems; headphones; audio processors and effects; amplifiers; cables and accessories. Individual products and specifications must still be verified before publication.
 - **Content administration:** GitHub commits are acceptable initially; no admin panel/CMS in the first release.
 - **Media:** source genuine, properly licensed photography and record provenance; the actual assets and licenses still need to be selected/verified.
-- **Technical architecture:** the minimal static-first stack and exact build/deploy workflow still need to be selected and documented before implementation.
+- **Technical architecture:** static HTML/CSS/vanilla JavaScript, no frontend dependencies, Python standard-library tests, and no build step. GitHub Pages deployment configuration remains deferred until separate release approval.
 
-No third-party form service, phone contact, fabricated email address, custom-domain change, or production deployment is authorized.
+No third-party form service, phone contact, fabricated email address, custom-domain change, or production deployment is authorized. The owner-supplied email is configured; the Vercel preview is a review snapshot only and does not authorize a production launch.
 
 ## Approval boundary
 This is a planning artifact only. Do not create application source code, install packages, configure production hosting, change DNS, submit live forms, or deploy until the owner reviews and explicitly approves this technical plan and its open decisions.

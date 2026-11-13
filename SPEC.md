@@ -1,7 +1,7 @@
 # BZaudio Company Website — Product Specification
 
 ## Status
-**Strategic direction approved; technical specification awaiting owner review.** This document defines the public website scope and its relationship to the broader BZaudio vision. It is not authorization to begin implementation. A technical plan must be reviewed and approved before implementation starts.
+**Approved. Technical plan approved; implementation underway.** This document defines the public website scope and its relationship to the broader BZaudio vision.
 
 ## Objective
 Create a premium, memorable, trustworthy public website for BZaudio, a professional-audio company helping people discover equipment, understand solutions, and request expert help.
@@ -88,8 +88,12 @@ The website may introduce the broader BZaudio ecosystem, but should not present 
 - Static hosting alone does not provide secure server-side form processing, authentication, or private data storage.
 - Do not select architecture or dependencies until the technical plan documents trade-offs and risks.
 
-## Commands and project structure
-To be finalized in the technical plan after repository and deployment inspection. Do not invent commands or project structure before confirming the actual stack.
+## Approved initial commands and project structure
+- Local preview: `python3 -m http.server 8000`
+- Tests: `python3 -m unittest discover -s tests -v`
+- Build: none; static files are the deployable artifact.
+- Structure: `index.html`, `styles.css`, `script.js`, `tests/`, `docs/decisions/`, `.github/workflows/`.
+- Initial stack: semantic HTML, CSS, vanilla JavaScript; no frontend framework or runtime dependencies.
 
 ## Code and quality standards
 - Use semantic HTML and accessible controls.
