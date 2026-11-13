@@ -91,6 +91,8 @@ def main():
         errors.append("The approved website must not publish a phone number.")
     if 'href="mailto:' in html.lower() or "href='mailto:" in html.lower():
         errors.append("Email contact must remain unconfigured until the owner supplies it.")
+    if css.count("{") != css.count("}"):
+        errors.append("CSS braces must be balanced.")
     if "prefers-reduced-motion" not in css:
         errors.append("CSS must respect prefers-reduced-motion.")
     if "aria-expanded" not in html or "aria-expanded" not in js:
