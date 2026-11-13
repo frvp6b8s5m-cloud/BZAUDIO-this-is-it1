@@ -87,7 +87,7 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 ### Phase 0 — Resolve implementation prerequisites
 - Use GitHub Pages; confirm whether a custom domain is wanted and establish a preview/rollback strategy.
 - Compare and approve the minimal static-first stack, content approach, and build/test tooling.
-- Build an email-only contact/quote pathway with a configurable destination; keep it inactive until the owner supplies the address after launch.
+- Prepare an email-only contact/quote pathway as a future activation point; do not render an inactive form or placeholder address. Activate a mailto link only after the owner supplies the address after launch.
 - Use the approved initial product category taxonomy; add individual products only when source specifications and media are verified.
 - Use GitHub commits for content updates initially; no admin panel/CMS for the first release.
 - Record architecture decisions and exact commands before installing dependencies.
@@ -117,13 +117,12 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 
 **Gate:** Visitors can identify a relevant pathway without being presented with unvalidated system designs.
 
-### Phase 4 — C4 Customer contact
-- Build the email-only contact section and quote-request pathway with a configurable destination; do not include a phone number.
-- Do not invent or publish an email address. Keep the email action inactive until the owner supplies the address after launch.
-- Once supplied, activate a clearly labeled email link and quote-request email draft (mailto) with a useful subject/body template.
-- Test the configured link and explain that it opens the visitor's email application; do not represent it as an on-site submission form.
+### Phase 4 — C4 Customer contact (after launch email activation)
+- Prepare a simple contact section layout without an inactive form, placeholder email, or phone number.
+- After launch, the owner supplies the email address; configure and verify a clearly labeled mailto link and quote-request email draft.
+- Explain that the link opens the visitor's email application; do not represent it as an on-site submission form.
 
-**Gate:** The contact destination is owner-supplied and verified before the email action is activated; no fake form or phone contact appears.
+**Gate:** Email activation happens only after the owner supplies and verifies the address; no fake form or phone contact appears.
 
 ### Phase 5 — Integrated quality and release readiness
 - Complete responsive, keyboard, screen-reader/semantic, contrast, and reduced-motion checks.
@@ -166,9 +165,9 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 - **Product categories approved:** mixing consoles; speakers and subwoofers; microphones; wireless systems; headphones; audio processors and effects; amplifiers; cables and accessories. Individual products and specifications must still be verified before publication.
 - **Content administration:** GitHub commits are acceptable initially; no admin panel/CMS in the first release.
 - **Media:** source genuine, properly licensed photography and record provenance; the actual assets and licenses still need to be selected/verified.
-- **Technical architecture:** the minimal static-first stack and exact build/deploy workflow still need to be selected and documented before implementation.
+- **Technical architecture:** static-first semantic HTML, CSS, and vanilla JavaScript with no framework/runtime dependency; GitHub Actions deploys the repository root to GitHub Pages. No build step is required unless later evidence justifies one.
 
 No third-party form service, phone contact, fabricated email address, custom-domain change, or production deployment is authorized.
 
 ## Approval boundary
-This is a planning artifact only. Do not create application source code, install packages, configure production hosting, change DNS, submit live forms, or deploy until the owner reviews and explicitly approves this technical plan and its open decisions.
+The owner approved this plan and task breakdown in chat. Implementation is authorized on a short-lived feature branch. Production deployment, DNS/custom-domain changes, paid services, third-party form processing, and activation of contact email remain separately gated. The actual email address will be supplied by the owner after the site is running.
