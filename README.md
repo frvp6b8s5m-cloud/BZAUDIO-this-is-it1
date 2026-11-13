@@ -16,6 +16,8 @@ Open http://localhost:8000.
 
 ```bash
 python3 -m unittest discover -s tests -v
+node --check script.js
+node --test tests/*.test.mjs
 ```
 
 This is a static-first site with no frontend framework or runtime package dependencies. Product content and additional pages will be added in their approved implementation phases. Email contact will remain inactive until BZaudio supplies its address.
