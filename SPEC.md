@@ -1,7 +1,7 @@
 # BZaudio Company Website — Product Specification
 
 ## Status
-**Strategic direction approved; technical specification awaiting owner review.** This document defines the public website scope and its relationship to the broader BZaudio vision. It is not authorization to begin implementation. A technical plan must be reviewed and approved before implementation starts.
+**Approved.** The owner approved the strategic direction, four-capability website scope, GitHub Pages hosting, email-only contact deferred until after launch, approved product categories, GitHub-based content updates, and the technical plan/task breakdown. Implementation may proceed within those boundaries.
 
 ## Objective
 Create a premium, memorable, trustworthy public website for BZaudio, a professional-audio company helping people discover equipment, understand solutions, and request expert help.
@@ -55,7 +55,7 @@ The experience must feel powerful without being overwhelming.
 - **Products:** verified product categories and product details.
 - **Solutions:** relevant applications and system approaches, without implying unvalidated engineering.
 - **About:** company purpose, trust standards, and brand belief.
-- **Contact / Request a Quote:** accessible, validated inquiry form with clear success and error states and configurable destination.
+- **Contact / Request a Quote:** prepare a restrained contact area and quote-request pathway. Do not show an inactive form or invented address. Activate an email link only after the owner supplies the actual address after launch. No phone number.
 - **Resources:** include only if there is a useful, verified initial body of material; otherwise defer.
 
 The website may introduce the broader BZaudio ecosystem, but should not present future or unbuilt capabilities as currently available.
@@ -72,24 +72,22 @@ The website may introduce the broader BZaudio ecosystem, but should not present 
 ## Functional requirements
 - Responsive, accessible navigation and mobile menu.
 - Product and category discovery based only on available, verified catalog data.
-- Quote/contact forms with client- and server-side validation appropriate to the selected architecture.
-- Clear submission, error, and spam-protection behavior.
-- Configurable contact details.
+- Email-only contact architecture with a configurable destination, left inactive until the owner supplies the actual address after launch.
+- No phone number, third-party form provider, backend form processor, or fake submission state in the initial release.
 - SEO and social metadata, semantic headings, descriptive alt text, and deployment-appropriate sitemap/robots configuration.
 - Privacy-conscious analytics or error reporting only when deliberately configured.
 - No dead buttons, fake forms, placeholder production links, fabricated reviews, or invented product data.
 
 ## Technical approach
-- Inspect the repository, current deployment, workflows, and hosting before choosing or changing the stack.
-- Preserve established project conventions where possible.
-- Keep product data, content, configuration, design tokens, and UI components clearly separated.
-- Prefer the smallest maintainable solution that meets approved requirements.
-- Confirm hosting constraints before selecting forms, authentication, storage, or administrative capabilities.
-- Static hosting alone does not provide secure server-side form processing, authentication, or private data storage.
-- Do not select architecture or dependencies until the technical plan documents trade-offs and risks.
+- Repository inspection found a documentation-only repository with no existing application framework, package manifest, or deployment workflow.
+- Use a static-first implementation with semantic HTML, CSS, and small vanilla JavaScript modules; no frontend framework or runtime dependency for the initial release.
+- Deploy through GitHub Pages using a GitHub Actions workflow. Keep the site build-free where possible.
+- Keep content, configuration, design tokens, and UI behavior separated into simple files.
+- GitHub commits are the initial content-editing workflow; no CMS or admin panel.
+- GitHub Pages does not provide secure server-side form processing. Do not add a form processor or pretend to accept submissions. Add the owner-supplied email link after launch.
 
 ## Commands and project structure
-To be finalized in the technical plan after repository and deployment inspection. Do not invent commands or project structure before confirming the actual stack.
+Local preview: `python3 -m http.server 8000`. Automated static checks: `python3 scripts/check_site.py`. Deployment: GitHub Actions workflow publishes the repository root to GitHub Pages. No package install or framework build is required.
 
 ## Code and quality standards
 - Use semantic HTML and accessible controls.
@@ -146,9 +144,7 @@ The technical plan must identify actual test and build commands after stack insp
 8. Performance and deployment are verified against the actual hosting environment.
 9. Future BZaudio Technology, Experience, and Care capabilities are described honestly and not represented as already built.
 
-## Open questions for technical planning
-- Confirm the current production hosting target and constraints.
-- Confirm which verified product/catalog data and licensed media are available for the first release.
-- Confirm whether an authenticated admin/content workflow is actually required for the initial website.
-- Determine the simplest secure form-processing approach compatible with the hosting environment.
-- Define the initial product categories and exact quote form fields during technical planning.
+## Remaining inputs
+- The owner will supply the actual contact email after the site is up and running.
+- Individual product entries and licensed photography must be supplied/verified before publication.
+- A custom domain is not selected; GitHub Pages' default project URL is the initial target.
