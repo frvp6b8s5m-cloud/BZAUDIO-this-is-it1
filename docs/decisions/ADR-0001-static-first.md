@@ -17,7 +17,7 @@ Use semantic HTML, CSS, and small vanilla JavaScript directly in the repository 
 - Local preview: `python3 -m http.server 8000`
 - Tests: `python3 -m unittest discover -s tests -v`
 - Build: no build step; static files are the deployable artifact.
-- Tests use Python's standard library.
+- Static-content tests use Python's standard library. Small JavaScript interaction tests use Node.js 22's built-in `node:test` runner; no test package is installed.
 - GitHub Pages is the selected host, but Pages activation and production deployment remain separately approval-gated.
 
 ## Consequences
