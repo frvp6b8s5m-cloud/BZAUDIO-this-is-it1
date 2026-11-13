@@ -151,5 +151,19 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("'Courier New', monospace", self.css)
 
 
+    def test_architectural_motion_language_is_present(self):
+        self.assertIn(".hero-architecture-grid", self.css)
+        self.assertIn("@keyframes architectural-drift", self.css)
+        self.assertIn("@keyframes structural-draw", self.css)
+        self.assertIn("clip-path", self.css)
+
+    def test_external_link_arrows_are_replaced_with_plus_marks(self):
+        for page_path in ROOT.glob("*.html"):
+            with self.subTest(page=page_path.name):
+                html = page_path.read_text(encoding="utf-8")
+                self.assertNotIn("↗", html)
+        self.assertIn("principle-mark", self.html)
+
+
 if __name__ == "__main__":
     unittest.main()
