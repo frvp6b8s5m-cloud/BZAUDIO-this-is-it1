@@ -37,7 +37,7 @@
 - [x] Risks and decisions are recorded.
 - [x] Owner approved the technical architecture on 2026-11-13.
 
-**Foundation note:** shared design tokens, responsive breakpoints, motion/reduced-motion rules, and the initial brand homepage are now present. Tasks 1.2–1.4 remain open until the full responsive visual and interactive browser review is completed.
+**Foundation note:** the architectural-cinematic design system, responsive page shell, animated homepage, and five public pages (Home, Products, Solutions, About, Contact) are implemented on the feature branch. Automated checks are green. Tasks 1.2–1.4 remain open until a full responsive visual and interactive browser review is completed.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
@@ -77,6 +77,13 @@
 
 ## Phase 2 — C2 Product discovery
 
+- [x] **Task 2.0: Build the approved product-category directory**
+  - Acceptance: all eight owner-approved categories have a clear description and a next-step path; no unsupported model-level product facts are displayed.
+  - Verify: all category links resolve to the contact page; the five-page navigation and responsive layout pass automated checks.
+  - Dependencies: Task 1.2 and Task 1.3.
+  - Files touched: `products.html`, `styles.css`.
+  - Scope: Medium.
+
 - [ ] **Task 2.1: Define verified product content model**
   - Acceptance: product/category schema supports sourced facts, optional fields, media provenance, and unavailable data without fabricated defaults.
   - Verify: schema/content validation tests cover missing and malformed fields.
@@ -98,14 +105,14 @@
 
 ## Phase 3 — C3 Solutions
 
-- [ ] **Task 3.1: Approve solution content and claim boundaries**
+- [x] **Task 3.1: Approve solution content and claim boundaries**
   - Acceptance: initial customer/application pathways and their source/approval owners are documented; educational content is distinguished from engineered design.
   - Verify: each solution claim has evidence or is clearly framed as general guidance.
   - Dependencies: Phase 1 checkpoint; may proceed alongside Phase 2 content review.
   - Files likely touched: solution content inventory.
   - Scope: Small.
 
-- [ ] **Task 3.2: Build solutions pages and product pathways**
+- [x] **Task 3.2: Build solutions pages and product pathways**
   - Acceptance: concise solution pages explain relevant use cases and link to appropriate verified products or quote/contact paths.
   - Verify: all links work; no unvalidated coverage, power, rigging, acoustic, or compatibility claims are presented as engineering results.
   - Dependencies: Task 3.1 and shared design system; Task 2.2 only where product links are required.
@@ -113,30 +120,30 @@
   - Scope: Medium.
 
 ### Checkpoint — Solutions
-- [ ] Each page has a clear audience and purpose.
-- [ ] Guidance is appropriately qualified and links to next steps.
-- [ ] No unsupported engineering claims appear.
+- [x] Each page has a clear audience and purpose.
+- [x] Guidance is appropriately qualified and links to next steps.
+- [x] No unsupported engineering claims appear.
 
 ## Phase 4 — C4 Customer contact
 
-- [ ] **Task 4.1: Build accessible quote/contact form UI and validation**
-  - Acceptance: approved fields, labels, inline validation, clear consent/privacy language, and success/error states are implemented accessibly.
-  - Verify: keyboard, screen-reader semantics, invalid inputs, and mobile layouts are checked.
-  - Dependencies: Phase 0 contact architecture approval; Task 1.3.
-  - Files likely touched: approximately 3–5 form/schema/component/test files.
-  - Scope: Medium.
+- [x] **Task 4.1: Build the email-only contact information page**
+  - Acceptance: the page explains how to start a conversation and clearly states that email contact will be added after launch; no phone number, placeholder email, inactive form, or false submission promise appears.
+  - Verify: the contact page is in the shared navigation, has accessible semantic structure, and passes the site-wide page tests.
+  - Dependencies: Task 1.3.
+  - Files touched: `contact.html`, `styles.css`.
+  - Scope: Small.
 
-- [ ] **Task 4.2: Connect and verify real form delivery**
-  - Acceptance: valid submissions reach the approved configurable destination; secrets remain server-side; spam protection and failure handling are active.
-  - Verify: test submissions confirm delivery; provider/service failure is surfaced honestly and safely.
-  - Dependencies: Task 4.1 and approved contact service credentials/configuration supplied securely by owner.
-  - Files likely touched: approximately 2–5 server/config/test files.
-  - Scope: Medium.
+- [ ] **Task 4.2: Activate the owner-supplied email contact after launch**
+  - Acceptance: after the owner supplies the actual email address, configure and verify a clearly labeled `mailto:` link and quote-request email draft. Explain that it opens the visitor's configured email app.
+  - Verify: the destination is verified by the owner; no phone number or fabricated address is introduced.
+  - Dependencies: Task 4.1 and owner-provided email address after launch.
+  - Files likely touched: `contact.html`, README/content configuration.
+  - Scope: Small.
 
 ### Checkpoint — Customer contact
 - [ ] Email destination is supplied by the owner and the mailto link is tested before activation.
 - [ ] The visitor is told that the link opens their configured email app.
-- [ ] No phone number, invented email, fake form submission, or exposed private data appears.
+- [x] No phone number, invented email, fake form submission, or exposed private data appears.
 
 ## Phase 5 — Integrated quality and release readiness
 
