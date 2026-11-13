@@ -94,6 +94,10 @@ Use only genuine, properly licensed photography for public brand imagery. Record
 ### D7 — Keep the first release intentionally small
 Prioritize a short navigation, a clear primary call to action, concise pages, progressive disclosure, and one main purpose per screen. Do not add dashboard-like layouts, excessive card grids, redundant quizzes, decorative widgets, or features without a verified customer benefit.
 
+## Implementation progress
+
+The first foundation increment is present on `feature/website-foundation`: static homepage, responsive layout, original inline SVG hero artwork, accessible mobile navigation, reduced-motion support, restrained cinematic motion, project instructions, and a standard-library test suite. The site intentionally has no product listings or contact details yet. Local verification passed 12 Python tests, `node --check script.js`, and CSS parsing with `tinycss2` (98 rules, no parse errors). GitHub Actions quality checks passed on the feature branch. A full interactive browser screenshot check is still pending; production Pages activation and deployment have not been performed.
+
 ## Implementation phases and task index
 
 The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence below describes the intended vertical slices.
