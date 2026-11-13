@@ -52,10 +52,24 @@ Build order: foundation → C1 → C2 → C3 → C4 → integrated quality revie
 - No trading/barter features.
 - No universal equipment compatibility claims.
 
-## Proposed architecture and decisions
+## Architecture decisions
 
-### D1 — Stack selection is a required pre-implementation decision
-The repository is documentation-only. Select the simplest maintainable static-first approach compatible with GitHub Pages. Evaluate accessible interaction, animation support, build/deploy complexity, preview/rollback, and content editing. Select a framework only if it materially improves the result over simpler static pages. Record the decision and exact dependency versions before installing anything.
+### D1 — Selected stack: static HTML, CSS, and vanilla JavaScript
+The repository is documentation-only and the first release is a public marketing/catalog website on GitHub Pages. Use semantic HTML, CSS, and small vanilla JavaScript modules directly in the repository root. Do not introduce a frontend framework, package manager, bundler, or runtime dependencies unless a later approved requirement demonstrates a concrete need. This keeps the published artifact simple, fast, inspectable, and compatible with GitHub Pages.
+
+- **Local preview:** `python3 -m http.server 8000` (Python standard library).
+- **Automated tests:** `python3 -m unittest discover -s tests -v` (Python standard library).
+- **Build:** no build step; the checked-in static files are the deployable artifact.
+- **Source layout:** `index.html`, `styles.css`, `script.js`, `tests/`, `docs/decisions/`, and `.github/workflows/` for quality checks only.
+- **Dependencies:** none for the site runtime or tests. External font loading is progressive enhancement with system fallbacks; content remains readable if the font host is unavailable.
+
+### D2 — Hosting: GitHub Pages selected
+GitHub Pages is the approved target. The repository root is the intended static source. Deployment configuration and production activation remain separate, explicitly approval-gated work; this implementation branch will not enable Pages, change repository settings, alter DNS, or publish the site. GitHub documents publishing static files from a branch root and also supports a custom Actions workflow when needed: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site.
+
+### D3 — Email-only contact, activated after launch
+The owner chose email only: no phone number. The actual email address will be supplied after the website is up and running. Build the contact section and quote-request pathway so the destination is configurable, but do not invent an address or publish a broken/fake submission form. The initial implementation may include the contact layout and a clearly inactive/configurable email action; activate the email link and quote-request email draft only after the owner supplies the address. Keep this static-hosting-friendly (for example, a configured mailto link) unless the owner later requests a real server-side form. Explain that mailto opens the visitor's configured email app. No third-party form service or backend is in scope by default.
+
+### D4 — Content is data-driven and evidence-based
 
 ### D2 — Hosting choice confirmed: GitHub Pages
 The owner selected GitHub Pages as the intended host. Confirm whether a custom domain is desired and verify the repository's Pages configuration and deployment constraints during implementation planning. No DNS, production settings, or deployment changes are authorized by this plan.
@@ -63,10 +77,10 @@ The owner selected GitHub Pages as the intended host. Confirm whether a custom d
 ### D3 — Email-only contact, activated after launch
 The owner chose email only: no phone number. The actual email address will be supplied after the website is up and running. Build the contact section and quote-request pathway so the destination is configurable, but do not invent an address or publish a broken/fake submission form. The initial implementation may include the contact layout and a clearly inactive/configurable email action; activate the email link and quote-request email draft only after the owner supplies the address. Keep this static-hosting-friendly (for example, a configured mailto link) unless the owner later requests a real server-side form. Explain that mailto opens the visitor's configured email app. No third-party form service or backend is in scope by default.
 
-### D4 — Content is data-driven and evidence-based
+### D5 — Content is data-driven and evidence-based
 Keep product and solution content separate from presentation. Publish only verified model names, specifications, media rights, availability, and compatibility statements. Unknown fields are omitted or labeled unavailable, never invented. Start with a small verified catalog rather than a large empty taxonomy.
 
-### D5 — Design system and motion are shared foundations
+### D6 — Design system and motion are shared foundations
 Create a small set of reusable design tokens and interaction primitives before building page-specific effects. The visual system should use:
 - Architectural geometry, strong composition, editorial typography, and generous negative space.
 - Cinematic art direction, authentic equipment/environment photography, and deliberate image crops.
@@ -77,7 +91,7 @@ Create a small set of reusable design tokens and interaction primitives before b
 
 Use only genuine, properly licensed photography for public brand imagery. Record source and license/provenance. Do not use AI-generated or synthetic-looking brand photography.
 
-### D6 — Keep the first release intentionally small
+### D7 — Keep the first release intentionally small
 Prioritize a short navigation, a clear primary call to action, concise pages, progressive disclosure, and one main purpose per screen. Do not add dashboard-like layouts, excessive card grids, redundant quizzes, decorative widgets, or features without a verified customer benefit.
 
 ## Implementation phases and task index
@@ -86,11 +100,11 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 
 ### Phase 0 — Resolve implementation prerequisites
 - Use GitHub Pages; confirm whether a custom domain is wanted and establish a preview/rollback strategy.
-- Compare and approve the minimal static-first stack, content approach, and build/test tooling.
+- Use the approved static HTML/CSS/vanilla-JS stack with Python standard-library tests; no package manager or build step.
 - Build an email-only contact/quote pathway with a configurable destination; keep it inactive until the owner supplies the address after launch.
 - Use the approved initial product category taxonomy; add individual products only when source specifications and media are verified.
 - Use GitHub commits for content updates initially; no admin panel/CMS for the first release.
-- Record architecture decisions and exact commands before installing dependencies.
+- Record architecture decisions and exact commands; no dependencies are required.
 
 **Gate:** No unresolved platform/security decision that would force a rewrite or a fake contact workflow.
 
@@ -159,14 +173,14 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 | Scope expands to future platform capabilities | High | Enforce the approved four-capability first-release map and explicit change approval |
 | Marketing language implies engineered outcomes | High | Editorial review and clear boundaries between education, estimates, and qualified engineering |
 
-## Confirmed owner decisions and remaining inputs
+## Confirmed owner decisions and architecture
 
 - **Hosting:** GitHub Pages selected. Custom-domain preference remains to be confirmed.
 - **Contact:** email only; no phone number. The owner will supply the actual email address after the site is running. Build the configurable contact structure now; activate the email/quote-request links later.
 - **Product categories approved:** mixing consoles; speakers and subwoofers; microphones; wireless systems; headphones; audio processors and effects; amplifiers; cables and accessories. Individual products and specifications must still be verified before publication.
 - **Content administration:** GitHub commits are acceptable initially; no admin panel/CMS in the first release.
 - **Media:** source genuine, properly licensed photography and record provenance; the actual assets and licenses still need to be selected/verified.
-- **Technical architecture:** the minimal static-first stack and exact build/deploy workflow still need to be selected and documented before implementation.
+- **Technical architecture:** static HTML/CSS/vanilla JavaScript, no frontend dependencies, Python standard-library tests, and no build step. GitHub Pages deployment configuration remains deferred until separate release approval.
 
 No third-party form service, phone contact, fabricated email address, custom-domain change, or production deployment is authorized.
 
