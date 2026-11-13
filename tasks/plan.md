@@ -1,0 +1,179 @@
+# BZaudio Website — Technical Implementation Plan
+
+## Status
+**For owner review and approval. No implementation is authorized by this document.**
+
+This plan follows the approved BZaudio vision, staged roadmap, and website specification. The owner approved the first-release capability map and order:
+1. Brand experience
+2. Product discovery
+3. Solutions
+4. Customer contact
+
+The architectural, cinematic design direction and rich, purposeful animations are retained as first-class requirements. The experience must remain clear and never overwhelming.
+
+## Repository findings
+
+Inspection of the default branch (`main`) found:
+- Repository is public and currently contains `README.md`, `VISION.md`, `ROADMAP.md`, and `SPEC.md`.
+- No application source, `package.json`, lockfile, `index.html`, `AGENTS.md`, `tasks/` directory, or `.github/workflows/` directory was present at planning time.
+- The repository currently has only the `main` branch.
+- The repository therefore does not establish an existing application framework, build command, test runner, deployment workflow, or form-processing service.
+
+These findings mean the implementation stack and deployment integration must be deliberately selected and documented before code is written. Do not assume that a prior deployment or workflow in another repository applies here.
+
+## Approved capability map and build order
+
+| ID | Capability | Responsibility | Dependencies |
+|---|---|---|---|
+| C1 | Brand experience | Visual identity, global navigation, home page, responsive layout, motion language, accessibility foundations | Repository/platform foundation |
+| C2 | Product discovery | Product categories, verified product content, product detail presentation, discovery/navigation patterns | C1 design system and content model |
+| C3 | Solutions | Customer/application pathways and solution content, with only verified claims | C1 design system; may link to C2 |
+| C4 | Customer contact | Quote request and contact journeys, validation, submission feedback, privacy-conscious handling | C1 global shell; contact-processing architecture decision |
+
+Build order: foundation → C1 → C2 → C3 → C4 → integrated quality review. C2 and C3 may share content conventions, but keep their acceptance tests and deliverables separate. Do not introduce future BZaudio Technology, Experience Lab, or BZaudio Care applications into this initial website scope.
+
+## Objectives and non-goals
+
+### Objectives
+- Deliver a distinctive, premium, architectural and cinematic BZaudio public website.
+- Make the company's purpose and customer pathways immediately understandable.
+- Help visitors discover verified products and relevant solutions.
+- Make quote/contact requests straightforward, accessible, and reliable.
+- Provide polished micro-interactions and cinematic transitions without sacrificing performance, readability, or control.
+- Establish maintainable content and design foundations for later growth.
+
+### Non-goals for this release
+- No BZaudio operating system or OS-like product.
+- No independent BZaudio Technology platform implementation.
+- No Experience Lab, System DNA, customer account portal, or lifecycle-care product implementation.
+- No ecommerce checkout, payment, inventory, or unverified product pricing.
+- No AI chatbot or fabricated recommendation/engineering capability.
+- No PA design calculations or safety-critical engineering output.
+- No trading/barter features.
+- No universal equipment compatibility claims.
+
+## Proposed architecture and decisions
+
+### D1 — Stack selection is a required pre-implementation decision
+The repository is documentation-only. Before implementation, compare the simplest suitable options for a static-first, responsive marketing/catalog website. Evaluate:
+- GitHub Pages compatibility and the actual intended production host.
+- Build/deploy complexity and maintainability.
+- Accessible interaction and animation support.
+- Content/catalog editing needs.
+- Form-processing constraints.
+- Preview and rollback workflow.
+
+Select a framework only if it provides a material benefit over a simpler static implementation. Record the decision and exact versioned dependencies in the implementation follow-up before installing anything.
+
+### D2 — Hosting and deployment must be confirmed
+GitHub Pages has been discussed previously, but the inspected repository has no deployment workflow. Confirm the intended production host, custom-domain expectations, and whether this repository is the deployment source. Do not change DNS, production settings, or deploy without separate approval.
+
+### D3 — Contact form processing must be designed for the chosen host
+A static frontend cannot securely process or deliver submissions by itself. Compare an approved form provider/serverless endpoint with any existing company infrastructure. Do not hardcode an email address, expose secrets, or ship a form that only pretends to submit. The contact destination remains configurable. If no secure submission service is approved, clearly communicate the limitation and do not label a client-only form as production-ready.
+
+### D4 — Content is data-driven and evidence-based
+Keep product and solution content separate from presentation. Publish only verified model names, specifications, media rights, availability, and compatibility statements. Unknown fields are omitted or labeled unavailable, never invented. Start with a small verified catalog rather than a large empty taxonomy.
+
+### D5 — Design system and motion are shared foundations
+Create a small set of reusable design tokens and interaction primitives before building page-specific effects. The visual system should use:
+- Architectural geometry, strong composition, editorial typography, and generous negative space.
+- Cinematic art direction, authentic equipment/environment photography, and deliberate image crops.
+- A coherent library of small animations: navigation feedback, focus/hover states, image treatments, section reveals, and page transitions where appropriate.
+- Consistent easing, duration, and stagger rules; no random one-off motion.
+- Reduced-motion alternatives, keyboard operability, touch-friendly controls, and no scroll hijacking.
+- Quiet, task-focused layouts for product details and forms; not every page needs a cinematic effect.
+
+Use only genuine, properly licensed photography for public brand imagery. Record source and license/provenance. Do not use AI-generated or synthetic-looking brand photography.
+
+### D6 — Keep the first release intentionally small
+Prioritize a short navigation, a clear primary call to action, concise pages, progressive disclosure, and one main purpose per screen. Do not add dashboard-like layouts, excessive card grids, redundant quizzes, decorative widgets, or features without a verified customer benefit.
+
+## Implementation phases and task index
+
+The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence below describes the intended vertical slices.
+
+### Phase 0 — Resolve implementation prerequisites
+- Confirm host/deployment source, domain expectations, and preview strategy.
+- Compare and approve stack, content approach, and build/test tooling.
+- Decide secure contact submission architecture and configurable destination.
+- Confirm initial product categories, verified source data, licensed media availability, and quote form fields.
+- Record architecture decisions and exact commands before installing dependencies.
+
+**Gate:** No unresolved platform/security decision that would force a rewrite or a fake contact workflow.
+
+### Phase 1 — Foundation and C1 Brand experience
+- Establish the minimal app structure, build pipeline, and quality checks.
+- Implement design tokens, typography, layout grid, global navigation/footer, responsive behavior, and motion/accessibility primitives.
+- Build the home page and concise company introduction.
+- Verify the architectural-cinematic identity on mobile and desktop.
+
+**Gate:** The site communicates BZaudio clearly, feels distinctive, and remains fast, accessible, and easy to navigate.
+
+### Phase 2 — C2 Product discovery
+- Define the smallest maintainable product content schema.
+- Add only available, verified product categories and product entries.
+- Implement category/product discovery and product details using shared components.
+- Test empty, missing, and unavailable product data states.
+
+**Gate:** Every published fact has a source; visitors can browse without invented data or dead controls.
+
+### Phase 3 — C3 Solutions
+- Define a small set of approved customer/application pathways.
+- Publish concise solution pages with verified claims and useful links to relevant products or quote requests.
+- Make limitations and the distinction between educational guidance and engineered designs clear.
+
+**Gate:** Visitors can identify a relevant pathway without being presented with unvalidated system designs.
+
+### Phase 4 — C4 Customer contact
+- Implement quote/contact forms against the approved secure processing approach.
+- Validate inputs on the appropriate server boundary, provide accessible feedback, and add proportionate spam protection.
+- Keep contact routing configurable and avoid exposing secrets.
+- Test success, validation, service failure, and spam/error states.
+
+**Gate:** A real submission reaches the configured destination, or the form is not represented as operational.
+
+### Phase 5 — Integrated quality and release readiness
+- Complete responsive, keyboard, screen-reader/semantic, contrast, and reduced-motion checks.
+- Verify links, navigation, form behavior, and content accuracy.
+- Run production build and automated checks; perform browser smoke tests at representative mobile and desktop sizes.
+- Measure and optimize image loading, animation cost, and Core Web Vitals.
+- Review licensed asset provenance, SEO metadata, and deployment behavior.
+- Prepare a release report; deployment remains separately approval-gated.
+
+**Gate:** All acceptance criteria pass with recorded evidence and the owner approves release.
+
+## Cross-cutting acceptance criteria
+
+- The architecture/cinematic visual identity is unmistakable and consistent.
+- Motion is polished and noticeable, but never overwhelms content or blocks tasks.
+- Reduced-motion preferences are respected and all interactive features work by keyboard and touch.
+- The site is responsive, readable, and accessible, targeting WCAG 2.1 AA.
+- The navigation and page hierarchy are short and understandable; advanced details are progressively disclosed.
+- Product and solution claims are verified and sourceable.
+- All public photography is genuine and properly licensed with provenance recorded.
+- Quote/contact flows have real, tested submission behavior and clear failure states.
+- No fake buttons, forms, product details, testimonials, compatibility claims, or unbuilt platform capabilities.
+- Performance is measured on representative devices; no animation or imagery is allowed to make core journeys unusable.
+
+## Risks and mitigations
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Unknown host/framework in a documentation-only repository | High | Resolve host and stack before implementation; keep architecture static-first and minimal |
+| Static hosting cannot process forms securely on its own | High | Select and approve a real form endpoint/provider before implementing contact |
+| Product data or photography is incomplete | Medium | Launch a smaller verified catalog; track media rights and omit unknown data |
+| Cinematic motion harms performance or accessibility | High | Shared motion system, reduced-motion path, device testing, performance budgets |
+| Scope expands to future platform capabilities | High | Enforce the approved four-capability first-release map and explicit change approval |
+| Marketing language implies engineered outcomes | High | Editorial review and clear boundaries between education, estimates, and qualified engineering |
+
+## Open decisions required before implementation
+
+1. **Production hosting:** Is this repository intended to publish through GitHub Pages, or is another host the target? Is there a custom domain?
+2. **Contact delivery:** Is there an existing approved form service or backend, or should the plan recommend a minimal provider/serverless option for your approval?
+3. **Catalog inputs:** Which initial product categories and source data are ready to publish? Who supplies/approves licensed photography?
+4. **Content administration:** Is editing content through GitHub commits acceptable initially, or is an authenticated admin/CMS required? The current spec does not assume an admin.
+
+These decisions may be resolved during technical review. They are not permission to add services or change production infrastructure.
+
+## Approval boundary
+This is a planning artifact only. Do not create application source code, install packages, configure production hosting, change DNS, submit live forms, or deploy until the owner reviews and explicitly approves this technical plan and its open decisions.
