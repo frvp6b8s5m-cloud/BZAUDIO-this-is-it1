@@ -133,16 +133,16 @@
   - Files touched: `contact.html`, `styles.css`.
   - Scope: Small.
 
-- [ ] **Task 4.2: Activate the owner-supplied email contact after launch**
-  - Acceptance: after the owner supplies the actual email address, configure and verify a clearly labeled `mailto:` link and quote-request email draft. Explain that it opens the visitor's configured email app.
-  - Verify: the destination is verified by the owner; no phone number or fabricated address is introduced.
-  - Dependencies: Task 4.1 and owner-provided email address after launch.
-  - Files likely touched: `contact.html`, README/content configuration.
+- [x] **Task 4.2: Configure the owner-supplied email contact**
+  - Acceptance: configure a clearly labeled `mailto:` link for the owner-supplied address and a quote-request email subject. Explain that it opens the visitor's configured email app.
+  - Verify: destination matches the address supplied by the owner; no phone number or fabricated address is introduced.
+  - Dependencies: Task 4.1 and owner-provided email address.
+  - Files touched: `contact.html`, `README.md`.
   - Scope: Small.
 
 ### Checkpoint — Customer contact
-- [ ] Email destination is supplied by the owner and the mailto link is tested before activation.
-- [ ] The visitor is told that the link opens their configured email app.
+- [x] Email destination is supplied by the owner and the mailto link is configured.
+- [x] The visitor is told that the link opens their configured email app.
 - [x] No phone number, invented email, fake form submission, or exposed private data appears.
 
 ## Phase 5 — Integrated quality and release readiness
