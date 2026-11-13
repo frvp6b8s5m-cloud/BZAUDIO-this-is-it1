@@ -70,17 +70,9 @@ GitHub Pages is the approved target. The repository root is the intended static 
 The owner chose email only: no phone number. The actual email address will be supplied after the website is up and running. Build the contact section and quote-request pathway so the destination is configurable, but do not invent an address or publish a broken/fake submission form. The initial implementation may include the contact layout and a clearly inactive/configurable email action; activate the email link and quote-request email draft only after the owner supplies the address. Keep this static-hosting-friendly (for example, a configured mailto link) unless the owner later requests a real server-side form. Explain that mailto opens the visitor's configured email app. No third-party form service or backend is in scope by default.
 
 ### D4 — Content is data-driven and evidence-based
-
-### D2 — Hosting choice confirmed: GitHub Pages
-The owner selected GitHub Pages as the intended host. Confirm whether a custom domain is desired and verify the repository's Pages configuration and deployment constraints during implementation planning. No DNS, production settings, or deployment changes are authorized by this plan.
-
-### D3 — Email-only contact, activated after launch
-The owner chose email only: no phone number. The actual email address will be supplied after the website is up and running. Build the contact section and quote-request pathway so the destination is configurable, but do not invent an address or publish a broken/fake submission form. The initial implementation may include the contact layout and a clearly inactive/configurable email action; activate the email link and quote-request email draft only after the owner supplies the address. Keep this static-hosting-friendly (for example, a configured mailto link) unless the owner later requests a real server-side form. Explain that mailto opens the visitor's configured email app. No third-party form service or backend is in scope by default.
-
-### D5 — Content is data-driven and evidence-based
 Keep product and solution content separate from presentation. Publish only verified model names, specifications, media rights, availability, and compatibility statements. Unknown fields are omitted or labeled unavailable, never invented. Start with a small verified catalog rather than a large empty taxonomy.
 
-### D6 — Design system and motion are shared foundations
+### D5 — Design system and motion are shared foundations
 Create a small set of reusable design tokens and interaction primitives before building page-specific effects. The visual system should use:
 - Architectural geometry, strong composition, editorial typography, and generous negative space.
 - Cinematic art direction, authentic equipment/environment photography, and deliberate image crops.
@@ -91,7 +83,7 @@ Create a small set of reusable design tokens and interaction primitives before b
 
 Use only genuine, properly licensed photography for public brand imagery. Record source and license/provenance. Do not use AI-generated or synthetic-looking brand photography.
 
-### D7 — Keep the first release intentionally small
+### D6 — Keep the first release intentionally small
 Prioritize a short navigation, a clear primary call to action, concise pages, progressive disclosure, and one main purpose per screen. Do not add dashboard-like layouts, excessive card grids, redundant quizzes, decorative widgets, or features without a verified customer benefit.
 
 ## Implementation progress
