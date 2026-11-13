@@ -97,7 +97,7 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 ### Phase 0 — Resolve implementation prerequisites
 - Use GitHub Pages; confirm whether a custom domain is wanted and establish a preview/rollback strategy.
 - Use the approved static HTML/CSS/vanilla-JS stack with Python standard-library tests; no package manager or build step.
-- Build an email-only contact/quote pathway with a configurable destination; keep it inactive until the owner supplies the address after launch.
+- Configure the email-only contact/quote pathway with the owner-supplied `benrz101@gmail.com` address; keep it as a mailto link rather than a fake on-site submission form.
 - Use the approved initial product category taxonomy; add individual products only when source specifications and media are verified.
 - Use GitHub commits for content updates initially; no admin panel/CMS for the first release.
 - Record architecture decisions and exact commands; no dependencies are required.
@@ -163,7 +163,7 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 | Risk | Impact | Mitigation |
 |---|---|---|
 | Unknown host/framework in a documentation-only repository | High | Resolve host and stack before implementation; keep architecture static-first and minimal |
-| Email address is not available at launch | Low | Build the contact structure with a configurable destination; activate email/quote links only after the owner supplies and verifies the address |
+| Contact destination changes later | Low | Keep the mailto destination configurable; the current owner-supplied address is `benrz101@gmail.com` |
 | Product data or photography is incomplete | Medium | Launch a smaller verified catalog; track media rights and omit unknown data |
 | Cinematic motion harms performance or accessibility | High | Shared motion system, reduced-motion path, device testing, performance budgets |
 | Scope expands to future platform capabilities | High | Enforce the approved four-capability first-release map and explicit change approval |
