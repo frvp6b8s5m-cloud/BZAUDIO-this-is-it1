@@ -28,12 +28,12 @@ This is a static-first site with no frontend framework or runtime package depend
 - `products.html` — the eight approved product categories; individual models and specifications are added only after verification
 - `solutions.html` — pathways for live production, worship, education, studios, venues, and audio professionals
 - `about.html` — company purpose and trust standards
-- `contact.html` — email-ready contact page; the actual email address is added after launch
+- `contact.html` — email-only contact page with a direct quote/inquiry email link
 
 ## Brand and content rules
 
 - The design uses a dark architectural canvas, warm ivory typography, restrained copper accents, original vector artwork, and purposeful motion.
 - Respect reduced-motion preferences and keyboard navigation.
 - Do not add unlicensed photography, invented product data, testimonials, pricing, or compatibility claims.
-- Contact is email only. No phone number or placeholder email is published; activate the address after the site is running and the owner supplies it.
+- Contact is email only: benrz101@gmail.com. The mail link opens the visitor's configured email app; no phone number or fake submission form is used.
 - GitHub Pages is the intended host. Production deployment remains separately approval-gated.
