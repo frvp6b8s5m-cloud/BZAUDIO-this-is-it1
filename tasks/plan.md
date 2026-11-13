@@ -1,7 +1,7 @@
 # BZaudio Website — Technical Implementation Plan
 
 ## Status
-**For owner review and approval. No implementation is authorized by this document.**
+**Approved by the owner. Implementation is authorized within the approved scope.**
 
 This plan follows the approved BZaudio vision, staged roadmap, and website specification. The owner approved the first-release capability map and order:
 1. Brand experience
@@ -126,7 +126,7 @@ The detailed checklist and checkpoints are in `tasks/todo.md`. The sequence belo
 
 ### Phase 5 — Integrated quality and release readiness
 - Complete responsive, keyboard, screen-reader/semantic, contrast, and reduced-motion checks.
-- Verify links, navigation, form behavior, and content accuracy.
+- Verify links, navigation, contact placeholders (no inactive form), and content accuracy.
 - Run production build and automated checks; perform browser smoke tests at representative mobile and desktop sizes.
 - Measure and optimize image loading, animation cost, and Core Web Vitals.
 - Review licensed asset provenance, SEO metadata, and deployment behavior.
