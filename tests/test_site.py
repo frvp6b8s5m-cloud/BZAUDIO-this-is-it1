@@ -69,6 +69,7 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn('aria-controls="primary-navigation"', self.html)
         self.assertIn("setAttribute('aria-expanded'", self.js)
         self.assertIn("navigation.classList.remove('is-open')", self.js)
+        self.assertIn("event.key === 'Escape'", self.js)
 
     def test_no_placeholder_contact_or_phone_number(self):
         self.assertNotRegex(self.html, r"mailto:")
