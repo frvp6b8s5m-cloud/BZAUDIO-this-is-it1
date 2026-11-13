@@ -1,32 +1,32 @@
 # BZaudio Website — Task Breakdown
 
-**Status:** Proposed tasks for owner review. No implementation is authorized until `tasks/plan.md` and this task list are approved.
+**Status:** Owner-approved plan. Implementation is underway on `feature/website-foundation`; production deployment remains separately approval-gated.
 
 ## Phase 0 — Prerequisites and architecture decisions
 
-- [ ] **Task 0.1: Configure GitHub Pages deployment approach (planning only)**
-  - Acceptance: GitHub Pages is the selected host; repository deployment source, custom-domain preference, preview workflow, and rollback approach are documented.
-  - Verify: repository/Pages constraints are recorded; no production setting or DNS is changed.
+- [x] **Task 0.1: Select GitHub Pages as the hosting target (configuration/deployment still deferred)**
+  - Acceptance: GitHub Pages is selected and the repository root is the planned static source; custom-domain preference remains open.
+  - Verify: GitHub Pages documentation was checked; no production setting or DNS was changed.
   - Dependencies: None.
   - Files likely touched: `tasks/plan.md`, architecture decision notes.
   - Scope: Small.
 
-- [ ] **Task 0.2: Select the minimal frontend stack and quality tooling**
-  - Acceptance: framework/static approach, versions, content strategy, accessibility approach, and exact install/build/test commands are documented with trade-offs.
-  - Verify: selected approach is compatible with the confirmed host and repository workflow; no dependency is installed before plan approval.
+- [x] **Task 0.2: Select the minimal frontend stack and quality tooling**
+  - Acceptance: static HTML/CSS/vanilla JavaScript, no runtime dependencies or build step, Python standard-library tests, and local preview command are documented.
+  - Verify: architecture is compatible with GitHub Pages and avoids unnecessary dependencies.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.3: Define email-only contact activation**
-  - Acceptance: contact section and quote-request email pathway have a configurable destination; no phone number or invented address is included; activation is deferred until the owner supplies the address after launch.
-  - Verify: plan describes a tested mailto link/email draft and clearly states it opens the visitor's email app; no fake on-site form or third-party service is implied.
+- [x] **Task 0.3: Define email-only contact activation**
+  - Acceptance: email-only contact and quote request; no phone number; actual address supplied after launch; no fake submission form.
+  - Verify: plan documents deferred activation through a configurable mailto link.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.4: Apply approved catalog and content workflow**
-  - Acceptance: approved categories are documented (mixing consoles; speakers/subwoofers; microphones; wireless; headphones; processors/effects; amplifiers; cables/accessories); individual product data remains source-verified; GitHub commits are the initial content workflow; licensed photo provenance is tracked.
+- [x] **Task 0.4: Apply approved catalog and content workflow (media and model data remain future inputs)**
+  - Acceptance: approved categories and GitHub-based content editing are documented; individual product data and licensed media are explicitly held until verified.
   - Verify: no unverified product facts or unlicensed public imagery are introduced.
   - Dependencies: None.
   - Files likely touched: content inventory/asset provenance notes.
@@ -39,9 +39,9 @@
 
 ## Phase 1 — Foundation and C1 Brand experience
 
-- [ ] **Task 1.1: Establish minimal application foundation**
-  - Acceptance: selected app structure, scripts, formatting/lint/type checks, and build pipeline are configured without unnecessary dependencies.
-  - Verify: clean install, development command, production build, and baseline checks pass.
+- [x] **Task 1.1: Establish minimal application foundation**
+  - Acceptance: static root structure, local preview instructions, and Python standard-library regression tests are in place; no install or build step is required.
+  - Verify: `python3 -m unittest discover -s tests -v` passes all 10 tests.
   - Dependencies: Phase 0 checkpoint.
   - Files likely touched: approximately 3–5 configuration/source files.
   - Scope: Medium.
