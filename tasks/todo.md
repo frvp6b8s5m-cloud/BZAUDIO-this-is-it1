@@ -18,9 +18,9 @@
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [x] **Task 0.3: Define email-only contact activation**
-  - Acceptance: email-only contact and quote request; no phone number; actual address supplied after launch; no fake submission form.
-  - Verify: plan documents deferred activation through a configurable mailto link.
+- [x] **Task 0.3: Define and configure email-only contact**
+  - Acceptance: email-only contact and quote request; no phone number; owner-supplied address is configured; no fake submission form.
+  - Verify: `contact.html` uses `mailto:benrz101@gmail.com` and explains that it opens the visitor's configured email app.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
@@ -33,11 +33,11 @@
   - Scope: Small.
 
 ### Checkpoint — Architecture approval
-- [x] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack is recorded and custom-domain preference is explicitly left open.
+- [x] GitHub Pages, owner-supplied email-only contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack is recorded and custom-domain preference is explicitly left open.
 - [x] Risks and decisions are recorded.
 - [x] Owner approved the technical architecture on 2026-11-13.
 
-**Foundation note:** the architectural-cinematic design system, responsive page shell, animated homepage, and five public pages (Home, Products, Solutions, About, Contact) are implemented on the feature branch. Automated checks are green. Tasks 1.2–1.4 remain open until a full responsive visual and interactive browser review is completed.
+**Foundation note:** the architectural-cinematic design system, responsive page shell, animated homepage, and five public pages (Home, Products, Solutions, About, Contact) are implemented on the feature branch. Automated checks are green, and a Vercel preview snapshot is READY at https://bzaudio-site-psko9iumd-frvp6b8s5m-cloud.vercel.app/. The owner-supplied email `benrz101@gmail.com` is configured. Tasks 1.2–1.4 remain open until a full responsive visual and interactive browser review is completed.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
@@ -127,7 +127,7 @@
 ## Phase 4 — C4 Customer contact
 
 - [x] **Task 4.1: Build the email-only contact information page**
-  - Acceptance: the page explains how to start a conversation and clearly states that email contact will be added after launch; no phone number, placeholder email, inactive form, or false submission promise appears.
+  - Acceptance: the page explains how to start a conversation, displays the owner-supplied email, and clearly states that the link opens the visitor's email app; no phone number, placeholder email, inactive form, or false submission promise appears.
   - Verify: the contact page is in the shared navigation, has accessible semantic structure, and passes the site-wide page tests.
   - Dependencies: Task 1.3.
   - Files touched: `contact.html`, `styles.css`.
