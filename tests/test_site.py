@@ -63,6 +63,12 @@ class WebsiteFoundationTests(unittest.TestCase):
     def test_reduced_motion_is_supported(self):
         self.assertIn("prefers-reduced-motion: reduce", self.css)
         self.assertIn("prefers-reduced-motion: reduce", self.js)
+        self.assertIn("@keyframes object-float", self.css)
+        self.assertIn("@keyframes orbit-turn", self.css)
+
+    def test_responsive_breakpoints_are_defined(self):
+        self.assertIn("@media (max-width: 980px)", self.css)
+        self.assertIn("@media (max-width: 680px)", self.css)
 
     def test_mobile_navigation_is_accessible(self):
         self.assertIn('aria-expanded="false"', self.html)
