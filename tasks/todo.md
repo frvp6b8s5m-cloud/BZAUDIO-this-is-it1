@@ -4,9 +4,9 @@
 
 ## Phase 0 — Prerequisites and architecture decisions
 
-- [ ] **Task 0.1: Confirm hosting and repository deployment role**
-  - Acceptance: production host, deployment source, domain expectations, preview workflow, and rollback approach are documented.
-  - Verify: repository/hosting configuration evidence is recorded; no production setting is changed.
+- [ ] **Task 0.1: Configure GitHub Pages deployment approach (planning only)**
+  - Acceptance: GitHub Pages is the selected host; repository deployment source, custom-domain preference, preview workflow, and rollback approach are documented.
+  - Verify: repository/Pages constraints are recorded; no production setting or DNS is changed.
   - Dependencies: None.
   - Files likely touched: `tasks/plan.md`, architecture decision notes.
   - Scope: Small.
@@ -18,22 +18,22 @@
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.3: Approve contact submission architecture**
-  - Acceptance: secure submission method, configurable recipient/routing, validation boundary, spam protection, privacy handling, and failure behavior are documented.
-  - Verify: architecture can deliver a real submission without exposing secrets or pretending client-only submission is operational.
+- [ ] **Task 0.3: Define email-only contact activation**
+  - Acceptance: contact section and quote-request email pathway have a configurable destination; no phone number or invented address is included; activation is deferred until the owner supplies the address after launch.
+  - Verify: plan describes a tested mailto link/email draft and clearly states it opens the visitor's email app; no fake on-site form or third-party service is implied.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.4: Confirm initial content and media inputs**
-  - Acceptance: initial product categories, source-of-truth product data, solution topics, quote form fields, and licensed photography sources are listed; unknowns are explicitly marked.
-  - Verify: every proposed public claim and asset has an identified approval/source path.
+- [ ] **Task 0.4: Apply approved catalog and content workflow**
+  - Acceptance: approved categories are documented (mixing consoles; speakers/subwoofers; microphones; wireless; headphones; processors/effects; amplifiers; cables/accessories); individual product data remains source-verified; GitHub commits are the initial content workflow; licensed photo provenance is tracked.
+  - Verify: no unverified product facts or unlicensed public imagery are introduced.
   - Dependencies: None.
   - Files likely touched: content inventory/asset provenance notes.
   - Scope: Small.
 
 ### Checkpoint — Architecture approval
-- [ ] Hosting, stack, contact delivery, and content inputs are resolved.
+- [ ] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack and custom-domain preference are recorded.
 - [ ] Risks and decisions are recorded.
 - [ ] Owner approves the technical architecture before implementation tasks begin.
 
@@ -132,9 +132,9 @@
   - Scope: Medium.
 
 ### Checkpoint — Customer contact
-- [ ] Successful delivery is proven end-to-end.
-- [ ] Failure and validation states are clear.
-- [ ] No credentials or private data are exposed in client code or logs.
+- [ ] Email destination is supplied by the owner and the mailto link is tested before activation.
+- [ ] The visitor is told that the link opens their configured email app.
+- [ ] No phone number, invented email, fake form submission, or exposed private data appears.
 
 ## Phase 5 — Integrated quality and release readiness
 
