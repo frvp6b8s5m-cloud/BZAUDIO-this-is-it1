@@ -121,8 +121,11 @@ def main():
         lowered = html.lower()
         if 'href="tel:' in lowered or "href='tel:" in lowered:
             errors.append(f"{page}: the approved site must not publish a phone number.")
-        if 'href="mailto:' in lowered or "href='mailto:" in lowered:
-            errors.append(f"{page}: email contact must remain unconfigured until the owner supplies it.")
+        if page == "contact.html":
+            if 'href="mailto:benrz101@gmail.com"' not in lowered:
+                errors.append(f"{page}: the approved contact email must be published.")
+        elif 'href="mailto:' in lowered or "href='mailto:" in lowered:
+            errors.append(f"{page}: publish email contact only on the Contact page.")
         if "<script" not in lowered or "defer" not in lowered:
             errors.append(f"{page}: load the site script with defer.")
         if 'id="primary-navigation"' not in lowered or 'aria-controls="primary-navigation"' not in lowered:
