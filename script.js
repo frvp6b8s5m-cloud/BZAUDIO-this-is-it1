@@ -63,6 +63,8 @@ if (originTrigger && originResponse) {
     const open = originTrigger.getAttribute("aria-expanded") === "true";
     originTrigger.setAttribute("aria-expanded", String(!open));
     originResponse.hidden = open;
-    originTrigger.querySelector(".trigger-arrow").textContent = open ? "↗" : "↘";
+    const triggerArrow = originTrigger.querySelector(".trigger-arrow");
+    triggerArrow.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>';
+    triggerArrow.style.transform = open ? "rotate(0deg)" : "rotate(135deg)";
   });
 }

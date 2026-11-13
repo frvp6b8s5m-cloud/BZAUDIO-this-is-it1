@@ -558,3 +558,13 @@ h1 em, h2 em { color: var(--signal); font-family: var(--serif); font-weight: 400
 @media(max-width:850px){.origin-campaign-hero{min-height:unset;padding-top:1.5rem}.campaign-topline,.campaign-bottomline{flex-wrap:wrap;font-size:.43rem}.campaign-main{grid-template-columns:1fr;gap:2rem;padding:5rem 0 3rem}.campaign-copy h1{font-size:clamp(3.6rem,12vw,6.5rem)}.campaign-art{min-height:340px;border-top:1px solid rgba(233,230,220,.16)}.campaign-wave{width:105%}.campaign-art-index{right:.2rem;font-size:4rem}}
 @media(max-width:520px){.campaign-topline span:nth-child(2){display:none}.campaign-main{padding-top:4rem}.campaign-copy h1{font-size:clamp(3.2rem,12.5vw,5rem)}.campaign-art{min-height:270px}.campaign-bottomline span:nth-child(2){display:none}.campaign-action-row{align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.campaign-orbit,.wave-line-hit{animation:none!important}.wave-line-hit{stroke-dashoffset:0}}
+
+
+/* Consistent non-emoji directional icons */
+.site-arrow-icon { display: inline-block; width: 1.1em; height: 1.1em; flex: 0 0 auto; vertical-align: middle; }
+.site-arrow-down-right { width: 1.2rem; height: 1.2rem; }
+.row-mark .site-arrow-icon { width: 1.2rem; height: 1.2rem; }
+.origin-link-mark { display: inline-flex; align-items: center; color: var(--signal); transition: transform .25s ease; }
+.origin-feature-link:hover .origin-link-mark { transform: translate(4px, -4px); }
+.trigger-arrow { display: inline-flex; align-items: center; justify-content: center; transition: transform .25s ease; }
+.trigger-arrow svg { display: block; }
