@@ -167,3 +167,17 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_official_brand_logo_is_used_in_every_page_header_and_footer(self):
+        for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html"]:
+            with self.subTest(page=page_name):
+                html = (ROOT / page_name).read_text(encoding="utf-8")
+                self.assertIn('src="assets/bzaudio-logo.png"', html)
+                self.assertIn('alt="BZaudio"', html)
+                self.assertNotIn('class="wordmark-symbol"', html)
+
+    def test_homepage_uses_the_new_brand_hero_copy(self):
+        self.assertIn("Built around", self.html)
+        self.assertIn("feeling", self.html)
+        self.assertIn("of sound.", self.html)
+        self.assertIn("The right sound changes a room.", self.html)
