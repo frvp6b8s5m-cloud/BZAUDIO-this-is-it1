@@ -77,21 +77,8 @@ create table public.catalog_variants (
     check (lifecycle_status in ('active', 'discontinued', 'unknown')),
   is_verified boolean not null default false,
   is_published boolean not null default false,
-  map_price_amount numeric(12,2),
-  currency char(3),
-  map_effective_at timestamptz,
-  map_verified_at timestamptz,
-  availability_status text not null default 'unknown'
-    check (availability_status in ('unknown', 'in_stock', 'limited', 'backorder', 'out_of_stock', 'contact_supplier')),
-  availability_checked_at timestamptz,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  check (map_price_amount is null or map_price_amount >= 0),
-  check (
-    (map_price_amount is null and currency is null and map_verified_at is null)
-    or
-    (map_price_amount is not null and currency ~ '^[A-Z]{3}$' and map_verified_at is not null)
-  )
 );
 create unique index catalog_variants_product_model_uidx
   on public.catalog_variants (product_id, lower(model_number))
@@ -375,4 +362,4 @@ comment on schema catalog_private is
 comment on table public.catalog_products is
   'Physical pro-audio equipment catalog. Separate from the existing digital-download products table domain.';
 comment on table public.catalog_variants is
-  'Physical equipment variants. MAP and availability fields are publishable only after server-side evidence validation.';
+  'Physical equipment variants. MAP and live availability are computed by the server-side public read service from private current evidence; they are not stored in this exposed table.';
