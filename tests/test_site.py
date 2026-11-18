@@ -142,7 +142,7 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertNotIn("tel:", html)
                 if path.name == "contact.html":
                     self.assertIn('href="mailto:benrz101@gmail.com?subject=bzaudio%20inquiry"', html)
-                else:
+                elif path.name != "store.html":
                     self.assertNotIn("mailto:", html)
 
     def test_store_uses_email_inquiry_not_checkout(self):
