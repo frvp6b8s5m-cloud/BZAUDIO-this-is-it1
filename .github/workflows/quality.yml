@@ -20,6 +20,6 @@ jobs:
         with:
           node-version: 22
       - name: Check JavaScript syntax
-        run: node --check script.js
+        run: node --check script.js && node --check store.js
       - name: Run interaction tests
         run: node --test tests/*.test.mjs
