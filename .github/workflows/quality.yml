@@ -10,6 +10,19 @@ permissions:
 jobs:
   static-site-tests:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bzaudio_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d bzaudio_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -23,3 +36,17 @@ jobs:
         run: node --check script.js && node --check store.js
       - name: Run interaction tests
         run: node --test tests/*.test.mjs
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install --yes postgresql-client
+      - name: Bootstrap disposable catalog database
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/bzaudio_test
+        run: psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/catalog-schema-bootstrap.sql
+      - name: Apply catalog migration to disposable database
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/bzaudio_test
+        run: psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20261118232000_create_physical_equipment_catalog.sql
+      - name: Verify catalog RLS and grants
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/bzaudio_test
+        run: psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/catalog-schema-assertions.sql
