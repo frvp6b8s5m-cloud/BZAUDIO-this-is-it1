@@ -48,3 +48,20 @@
 .inquiry-result .text-link{margin-top:.5rem}
 .store-edit{display:block;margin-top:1.2rem;padding:.5rem 0;border:0;border-bottom:1px solid rgba(255,255,255,.4);background:none;color:#fff;font:inherit;font-size:.72rem;cursor:pointer}
 @media(max-width:680px){.store-brands{padding-top:4rem;padding-bottom:4rem}.store-brand-row{grid-template-columns:1.6rem minmax(0,1fr) 1.7rem;gap:.7rem;min-height:10rem;padding:1.5rem 0}.store-brand-row h2{font-size:1.6rem}.store-brand-row p:not(.eyebrow){font-size:.73rem}.store-inquiry{padding-top:4.5rem;padding-bottom:4.5rem}.store-inquiry-layout{grid-template-columns:1fr;gap:2rem;margin-top:2.5rem}.store-inquiry-layout h2{font-size:clamp(3.2rem,13vw,5.5rem)}}
+
+/* ORIGIN gateway */
+.origin-body{min-height:100vh;background:#090909;color:#fff}
+.origin-page{min-height:calc(100svh - 6.2rem);display:grid;place-items:center;overflow:hidden;background:#090909}
+.origin-gateway{position:relative;display:flex;width:100%;min-height:calc(100svh - 6.2rem);flex-direction:column;align-items:center;justify-content:center;padding:4rem var(--page-gutter);isolation:isolate}
+.origin-gateway:before,.origin-gateway:after{position:absolute;z-index:-1;width:min(75vw,900px);aspect-ratio:1.8;border:1px solid rgba(255,255,255,.18);border-radius:50%;content:"";transform:rotate(-12deg)}
+.origin-gateway:after{width:min(88vw,1080px);border-color:rgba(255,255,255,.08);transform:rotate(8deg)}
+.origin-index,.origin-coordinate{position:absolute;color:#aaa8a2;font:.55rem var(--mono);letter-spacing:.16em}
+.origin-index{top:2rem;left:var(--page-gutter)}
+.origin-coordinate{right:var(--page-gutter);bottom:2rem}
+.origin-gateway h1{margin:0;font-size:clamp(5.5rem,20vw,18rem);font-weight:800;letter-spacing:-.12em;line-height:.8}
+.origin-login{display:flex;flex-direction:column;align-items:center;gap:.75rem;margin-top:clamp(3rem,7vw,6rem)}
+.origin-login button{display:flex;min-width:12rem;align-items:center;justify-content:space-between;gap:2rem;padding:1rem 1.2rem;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font:.7rem var(--mono);letter-spacing:.16em}
+.origin-login button:disabled{opacity:.75;cursor:not-allowed}
+.origin-login button span{font-size:1.1rem}
+.origin-login p{margin:0;color:#aaa8a2;font:.5rem var(--mono);letter-spacing:.13em}
+@media(max-width:680px){.origin-page,.origin-gateway{min-height:calc(100svh - 4.8rem)}.origin-gateway h1{font-size:clamp(5rem,22vw,9rem)}.origin-gateway:before{width:115vw}.origin-gateway:after{width:130vw}.origin-index,.origin-coordinate{font-size:.45rem}}
