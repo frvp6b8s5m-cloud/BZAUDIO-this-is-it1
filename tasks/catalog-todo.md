@@ -7,16 +7,17 @@
 
 ## Phase 1 — Architecture and readiness
 
-- [ ] **Task 1: Record catalog architecture decision and verify environment readiness**
+- [x] **Task 1: Record catalog architecture decision and verify environment readiness**
   - **Description:** Document the static GitHub Pages frontend + Supabase catalog data boundary, inspect the existing Supabase project status and access, and verify the current repository/Pages workflow without changing production settings or data.
   - **Acceptance criteria:**
-    - [ ] A catalog-specific ADR records source of truth, public/private data boundary, secret handling, and why the existing static frontend is retained.
-    - [ ] Supabase project state and required configuration are verified from live project metadata; unavailable or paused state is recorded as a blocker, not guessed.
-    - [ ] Required supplier/MAP/image-rights prerequisites are recorded as available, missing, or awaiting owner/supplier input.
-  - **Verification:** Review ADR against `SPEC-CATALOG.md`; confirm project status through Supabase project metadata; inspect GitHub workflow and hosting configuration without deploying.
+    - [x] ADR-0002 records the static frontend + Supabase boundary and keeps the existing digital-download schema separate from physical equipment.
+    - [x] Live metadata confirms Supabase `ACTIVE_HEALTHY`, PostgreSQL 17.6.1.166, and the existing baseline migration.
+    - [x] Supplier/MAP/image-rights prerequisites and outstanding platform security/performance observations are recorded.
+  - **Verification:** Completed read-only project metadata, table inventory, migration inventory, RLS policy inventory, and Supabase advisor checks. No production schema or settings were changed.
   - **Dependencies:** None.
-  - **Files likely touched:** `docs/decisions/ADR-0002-catalog-data.md`, `docs/catalog/prerequisites.md`.
+  - **Files touched:** `docs/decisions/ADR-0002-catalog-data.md`, `docs/catalog/prerequisites.md`, `tasks/catalog-plan.md`, `tasks/catalog-todo.md`.
   - **Estimated scope:** Small.
+  - **Evidence:** Supabase project status `ACTIVE_HEALTHY`; one existing migration `20260928195620_bz_audio_platform_foundation`; 13 public tables with RLS enabled; security advisor returned no lints.
 
 - [ ] **Task 2: Define catalog schema and access-control contract**
   - **Description:** Specify the normalized relational model and public/private access contract before creating migrations.
