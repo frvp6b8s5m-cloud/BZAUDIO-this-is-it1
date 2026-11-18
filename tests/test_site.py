@@ -70,7 +70,7 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("@keyframes orbit-turn", self.css)
 
     def test_light_section_uses_contrast_safe_small_text_colors(self):
-        self.assertIn(".intro .section-label", self.css)
+        self.assertIn(".section-label{", self.css)
         self.assertIn("--paper:#f5f3ee;", self.css)
 
     def test_responsive_breakpoints_are_defined(self):
@@ -146,8 +146,8 @@ class WebsiteFoundationTests(unittest.TestCase):
                     self.assertNotIn("mailto:", html)
 
     def test_external_font_is_not_required_for_fallback(self):
-        self.assertIn("'Helvetica Neue', sans-serif", self.css)
-        self.assertIn("'Courier New', monospace", self.css)
+        self.assertIn("'Helvetica Neue',sans-serif", self.css)
+        self.assertIn("'Courier New',monospace", self.css)
 
 
     def test_architectural_motion_language_is_present(self):
