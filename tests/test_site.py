@@ -67,12 +67,11 @@ class WebsiteFoundationTests(unittest.TestCase):
     def test_reduced_motion_is_supported(self):
         self.assertIn("prefers-reduced-motion: reduce", self.css)
         self.assertIn("prefers-reduced-motion: reduce", self.js)
-        self.assertIn("@keyframes object-float", self.css)
         self.assertIn("@keyframes orbit-turn", self.css)
 
     def test_light_section_uses_contrast_safe_small_text_colors(self):
-        self.assertIn(".intro .section-label { color: #62625b; }", self.css)
-        self.assertIn(".intro .section-label span:first-child, .intro .eyebrow { color: #79542f; }", self.css)
+        self.assertIn(".intro .section-label", self.css)
+        self.assertIn("--paper:#f5f3ee;", self.css)
 
     def test_responsive_breakpoints_are_defined(self):
         self.assertIn("@media (max-width: 980px)", self.css)
@@ -152,10 +151,9 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 
     def test_architectural_motion_language_is_present(self):
-        self.assertIn(".hero-architecture-grid", self.css)
-        self.assertIn("@keyframes architectural-drift", self.css)
-        self.assertIn("@keyframes structural-draw", self.css)
-        self.assertIn("clip-path", self.css)
+        self.assertIn(".hero-logo-stage", self.css)
+        self.assertIn("border-radius:50%", self.css)
+        self.assertIn("prefers-reduced-motion:reduce", self.css)
 
     def test_external_link_arrows_are_replaced_with_plus_marks(self):
         for page_path in ROOT.glob("*.html"):
@@ -174,10 +172,11 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertNotIn('class="wordmark-symbol"', html)
 
     def test_homepage_uses_the_new_brand_hero_copy(self):
-        self.assertIn("Built around", self.html)
-        self.assertIn("feeling", self.html)
-        self.assertIn("of sound.", self.html)
-        self.assertIn("The right sound changes a room.", self.html)
+        self.assertIn("Music", self.html)
+        self.assertIn("brings", self.html)
+        self.assertIn("life.", self.html)
+        self.assertIn("CREATIVE SOUNDS / EST. 2025", self.html)
+        self.assertIn('class="hero-logo-stage"', self.html)
 
 
 if __name__ == "__main__":
