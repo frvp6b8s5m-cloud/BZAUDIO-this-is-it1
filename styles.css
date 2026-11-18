@@ -65,3 +65,6 @@
 .origin-login button span{font-size:1.1rem}
 .origin-login p{margin:0;color:#aaa8a2;font:.5rem var(--mono);letter-spacing:.13em}
 @media(max-width:680px){.origin-page,.origin-gateway{min-height:calc(100svh - 4.8rem)}.origin-gateway h1{font-size:clamp(5rem,22vw,9rem)}.origin-gateway:before{width:115vw}.origin-gateway:after{width:130vw}.origin-index,.origin-coordinate{font-size:.45rem}}
+
+.origin-footer{display:flex;justify-content:space-between;gap:1rem;padding:1rem var(--page-gutter);border-top:1px solid rgba(255,255,255,.12);background:#090909;color:#777;font:.48rem var(--mono);letter-spacing:.12em}
+@media(max-width:680px){.origin-footer{font-size:.42rem}}
