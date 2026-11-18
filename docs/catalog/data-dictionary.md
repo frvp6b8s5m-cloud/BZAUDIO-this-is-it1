@@ -10,7 +10,7 @@
 - Public tables contain only safe, intended-to-publish fields. Supplier agreements, costs, credentials, raw feeds, MAP evidence, media-rights proof, source payloads, and audit notes stay in the non-exposed `catalog_private` schema.
 - All new tables have RLS enabled. New public-schema tables require explicit grants: Supabase no longer automatically exposes newly created public tables to the Data API as of 2026-10-30. Grant only the minimum required privileges.
 - Products and variants default unpublished. Unknown/unverified/discontinued records are not returned as active shopping results.
-- Numeric MAP is copied to a public variant field only after the private evidence record proves exact variant match, current effective date, and permission to publish.
+- Numeric MAP is returned only by the server-side public catalog read service after private evidence proves exact variant match, current effective dates, verification, and permission to publish.
 - Inventory is not displayed as live unless it comes from an approved supplier feed and is within its configured freshness window. Never expose stale quantity as current stock.
 - Supplier credentials are never stored as plaintext database fields; store a secret reference only. Actual credentials live in server-side secret storage.
 
@@ -71,15 +71,15 @@ A product is publicly selectable only when active, verified, and published. Prod
 - `lifecycle_status text not null default 'unknown'`
 - `is_verified boolean not null default false`
 - `is_published boolean not null default false`
-- `map_price_amount numeric(12,2) null`
-- `currency char(3) null`
-- `map_effective_at timestamptz null`
-- `map_verified_at timestamptz null`
-- `availability_status text not null default 'unknown'` — `unknown`, `in_stock`, `limited`, `backorder`, `out_of_stock`, `contact_supplier`
-- `availability_checked_at timestamptz null`
+- MAP amount/currency/effective period are deliberately **not stored in this exposed table**; the public catalog read service computes them from current private evidence.
+
+
+
+- Live availability is deliberately **not stored in this exposed table**; the public catalog read service computes it from a fresh validated snapshot and approved dropship supplier.
+
 - `created_at, updated_at timestamptz not null`
 
-Constraints: nonnegative MAP amount; MAP amount requires currency and evidence verification timestamp; availability status must be from the allowlist. Numeric MAP must be exact-variant matched and publication-authorized in private evidence before it is copied here. If not, keep amount/currency null and show “Contact for price.” Availability is a status only; do not publish supplier quantities.
+The public catalog table does not contain MAP or live-stock fields. This prevents stale or unverified prices/stock from being read directly from the Data API. A future server-side public read function computes MAP only when exact-variant evidence is verified, current, and publication-authorized; otherwise it returns “Contact for price.” It computes availability only from a fresh, validated snapshot belonging to an approved dropship supplier; otherwise it returns unknown/contact supplier. Supplier quantities remain private.
 
 ### `public.catalog_media`
 - `id uuid primary key`
@@ -123,7 +123,7 @@ All private tables are RLS-enabled as defense in depth, have no grants to `anon`
 
 ### `catalog_private.inventory_snapshots`
 - Supplier ID, variant ID, normalized availability, optional supplier quantity (private only), source timestamp, fetched timestamp, feed run ID, and validation status.
-- A public availability status is updated only from a trusted, validated, non-stale snapshot.
+- A public availability status is computed by the server-side public catalog read service only from a trusted, validated, non-stale snapshot.
 
 ### `catalog_private.import_runs` and `catalog_private.import_rows`
 - Import source, start/finish times, run status, counts, idempotency key, errors, row fingerprint, validation result, and quarantine reason.
