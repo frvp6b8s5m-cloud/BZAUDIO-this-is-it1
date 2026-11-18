@@ -39,12 +39,12 @@
 ## Phase 2 — Database and import foundation
 
 - [ ] **Task 3: Implement catalog migrations, constraints, and RLS** *(in progress — migration drafted; test-branch application pending)*
-  - **Description:** Create versioned Supabase migrations for the approved catalog model, indexes, validation constraints, and least-privilege policies. The first migration is drafted at `supabase/migrations/20261118232000_create_physical_equipment_catalog.sql`; it has not been applied to any database. A Supabase development branch is required for safe execution and verification.
+  - **Description:** Create versioned Supabase migrations for the approved catalog model, indexes, validation constraints, and least-privilege policies. The first migration is drafted at `supabase/migrations/20261118232000_create_physical_equipment_catalog.sql`; it has not been applied to any database. Owner requires $0 recurring infrastructure. Supabase development branches are therefore excluded. Use local Supabase CLI/database tooling or free CI execution for isolated testing; do not apply DDL to the live project as a substitute for a test environment.
   - **Acceptance criteria:**
-    - [ ] Migrations apply cleanly to a non-production/test project and include rollback/recovery notes.
+    - [ ] Migrations apply cleanly to a local, non-production test database (no paid branch) and include rollback/recovery notes.
     - [ ] Anonymous users can read only published, approved catalog fields; unauthenticated writes are denied.
     - [ ] Admin/import-only fields and supplier data remain private; duplicate manufacturer/model/variant identities are constrained.
-  - **Verification:** Apply migrations to a test project; run SQL/RLS tests for anonymous, authenticated, and privileged roles; inspect exposed views/RPCs.
+  - **Verification:** Apply migrations to an isolated local database using the Supabase CLI; run SQL/RLS tests for anonymous, authenticated, and privileged roles; inspect exposed views/RPCs. Never use the production database for destructive test runs.
   - **Dependencies:** Tasks 1–2.
   - **Files likely touched:** `supabase/migrations/*`, `tests/catalog-rls.test.*`, `docs/catalog/schema.md`.
   - **Estimated scope:** Medium.
