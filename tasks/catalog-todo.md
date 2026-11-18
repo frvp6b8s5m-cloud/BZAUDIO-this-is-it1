@@ -1,6 +1,6 @@
 # BZaudio Product Catalog — Task List
 
-**Status:** Planning draft — no implementation tasks are complete.  
+**Status:** Implementation in progress. Tasks 1–2 documentation and owner approval are complete; database implementation has not started.  
 **Spec:** `SPEC-CATALOG.md`  
 **Plan:** `tasks/catalog-plan.md`  
 **Branch:** `feature/website-foundation`
@@ -29,12 +29,12 @@
   - **Dependencies:** Task 1.
   - **Files touched:** `docs/catalog/data-dictionary.md`, `docs/catalog/access-matrix.md`, `tasks/catalog-plan.md`, `tasks/catalog-todo.md`.
   - **Estimated scope:** Small.
-  - **Review gate:** Do not create migrations or grants until the owner approves this data contract.
+  - **Review gate:** Owner approved the data contract on 2026-11-18; proceed with test-branch implementation after the branch cost is confirmed.
 
 ### Checkpoint — Architecture and data contract
-- [ ] Owner review of ADR and schema/access contract.
-- [ ] Supabase readiness is verified.
-- [ ] No privileged secret or private supplier field is planned for browser access.
+- [x] Owner review of ADR and schema/access contract — approved by owner on 2026-11-18.
+- [x] Supabase readiness is verified.
+- [x] No privileged secret or private supplier field is planned for browser access.
 
 ## Phase 2 — Database and import foundation
 
