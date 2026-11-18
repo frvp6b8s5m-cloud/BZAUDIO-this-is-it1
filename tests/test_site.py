@@ -165,9 +165,6 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("principle-mark", self.html)
 
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_official_brand_logo_is_used_in_every_page_header_and_footer(self):
         for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html"]:
             with self.subTest(page=page_name):
@@ -181,3 +178,7 @@ if __name__ == "__main__":
         self.assertIn("feeling", self.html)
         self.assertIn("of sound.", self.html)
         self.assertIn("The right sound changes a room.", self.html)
+
+
+if __name__ == "__main__":
+    unittest.main()
