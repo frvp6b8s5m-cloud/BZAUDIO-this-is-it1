@@ -109,8 +109,8 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertIn('href="styles.css"', html)
                 self.assertIn('src="script.js"', html)
 
-    def test_every_page_uses_the_same_five_page_navigation(self):
-        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html"}
+    def test_every_page_uses_the_same_six_page_navigation(self):
+        expected = {"index.html", "products.html", "store.html", "solutions.html", "about.html", "contact.html"}
         for page_name in expected:
             with self.subTest(page=page_name):
                 parser = SiteParser()
