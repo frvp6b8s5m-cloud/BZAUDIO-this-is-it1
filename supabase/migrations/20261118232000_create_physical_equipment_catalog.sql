@@ -78,7 +78,7 @@ create table public.catalog_variants (
   is_verified boolean not null default false,
   is_published boolean not null default false,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
 );
 create unique index catalog_variants_product_model_uidx
   on public.catalog_variants (product_id, lower(model_number))
