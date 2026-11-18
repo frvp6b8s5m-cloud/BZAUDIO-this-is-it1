@@ -38,8 +38,8 @@
 
 ## Phase 2 — Database and import foundation
 
-- [ ] **Task 3: Implement catalog migrations, constraints, and RLS**
-  - **Description:** Create versioned Supabase migrations for the approved catalog model, indexes, validation constraints, and least-privilege policies.
+- [ ] **Task 3: Implement catalog migrations, constraints, and RLS** *(in progress — migration drafted; test-branch application pending)*
+  - **Description:** Create versioned Supabase migrations for the approved catalog model, indexes, validation constraints, and least-privilege policies. The first migration is drafted at `supabase/migrations/20261118232000_create_physical_equipment_catalog.sql`; it has not been applied to any database. A Supabase development branch is required for safe execution and verification.
   - **Acceptance criteria:**
     - [ ] Migrations apply cleanly to a non-production/test project and include rollback/recovery notes.
     - [ ] Anonymous users can read only published, approved catalog fields; unauthenticated writes are denied.
