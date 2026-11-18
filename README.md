@@ -29,7 +29,7 @@ This is a static-first site with no frontend framework or runtime package depend
 ## Public pages
 
 - `index.html` — cinematic brand introduction and company principles
-- `products.html` — the eight approved product categories\n- `store.html` — manufacturer catalog entry and email-based equipment inquiry (not checkout)
+- `products.html` — the eight approved product categories\n- `store.html` — manufacturer catalog entry and email-based equipment inquiry (not checkout)\n- `origin.html` — minimal ORIGIN contributor gateway; authentication is not active yet
 - `solutions.html` — pathways for live production, worship, education, studios, venues, and audio professionals
 - `about.html` — company purpose and trust standards
 - `contact.html` — email-only contact page with a direct quote/inquiry email link
