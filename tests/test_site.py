@@ -94,7 +94,7 @@ class WebsiteFoundationTests(unittest.TestCase):
 
     def test_all_approved_pages_exist_and_have_one_clear_heading(self):
         expected_pages = {
-            "index.html", "products.html", "solutions.html", "about.html", "contact.html"
+            "index.html", "products.html", "store.html", "solutions.html", "about.html", "contact.html"
         }
         self.assertTrue(expected_pages.issubset({path.name for path in ROOT.glob("*.html")}))
         for page_name in expected_pages:
@@ -145,6 +145,14 @@ class WebsiteFoundationTests(unittest.TestCase):
                 else:
                     self.assertNotIn("mailto:", html)
 
+    def test_store_uses_email_inquiry_not_checkout(self):
+        html = (ROOT / "store.html").read_text(encoding="utf-8")
+        self.assertIn('id="equipment-inquiry-form"', html)
+        self.assertIn('src="store.js"', html)
+        self.assertIn("not checkout, payment, or an order confirmation", html)
+        self.assertIn("Model-level listings are being verified", html)
+        self.assertNotRegex(html.lower(), r"stripe|paypal|buy now|place order")
+
     def test_external_font_is_not_required_for_fallback(self):
         self.assertIn("'Helvetica Neue',sans-serif", self.css)
         self.assertIn("'Courier New',monospace", self.css)
@@ -164,7 +172,7 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 
     def test_official_brand_logo_is_used_in_every_page_header_and_footer(self):
-        for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html"]:
+        for page_name in ["index.html", "products.html", "store.html", "solutions.html", "about.html", "contact.html"]:
             with self.subTest(page=page_name):
                 html = (ROOT / page_name).read_text(encoding="utf-8")
                 self.assertIn('src="assets/bzaudio-logo.png"', html)
