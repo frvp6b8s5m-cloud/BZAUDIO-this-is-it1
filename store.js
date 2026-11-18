@@ -17,9 +17,7 @@
     const values = {
       name: field('name').value.trim(),
       email: field('email').value.trim(),
-      manufacturer: field('manufacturer').value,
-      model: field('model').value.trim(),
-      quantity: field('quantity').value,
+      items: field('items').value.trim(),
       notes: field('notes').value.trim() || 'Not provided',
     };
 
@@ -29,9 +27,8 @@
       '',
       `Name: ${values.name}`,
       `Email: ${values.email}`,
-      `Manufacturer: ${values.manufacturer}`,
-      `Product / model: ${values.model}`,
-      `Quantity requested: ${values.quantity}`,
+      'Equipment requested:',
+      values.items,
       '',
       'Additional details:',
       values.notes,
