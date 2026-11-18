@@ -345,6 +345,13 @@ create policy catalog_media_public_read
     )
   );
 
+-- Explicit least-privilege grants: remove any inherited/default browser privileges,
+-- then grant SELECT only. Trusted server-side workflows receive required access.
+revoke all on public.catalog_manufacturers, public.catalog_categories,
+  public.catalog_products, public.catalog_product_categories,
+  public.catalog_variants, public.catalog_media from public, anon, authenticated;
+revoke all on all tables in schema catalog_private from public, anon, authenticated;
+
 -- Explicit Data API grants: SELECT only for browsers, full catalog access
 -- for trusted server-side workflows. No browser access to catalog_private.
 grant select on public.catalog_manufacturers, public.catalog_categories,
