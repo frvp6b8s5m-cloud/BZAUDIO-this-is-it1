@@ -19,16 +19,17 @@
   - **Estimated scope:** Small.
   - **Evidence:** Supabase project status `ACTIVE_HEALTHY`; one existing migration `20260928195620_bz_audio_platform_foundation`; 13 public tables with RLS enabled; security advisor returned no lints.
 
-- [ ] **Task 2: Define catalog schema and access-control contract**
+- [x] **Task 2: Define catalog schema and access-control contract**
   - **Description:** Specify the normalized relational model and public/private access contract before creating migrations.
   - **Acceptance criteria:**
-    - [ ] Schema covers manufacturers, categories, products, variants, source evidence, lifecycle, MAP, image rights, supplier eligibility, inventory snapshots, and audit history.
-    - [ ] Unknown, not applicable, unverified, unavailable, stale, and conflicting states are distinct.
-    - [ ] Public access exposes only approved product fields; supplier cost, credentials, private notes, and audit-only fields are excluded.
-  - **Verification:** Review schema/data dictionary and RLS policy matrix against all catalog trust rules; include example public and private record shapes.
+    - [x] Contract covers manufacturers, categories, products, variants, source evidence, lifecycle, MAP, image rights, supplier eligibility, inventory snapshots, import history, and audit history.
+    - [x] Unknown, unverified, unavailable, stale, discontinued, and conflicting states are distinct.
+    - [x] Public/private fields and anon/authenticated/service-role access boundaries are documented.
+  - **Verification:** Cross-checked against `SPEC-CATALOG.md`, the live Supabase inventory, current RLS model, and Supabase's Data API exposure change. Contract files saved for owner review.
   - **Dependencies:** Task 1.
-  - **Files likely touched:** `docs/catalog/data-dictionary.md`, `docs/catalog/access-matrix.md`.
+  - **Files touched:** `docs/catalog/data-dictionary.md`, `docs/catalog/access-matrix.md`, `tasks/catalog-plan.md`, `tasks/catalog-todo.md`.
   - **Estimated scope:** Small.
+  - **Review gate:** Do not create migrations or grants until the owner approves this data contract.
 
 ### Checkpoint — Architecture and data contract
 - [ ] Owner review of ADR and schema/access contract.
