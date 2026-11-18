@@ -50,4 +50,4 @@ See `docs/decisions/ADR-0002-catalog-data.md` for the isolation decision.
 
 ## Safe next step
 
-Proceed to Task 2: design the equipment-specific data dictionary and access matrix. Do not apply schema changes until the data contract and RLS design are complete. Keep private supplier/evidence data separate from the public product fields, and default all purchase eligibility and live-stock claims to disabled until the required third-party evidence is available.
+The owner approved the data dictionary and access matrix on 2026-11-18. The first catalog migration has been drafted in `supabase/migrations/20261118232000_create_physical_equipment_catalog.sql`, but it has not been applied. No database schema, grants, RLS policies, production data, or production settings have been changed. A Supabase development branch is required for safe application and verification; the quoted branch cost is $0.01344/hour and is awaiting the owner's specific cost confirmation. Keep private supplier/evidence data separate from public product fields, and keep purchase eligibility and live-stock claims disabled until third-party evidence is available.
