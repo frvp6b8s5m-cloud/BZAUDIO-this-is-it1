@@ -37,7 +37,7 @@
       values.notes,
       '',
       'This is an inquiry only, not an order or payment authorization.',
-    ].join('\\n');
+    ].join(String.fromCharCode(10));
 
     emailLink.href = `mailto:benrz101@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     result.hidden = false;
