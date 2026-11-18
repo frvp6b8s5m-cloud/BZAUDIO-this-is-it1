@@ -69,10 +69,11 @@ Allen & Heath   Yamaha        Shure
 - Recorded ADR-0002 and the prerequisite report. No database objects or production settings were changed.
 - Recorded supplier/MAP/image-rights gaps and a separate existing-platform security follow-up.
 
-### Phase 2 — Catalog data contract
-- Define the normalized equipment catalog data dictionary and the public/private access matrix before schema work.
-- Specify the `catalog_*` table family, relationships, indexes, lifecycle rules, source provenance, MAP publication controls, image rights, and inventory freshness.
-- Verify the public field allowlist and RLS behavior against current Supabase documentation before any migration.
+### Phase 2 — Catalog data contract (completed; awaiting owner review)
+- Defined the normalized equipment catalog data dictionary and the public/private access matrix in `docs/catalog/`.
+- Specified the `catalog_*` table family, relationships, lifecycle rules, source provenance, MAP publication controls, image rights, inventory freshness, and role boundaries.
+- Recorded Supabase's October 30, 2026 change requiring explicit grants for newly created public tables. No migrations or grants have been applied.
+- Owner review is required before Task 3 creates any database objects.
 
 ### Phase 2 — Catalog data foundation
 - Design normalized manufacturer, category, product, variant, source, MAP evidence, image-rights, supplier eligibility, inventory snapshot, and audit records.
@@ -108,7 +109,7 @@ Allen & Heath   Yamaha        Shure
 See `tasks/catalog-todo.md` for full acceptance criteria, verification steps, dependencies, likely files, and checkpoints.
 
 1. Catalog architecture decision and environment readiness (complete; ADR-0002 and prerequisite report).
-2. Catalog schema, data dictionary, and access policies.
+2. Catalog schema, data dictionary, and access policies (contract drafted; owner review pending).
 3. Secure importer and data validation.
 4. Manufacturer source register and Allen & Heath coverage.
 5. Yamaha and Shure coverage ingestion.
