@@ -10,7 +10,7 @@ function harness() {
   const fields = {
     name: { value: 'Alex Example', focus() {} },
     email: { value: 'alex@example.com' },
-    items: { value: 'Shure — SM7B — quantity 2\\nAllen & Heath — SQ-6 — quantity 1' },
+    items: { value: 'Shure — SM7B — quantity 2\nAllen & Heath — SQ-6 — quantity 1' },
     notes: { value: 'For a studio' },
   };
   const form = {
@@ -41,7 +41,7 @@ test('valid equipment request creates a reviewable email draft without sending i
   assert.equal(h.result.hidden, false);
   assert.match(h.emailLink.href, /^mailto:benrz101@gmail\.com\?/);
   assert.match(decodeURIComponent(h.emailLink.href), /Product \/ model: SM7B/);
-  assert.match(decodeURIComponent(h.emailLink.href), /Quantity requested: 2/);
+  assert.match(decodeURIComponent(h.emailLink.href), /Allen & Heath — SQ-6 — quantity 1/);
   assert.match(decodeURIComponent(h.emailLink.href), /not an order or payment authorization/);
 });
 
