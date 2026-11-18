@@ -10,9 +10,7 @@ function harness() {
   const fields = {
     name: { value: 'Alex Example', focus() {} },
     email: { value: 'alex@example.com' },
-    manufacturer: { value: 'Shure' },
-    model: { value: 'SM7B' },
-    quantity: { value: '2' },
+    items: { value: 'Shure — SM7B — quantity 2\\nAllen & Heath — SQ-6 — quantity 1' },
     notes: { value: 'For a studio' },
   };
   const form = {
