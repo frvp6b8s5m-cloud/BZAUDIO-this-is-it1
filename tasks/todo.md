@@ -37,7 +37,7 @@
 - [x] Risks and decisions are recorded.
 - [x] Owner approved the technical architecture on 2026-11-13.
 
-**Foundation note:** the architectural-cinematic design system, responsive page shell, animated homepage, and five public pages (Home, Products, Solutions, About, Contact) are implemented on the feature branch. On 2026-11-18, the official oval logo was added to the shared header and footer on all five pages, and the homepage hero was refreshed to the approved “Built around the feeling of sound” direction. GitHub Actions static-site tests pass on commit `1121f0fb9fb8a4dc7c41cc259df0d03b29dbeb42`; a Vercel preview deployment is READY at https://bzaudio-site-nno6sdx5n-frvp6b8s5m-cloud.vercel.app/. The owner-supplied email `benrz101@gmail.com` remains configured. Tasks 1.2–1.4 remain open until a full responsive visual and interactive browser review is completed.
+**Foundation note:** on 2026-11-18, the complete visual system was redesigned across Home, Products, Solutions, About, and Contact from the official BZaudio logo. The new direction is monochrome black/white, oval geometry, expressive editorial typography, and a logo-led homepage. This supersedes the earlier lime-accent architectural design. Automated checks and responsive visual review are being completed; production deployment remains approval-gated.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
