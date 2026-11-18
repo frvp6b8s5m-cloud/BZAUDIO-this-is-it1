@@ -21,7 +21,7 @@ Build a trustworthy, searchable catalog for currently marketed Allen & Heath, Ya
 
 ## Architecture decisions
 1. **Keep the public website static.** Do not introduce a frontend framework, bundler, package manager, or runtime dependency. Continue using semantic HTML, CSS, and vanilla JavaScript.
-2. **Use Supabase Postgres as the catalog source of truth**, subject to a read-only readiness check of the existing BZaudio project before implementation. Do not duplicate authoritative catalog records in checked-in JSON and the database.
+2. **Use Supabase Postgres as the catalog source of truth.** The existing project is healthy, but already contains a digital-download commerce schema. Per ADR-0002, do not repurpose its `public.products`, `orders`, `order_items`, `licenses`, or `downloads` tables. Use a distinct `catalog_*` table family for physical equipment, with public product facts separated from private supplier/evidence data. Do not duplicate authoritative catalog records in checked-in JSON and the database.
 3. **Expose only a deliberately safe public catalog read surface.** Public browser access must be limited by Row Level Security and/or a restricted view/RPC. The public anon/publishable key is not a secret, but service-role keys, supplier credentials, and privileged tokens must remain server-side.
 4. **Keep imports and supplier synchronization server-side.** Use controlled, validated import jobs/Edge Functions or another approved server-side mechanism. Never place supplier credentials in GitHub Pages code.
 5. **No purchase promise in this module.** A product can be browsable without being purchasable. Purchase eligibility remains false unless an approved supplier and dropship terms, warranty handling, accurate availability, and later store flow are verified.
@@ -62,12 +62,17 @@ Allen & Heath   Yamaha        Shure
 
 ## Implementation phases
 
-### Phase 1 — Architecture and readiness
-- Confirm the Supabase project is active and accessible without modifying production data.
-- Confirm GitHub Pages deployment constraints and the public-site branch/workflow.
-- Record a catalog-specific architecture decision that explains the static frontend + Supabase data boundary.
-- Verify the catalog's RLS/public read design before creating tables or exposing any data.
-- Record supplier roster, manufacturer-source access, MAP evidence sources, image permissions, and any unavailable prerequisites.
+### Phase 1 — Architecture and readiness (completed)
+- Confirmed the Supabase project is `ACTIVE_HEALTHY` and PostgreSQL 17.6.1.166.
+- Inspected the existing migration and 13 public tables; all were reported with RLS enabled.
+- Confirmed the existing `public.products` table is a digital-download product model and must remain separate from physical equipment.
+- Recorded ADR-0002 and the prerequisite report. No database objects or production settings were changed.
+- Recorded supplier/MAP/image-rights gaps and a separate existing-platform security follow-up.
+
+### Phase 2 — Catalog data contract
+- Define the normalized equipment catalog data dictionary and the public/private access matrix before schema work.
+- Specify the `catalog_*` table family, relationships, indexes, lifecycle rules, source provenance, MAP publication controls, image rights, and inventory freshness.
+- Verify the public field allowlist and RLS behavior against current Supabase documentation before any migration.
 
 ### Phase 2 — Catalog data foundation
 - Design normalized manufacturer, category, product, variant, source, MAP evidence, image-rights, supplier eligibility, inventory snapshot, and audit records.
@@ -102,8 +107,8 @@ Allen & Heath   Yamaha        Shure
 ## Task index
 See `tasks/catalog-todo.md` for full acceptance criteria, verification steps, dependencies, likely files, and checkpoints.
 
-1. Catalog architecture decision and environment readiness.
-2. Catalog schema, migrations, and access policies.
+1. Catalog architecture decision and environment readiness (complete; ADR-0002 and prerequisite report).
+2. Catalog schema, data dictionary, and access policies.
 3. Secure importer and data validation.
 4. Manufacturer source register and Allen & Heath coverage.
 5. Yamaha and Shure coverage ingestion.
