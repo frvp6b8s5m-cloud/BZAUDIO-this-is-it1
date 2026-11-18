@@ -24,8 +24,8 @@ Public BZaudio company website. Follow `VISION.md`, `ROADMAP.md`, `SPEC.md`, and
 - Use genuine, properly licensed photography only and record provenance. Do not use AI-generated/synthetic-looking public brand photography.
 - Until licensed assets are verified, prefer original CSS/SVG artwork.
 - Never invent product specifications, pricing, stock, testimonials, compatibility, certifications, or performance claims.
-- No OS, ecommerce checkout, AI chatbot, trading/barter, or unapproved platform features.
-- Contact is email only, no phone number. Do not invent the email address; owner will supply it after launch.
+- No real-payment checkout or automatic supplier ordering until separately activated; email-based equipment inquiries are approved.\n- No OS, AI chatbot, trading/barter, or unapproved platform features.
+- Contact is email only, no phone number. Use the owner-supplied address `benrz101@gmail.com`.
 - Product categories approved: mixing consoles; speakers and subwoofers; microphones; wireless systems; headphones; audio processors and effects; amplifiers; cables and accessories.
 
 ## Definition of done
