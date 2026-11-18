@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Explore BZaudio's professional audio equipment catalog and request a quote by email.">
+  <meta property="og:title" content="Equipment Store — BZaudio">
+  <meta property="og:description" content="Professional audio equipment, with product details verified before publication.">
+  <title>Equipment Store — BZaudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script src="store.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="BZaudio home"><img src="assets/bzaudio-logo.png" alt="BZaudio"></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-toggle-label">Menu</span><span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i></span></button>
+    <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="products.html">Products</a><a href="store.html" aria-current="page">Store</a><a href="solutions.html">Solutions</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    </nav>
+    <a class="header-index" href="#equipment-inquiry"><span>+</span> Request equipment</a>
+  </header>
+  <main id="main">
+    <section class="subpage-hero section-shell store-hero">
+      <div class="subpage-meta" data-reveal><span class="eyebrow">02 / BZAUDIO EQUIPMENT</span><span>PROFESSIONAL SOUND / CONSIDERED CAREFULLY</span></div>
+      <div class="subpage-heading" data-reveal>
+        <h1>THE RIGHT<br><span class="outline-heading">EQUIPMENT.</span><br>NO GUESSWORK.</h1>
+        <p>Explore professional audio from Allen &amp; Heath, Yamaha, and Shure. Product details, pricing, and availability are published only when verified.</p>
+      </div>
+      <div class="subpage-foot"><span>ALLEN &amp; HEATH / YAMAHA / SHURE</span><span>BZAUDIO — STORE</span></div>
+    </section>
+    <section class="store-brands section-shell" aria-labelledby="store-brands-title">
+      <div class="section-label" data-reveal><span>01</span><span id="store-brands-title">MANUFACTURER CATALOGS</span></div>
+      <div class="store-brand-list">
+        <article class="store-brand-row" data-reveal><span class="catalog-number">01</span><div><p class="eyebrow">MIXING / LIVE SOUND / INSTALLATION</p><h2>Allen &amp; Heath</h2><p>Mixing consoles and professional audio products. Model-level listings are being verified against manufacturer sources.</p></div><a class="catalog-mark" href="#equipment-inquiry" aria-label="Ask about Allen and Heath equipment">+</a></article>
+        <article class="store-brand-row" data-reveal><span class="catalog-number">02</span><div><p class="eyebrow">MIXING / LOUDSPEAKERS / PRO AUDIO</p><h2>Yamaha</h2><p>Professional audio consoles, speakers, microphones, amplifiers, processors, and related equipment.</p></div><a class="catalog-mark" href="#equipment-inquiry" aria-label="Ask about Yamaha equipment">+</a></article>
+        <article class="store-brand-row" data-reveal><span class="catalog-number">03</span><div><p class="eyebrow">MICROPHONES / WIRELESS / MONITORING</p><h2>Shure</h2><p>Professional microphones, wireless systems, headphones, in-ear monitoring, and music-related accessories.</p></div><a class="catalog-mark" href="#equipment-inquiry" aria-label="Ask about Shure equipment">+</a></article>
+      </div>
+      <p class="catalog-disclaimer" data-reveal>We are building the model-by-model catalog. No unverified price, MAP, stock, warranty, image, or supplier claim is displayed. Asking about an item does not place an order.</p>
+    </section>
+    <section class="store-inquiry section-shell" id="equipment-inquiry" aria-labelledby="equipment-inquiry-title">
+      <div class="section-label" data-reveal><span>02</span><span>EMAIL-BASED EQUIPMENT REQUEST</span></div>
+      <div class="store-inquiry-layout">
+        <div data-reveal><p class="eyebrow">START WITH WHAT YOU NEED</p><h2 id="equipment-inquiry-title">Let's find your<br><em>right fit.</em></h2><p class="store-inquiry-copy">Tell us which equipment you're looking for. We'll review the request and confirm current pricing, availability, shipping, and next steps with you.</p></div>
+        <div class="store-form-panel" data-reveal>
+          <form id="equipment-inquiry-form">
+            <label for="inquiry-name">Your name</label><input id="inquiry-name" name="name" autocomplete="name" required maxlength="100">
+            <label for="inquiry-email">Email address</label><input id="inquiry-email" name="email" type="email" autocomplete="email" required maxlength="254">
+            <label for="inquiry-brand">Manufacturer</label><select id="inquiry-brand" name="manufacturer" required><option value="">Choose a manufacturer</option><option>Allen &amp; Heath</option><option>Yamaha</option><option>Shure</option><option>Other / not sure</option></select>
+            <label for="inquiry-model">Product or model</label><input id="inquiry-model" name="model" required maxlength="160" placeholder="Product name, model number, or category">
+            <label for="inquiry-quantity">Quantity</label><input id="inquiry-quantity" name="quantity" type="number" min="1" max="99" value="1" required>
+            <label for="inquiry-notes">Anything else we should know? <span>(optional)</span></label><textarea id="inquiry-notes" name="notes" rows="4" maxlength="1500" placeholder="Intended use, preferred configuration, or questions"></textarea>
+            <button class="store-submit" type="submit">Prepare email request <span aria-hidden="true">+</span></button>
+          </form>
+          <div id="inquiry-result" class="inquiry-result" hidden aria-live="polite">
+            <p class="eyebrow">YOUR REQUEST IS READY</p><h3>Review before sending.</h3>
+            <p>This opens your own email app with the details filled in. You must press Send in that app. Nothing has been submitted or ordered yet.</p>
+            <a id="email-draft-link" class="text-link" href="mailto:benrz101@gmail.com">Open email draft <span aria-hidden="true">+</span></a>
+            <button id="edit-inquiry" class="store-edit" type="button">Edit request</button>
+          </div>
+          <p class="store-form-note">Email requests are free. This is not checkout, payment, or an order confirmation.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="footer-wordmark" href="index.html" aria-label="BZaudio home"><img src="assets/bzaudio-logo.png" alt="BZaudio"></a><p>MUSIC BRINGS LIFE. MUSIC IS EVERYTHING.</p><a class="back-to-top" href="#main">BACK TO TOP <span>↑</span></a><span class="footer-copyright">© <span id="year">2026</span> BZAUDIO</span></footer>
+</body>
+</html>
