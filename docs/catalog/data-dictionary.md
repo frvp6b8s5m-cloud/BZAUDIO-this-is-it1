@@ -1,6 +1,6 @@
 # Physical Equipment Catalog — Data Dictionary
 
-**Status:** Proposed contract for owner review; no database objects have been created.  
+**Status:** Owner-approved data contract (2026-11-18). No database objects have been created yet.  
 **Related:** `SPEC-CATALOG.md`, ADR-0002, `docs/catalog/access-matrix.md`.
 
 ## Design rules
