@@ -46,14 +46,12 @@
     <section class="store-inquiry section-shell" id="equipment-inquiry" aria-labelledby="equipment-inquiry-title">
       <div class="section-label" data-reveal><span>02</span><span>EMAIL-BASED EQUIPMENT REQUEST</span></div>
       <div class="store-inquiry-layout">
-        <div data-reveal><p class="eyebrow">START WITH WHAT YOU NEED</p><h2 id="equipment-inquiry-title">Let's find your<br><em>right fit.</em></h2><p class="store-inquiry-copy">Tell us which equipment you're looking for. We'll review the request and confirm current pricing, availability, shipping, and next steps with you.</p></div>
+        <div data-reveal><p class="eyebrow">START WITH WHAT YOU NEED</p><h2 id="equipment-inquiry-title">Let's find your<br><em>right fit.</em></h2><p class="store-inquiry-copy">Add one or more equipment items to your request list. We'll review it and confirm current pricing, availability, shipping, and next steps with you.</p></div>
         <div class="store-form-panel" data-reveal>
           <form id="equipment-inquiry-form">
             <label for="inquiry-name">Your name</label><input id="inquiry-name" name="name" autocomplete="name" required maxlength="100">
             <label for="inquiry-email">Email address</label><input id="inquiry-email" name="email" type="email" autocomplete="email" required maxlength="254">
-            <label for="inquiry-brand">Manufacturer</label><select id="inquiry-brand" name="manufacturer" required><option value="">Choose a manufacturer</option><option>Allen &amp; Heath</option><option>Yamaha</option><option>Shure</option><option>Other / not sure</option></select>
-            <label for="inquiry-model">Product or model</label><input id="inquiry-model" name="model" required maxlength="160" placeholder="Product name, model number, or category">
-            <label for="inquiry-quantity">Quantity</label><input id="inquiry-quantity" name="quantity" type="number" min="1" max="99" value="1" required>
+            <label for="inquiry-items">Equipment list / request cart</label><textarea id="inquiry-items" name="items" rows="5" required maxlength="2500" placeholder="One item per line, including quantity&#10;Allen &amp; Heath — model — quantity 1&#10;Yamaha — model — quantity 2"></textarea>
             <label for="inquiry-notes">Anything else we should know? <span>(optional)</span></label><textarea id="inquiry-notes" name="notes" rows="4" maxlength="1500" placeholder="Intended use, preferred configuration, or questions"></textarea>
             <button class="store-submit" type="submit">Prepare email request <span aria-hidden="true">+</span></button>
           </form>
