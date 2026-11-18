@@ -1,6 +1,6 @@
 # Catalog Database Access Matrix
 
-**Status:** Proposed contract for owner review; no schema changes or grants have been applied.
+**Status:** Owner-approved access contract (2026-11-18). No schema changes or grants have been applied yet.
 
 ## Trust boundaries
 
