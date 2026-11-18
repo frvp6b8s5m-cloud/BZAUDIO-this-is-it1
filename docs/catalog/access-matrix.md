@@ -39,8 +39,8 @@
 - Product: `is_published = true`, `is_verified = true`, `lifecycle_status = 'active'`.
 - Variant: same conditions, plus its parent product meets the product invariant.
 - Media: `is_published = true` and private rights review has approved current website/catalog use.
-- MAP: public amount exists only when the private evidence record matches the exact variant, is in its effective period, is verified, and permits publication. Otherwise show “Contact for price.”
-- Availability: show live status only when the source is an approved dropship supplier and its timestamp is within the configured freshness window. Otherwise status is unknown/contact supplier.
+- MAP: never expose a stored MAP value directly from a table. The server-side public read service returns a numeric amount only when private evidence matches the exact variant, is in its effective period, is verified, and permits publication. Otherwise it returns “Contact for price.”
+- Availability: never expose supplier snapshots directly. The server-side public read service shows live status only when the source is an approved dropship supplier and its timestamp is within the configured freshness window. Otherwise status is unknown/contact supplier.
 - Purchasability: catalog publication does not imply the item is available to purchase. A future store module must check supplier authorization, variant mapping, territory, fulfillment, warranty/returns, and current stock independently.
 
 ## Verification matrix before any public release
