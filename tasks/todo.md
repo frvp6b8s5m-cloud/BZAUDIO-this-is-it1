@@ -37,7 +37,7 @@
 - [x] Risks and decisions are recorded.
 - [x] Owner approved the technical architecture on 2026-11-13.
 
-**Foundation note:** the architectural-cinematic design system, responsive page shell, animated homepage, and five public pages (Home, Products, Solutions, About, Contact) are implemented on the feature branch. Automated checks are green, and a Vercel preview snapshot is READY at https://bzaudio-site-psko9iumd-frvp6b8s5m-cloud.vercel.app/. The owner-supplied email `benrz101@gmail.com` is configured. Tasks 1.2–1.4 remain open until a full responsive visual and interactive browser review is completed.
+**Foundation note:** the architectural-cinematic design system, responsive page shell, animated homepage, and five public pages (Home, Products, Solutions, About, Contact) are implemented on the feature branch. On 2026-11-18, the official oval logo was added to the shared header and footer on all five pages, and the homepage hero was refreshed to the approved “Built around the feeling of sound” direction. GitHub Actions static-site tests pass on commit `1121f0fb9fb8a4dc7c41cc259df0d03b29dbeb42`; a Vercel preview deployment is READY at https://bzaudio-site-nno6sdx5n-frvp6b8s5m-cloud.vercel.app/. The owner-supplied email `benrz101@gmail.com` remains configured. Tasks 1.2–1.4 remain open until a full responsive visual and interactive browser review is completed.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
@@ -61,6 +61,8 @@
   - Dependencies: Task 1.2.
   - Files likely touched: approximately 3–5 component/style/test files.
   - Scope: Medium.
+
+- [x] Implement the official BZaudio logo in the shared header/footer and refresh the homepage hero; automated static-site regression tests pass. Visual sign-off remains pending.
 
 - [ ] **Task 1.4: Build the home/brand experience**
   - Acceptance: brand belief, company proposition, clear customer pathways, and primary quote/contact call to action are presented in a premium architectural-cinematic layout.
