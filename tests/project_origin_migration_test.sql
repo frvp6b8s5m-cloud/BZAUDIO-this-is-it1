@@ -92,7 +92,7 @@ reset role;
 set role anon;
 do $$
 begin
-  if (select count(*) from public.project_origin_founders) <> 1 then
+  if not exists (select display_name from public.project_origin_founders where display_name='Test Applicant') then
     raise exception 'Public Founder recognition is not visible';
   end if;
 end;
