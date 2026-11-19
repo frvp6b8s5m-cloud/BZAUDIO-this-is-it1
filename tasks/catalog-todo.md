@@ -50,15 +50,15 @@
   - **Files likely touched:** `supabase/migrations/*`, `tests/catalog-rls.test.*`, `docs/catalog/schema.md`.
   - **Estimated scope:** Medium.
 
-- [ ] **Task 4: Build secure import and validation pipeline**
-  - **Description:** Add a server-side import path for normalized manufacturer/product data with schema validation, idempotency, duplicate detection, quarantine, source provenance, and audit logging.
+- [ ] **Task 4: Build secure import and validation pipeline** *(validation and quarantine foundation implemented; server-side ingestion remains open)*
+  - **Description:** Add a server-side import path for normalized manufacturer/product data with schema validation, idempotency, duplicate detection, quarantine, source provenance, and audit logging. The first safe slice is implemented in `scripts/catalog-validation.mjs`; it validates manufacturer-origin rows, checks exact variant identity, rejects malformed data, quarantines incomplete evidence/duplicates, and creates deterministic fingerprints/idempotency keys. This is validation only; it does not persist data or publish products.
   - **Acceptance criteria:**
     - [ ] Re-importing identical source data is idempotent and does not create duplicate products/variants.
     - [ ] Invalid, conflicting, discontinued, or insufficiently evidenced records are quarantined or excluded from public output.
     - [ ] Service-role and supplier credentials are used only server-side and never committed or sent to the browser.
-  - **Verification:** Automated tests cover valid/invalid records, duplicate imports, partial failures, audit events, and secret-boundary checks.
+  - **Verification:** `tests/catalog-validation.test.mjs` covers valid/invalid rows, incomplete provenance, lifecycle uncertainty, duplicate identities, deterministic fingerprints, variant identity, and invalid batch input. Remaining tests must cover persistent idempotency, transactional/partial failures, audit events, and secret boundaries after the server endpoint exists.
   - **Dependencies:** Task 3.
-  - **Files likely touched:** `supabase/functions/catalog-import/*`, `tests/catalog-import.test.*`, `docs/catalog/import-process.md`.
+  - **Files touched so far:** `scripts/catalog-validation.mjs`, `tests/catalog-validation.test.mjs`, `docs/catalog/import-process.md`. Future files: `supabase/functions/catalog-import/*`, `tests/catalog-import.test.*`.
   - **Estimated scope:** Medium.
 
 ### Checkpoint — Data foundation
@@ -71,6 +71,7 @@
 
 - [x] Initial official source audit completed for Allen & Heath hardware, Yamaha professional audio, and Shure professional audio. This establishes family/category-level coverage only; per-model and per-variant verification remains open. See `docs/catalog/coverage/initial-source-audit.md`.
 - [x] Manufacturer-specific coverage registers created: `docs/catalog/coverage/allen-heath.md`, `docs/catalog/coverage/yamaha-pro-audio.md`, and `docs/catalog/coverage/shure-pro-audio.md`. Each includes official sources, discovered categories/families, and explicit gaps. None claims a complete SKU inventory.
+- [ ] Exact current model/SKU enumeration remains open. Recent source checks surfaced additional 2026 Yamaha models (DM5 and MGX) and Shure 2026 product/SKU updates; registers must be refreshed from current official product pages and model-level data before import.
 
 
 - [ ] **Task 5: Establish source register and Allen & Heath coverage** *(source discovery started; SKU verification and ingestion remain open)*
