@@ -22,7 +22,7 @@
 - [x] Verify migration passes disposable PostgreSQL CI, including RLS and least-privilege grants.
 - [x] Review migration structure and least-privilege grants against the disposable PostgreSQL CI assertions.
 - [ ] Build idempotent, validated, server-side import and quarantine pipeline.
-- [ ] Verify Allen & Heath, Yamaha professional audio, and Shure music/pro-audio product-family coverage from official sources.
+- [x] Record official manufacturer source register and initial category/family coverage matrices for Allen & Heath, Yamaha professional audio, and Shure music/pro-audio.\n- [ ] Verify every active model and variant against its official detail page; model-level coverage is still incomplete.
 - [ ] Populate model-level products only from verified sources; no guessed specs, prices, MAP, stock, or image rights.
 - [ ] Build read-only catalog interface and connect the public catalog UI.
 - [ ] Complete catalog security, accessibility, and data-quality review.
