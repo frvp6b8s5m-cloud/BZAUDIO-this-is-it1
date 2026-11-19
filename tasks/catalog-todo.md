@@ -69,7 +69,10 @@
 
 ## Phase 3 — Manufacturer source coverage
 
-- [ ] **Task 5: Establish source register and Allen & Heath coverage**
+- [x] Initial official source audit completed for Allen & Heath hardware, Yamaha professional-audio mixers, and Shure microphones. This establishes family-level coverage only; per-model and per-variant verification remains open. See `docs/catalog/coverage/initial-source-audit.md`.
+
+
+- [ ] **Task 5: Establish source register and Allen & Heath coverage** *(source discovery started; SKU verification and ingestion remain open)*
   - **Description:** Create the manufacturer source register and coverage matrix, then verify current Allen & Heath product families and ingest the first approved, evidenced product batch.
   - **Acceptance criteria:**
     - [ ] Each source has a canonical URL/reference, source type, access/usage notes, and checked date.
