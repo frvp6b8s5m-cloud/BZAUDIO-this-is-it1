@@ -101,7 +101,7 @@ export function validateCatalogProduct(input) {
   }
 
   const manufacturer = input.manufacturer_slug;
-  const domains = MANUFACTURER_DOMAINS[manufacturer];
+  const domains = Object.hasOwn(MANUFACTURER_DOMAINS, manufacturer)\n    ? MANUFACTURER_DOMAINS[manufacturer]\n    : null;
   if (!domains) errors.push('manufacturer_slug must be allen-heath, yamaha, or shure');
 
   if (typeof input.slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.slug)) {
