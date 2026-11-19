@@ -278,7 +278,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = pg_catalog, catalog_private, public
-as $
+as $$
 begin
   if new.is_verified or new.is_published then
     if not exists (
@@ -304,7 +304,7 @@ begin
 
   return new;
 end;
-$;
+$$;
 
 create trigger catalog_products_publication_guard
 before insert or update of is_verified, is_published, lifecycle_status
@@ -316,7 +316,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = pg_catalog, catalog_private, public
-as $
+as $$
 begin
   if new.is_verified or new.is_published then
     if not exists (
@@ -357,7 +357,7 @@ begin
 
   return new;
 end;
-$;
+$$;
 
 create trigger catalog_variants_publication_guard
 before insert or update of product_id, is_verified, is_published, lifecycle_status
@@ -369,7 +369,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = pg_catalog, catalog_private, public
-as $
+as $$
 begin
   if new.is_published and not exists (
     select 1
@@ -387,7 +387,7 @@ begin
 
   return new;
 end;
-$;
+$$;
 
 create trigger catalog_media_publication_guard
 before insert or update of is_published, product_id, variant_id
