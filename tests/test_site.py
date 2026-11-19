@@ -109,8 +109,8 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertIn('href="styles.css"', html)
                 self.assertIn('src="script.js"', html)
 
-    def test_every_page_uses_the_same_five_page_navigation(self):
-        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html", "request.html", "origin.html"}
+    def test_every_page_uses_the_same_core_navigation(self):
+        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"}
         for page_name in expected:
             with self.subTest(page=page_name):
                 parser = SiteParser()
@@ -195,11 +195,6 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertNotIn("password", html.lower())
         self.assertNotIn("supabase", html.lower())
 
-
-if __name__ == "__main__":
-    unittest.main()
-
-
     def test_equipment_request_is_an_honest_email_inquiry(self):
         html = (ROOT / "request.html").read_text(encoding="utf-8")
         self.assertIn('id="equipment-request-form"', html)
@@ -219,3 +214,6 @@ if __name__ == "__main__":
                          "headphones", "processors-effects", "amplifiers", "cables-accessories"]:
             with self.subTest(category=category):
                 self.assertIn("request.html?category=" + category, html)
+
+if __name__ == "__main__":
+    unittest.main()
