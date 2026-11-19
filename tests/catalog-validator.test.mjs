@@ -38,6 +38,12 @@ test('rejects unknown manufacturers and non-official source domains', () => {
   assert.ok(spoofed.errors.some((error) => error.includes('official')));
 });
 
+test('rejects inherited object property names as manufacturers without throwing', () => {
+  const result = validateCatalogProduct({ ...validProduct, manufacturer_slug: 'toString' });
+  assert.equal(result.ok, false);
+  assert.ok(result.errors.some((error) => error.includes('manufacturer_slug')));
+});
+
 test('rejects insecure URLs and malformed identity fields', () => {
   const result = validateCatalogProduct({
     ...validProduct,
