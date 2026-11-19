@@ -1,34 +1,27 @@
 # PROJECT ORIGIN — Task List
 
-## Phase 1 — Public gateway
-- [ ] **Task 1: Add PROJECT ORIGIN gateway regression tests**
-  - Acceptance: tests require exact PROJECT ORIGIN title/branding, a single H1, semantic landmarks, and honest unavailable login/application states.
-  - Verify: run focused Python unittest and observe the new test fail before implementation.
-  - Dependencies: None.
-  - Files: `tests/test_site.py`.
-  - Scope: Small.
+## Implemented on feature branch
+- [x] Public PROJECT ORIGIN gateway and responsive visual design.
+- [x] Supabase Auth signup/sign-in browser interface using publishable key only.
+- [x] Contributor application interface with one-per-account and case-insensitive one-per-email constraints in the migration.
+- [x] Owner review RPC with approve/decline, audit record, and membership creation on approval.
+- [x] Private member-content access policy for active members.
+- [x] Manual Founder assignment RPC; unique, permanent number; no automatic assignment.
+- [x] Public Founder recognition restricted to records explicitly marked public.
+- [x] Website regression, JavaScript syntax, and interaction checks pass on latest commit.
 
-- [ ] **Task 2: Implement the public gateway content**
-  - Acceptance: visitors understand PROJECT ORIGIN's purpose, the separation from customer accounts, and that applying does not automatically grant membership; unavailable actions are not interactive.
-  - Verify: focused gateway tests pass.
-  - Dependencies: Task 1.
-  - Files: `origin.html`.
-  - Scope: Small.
+## Remaining release gates
+- [ ] Review and apply supabase/migrations/20261119170000_project_origin_membership.sql to the live Supabase project.
+- [ ] Configure Supabase Auth site URL and GitHub Pages redirect allowlist.
+- [ ] Configure verified SMTP delivery for signup confirmation and owner application notifications.
+- [ ] Implement and verify automatic owner application notification after SMTP provider setup.
+- [ ] Create/confirm owner account at benrz101@gmail.com; verify owner bootstrap and admin access.
+- [ ] Run end-to-end tests: signup → confirmation → application → owner review → member access → Founder assignment → public listing.
+- [ ] Browser visual inspection at mobile and desktop widths.
+- [ ] Merge and publish only after all release gates pass.
 
-- [ ] **Task 3: Style the gateway responsively**
-  - Acceptance: layout works at narrow and wide widths, preserves the existing monochrome identity, and supports keyboard focus and reduced motion.
-  - Verify: static regression checks pass; review the scoped CSS diff.
-  - Dependencies: Task 2.
-  - Files: `styles.css`.
-  - Scope: Small.
-
-- [ ] **Task 4: Run integrated verification and review**
-  - Acceptance: all repository Python and Node tests pass; JavaScript parses; no unrelated files are changed.
-  - Verify: `python3 -m unittest discover -s tests -v`, `node --check script.js`, `node --test tests/*.test.mjs`.
-  - Dependencies: Tasks 1–3.
-  - Files: none expected.
-  - Scope: Small.
-
-## Checkpoint — Owner review
-- [ ] Gateway is ready for PR review.
-- [ ] No production deployment or backend activation occurred.
+## Owner-controlled rules
+- Founder number remains manually designed and assigned by the owner.
+- Contribution-to-number mapping remains undefined and must not be inferred or automated.
+- Do not expose service-role secrets or grant membership on account creation alone.
+- No paid infrastructure or paid email provider without separate approval.
