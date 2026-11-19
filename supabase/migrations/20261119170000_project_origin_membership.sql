@@ -171,7 +171,6 @@ revoke all on function public.project_origin_is_admin() from public, anon;
 revoke all on function public.project_origin_review_application(uuid,text,text) from public, anon;
 revoke all on function public.project_origin_assign_founder(uuid,text,integer,numeric,text,boolean,text) from public, anon;
 revoke all on function public.project_origin_admin_founders() from public, anon;
-revoke all on function public.project_origin_bootstrap_owner() from public, anon, authenticated;
 grant execute on function public.project_origin_is_admin() to authenticated;
 grant execute on function public.project_origin_review_application(uuid,text,text) to authenticated;
 grant execute on function public.project_origin_assign_founder(uuid,text,integer,numeric,text,boolean,text) to authenticated;
@@ -238,6 +237,7 @@ begin
   return new;
 end;
 $$;
+revoke all on function public.project_origin_bootstrap_owner() from public, anon, authenticated;
 drop trigger if exists project_origin_owner_bootstrap on auth.users;
 create trigger project_origin_owner_bootstrap
   after insert or update of email on auth.users
