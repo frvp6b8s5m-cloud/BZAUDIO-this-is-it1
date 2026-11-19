@@ -1,6 +1,6 @@
 # Physical Equipment Catalog — Data Dictionary
 
-**Status:** Owner-approved data contract (2026-11-18). No database objects have been created yet.  
+**Status:** Owner-approved data contract (2026-11-18). A versioned migration is drafted and passes isolated PostgreSQL 17/RLS CI; it has not been applied to the live Supabase project.  
 **Related:** `SPEC-CATALOG.md`, ADR-0002, `docs/catalog/access-matrix.md`.
 
 ## Design rules
