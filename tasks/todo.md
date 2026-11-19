@@ -174,3 +174,19 @@
 - [ ] All acceptance criteria and verification evidence are available.
 - [ ] No unresolved critical accessibility, security, performance, or content issues remain.
 - [ ] Owner reviews the release candidate and explicitly approves production deployment.
+
+
+## Phase 6 — ORIGIN gateway
+
+- [x] **Task 6.1: Build the minimal ORIGIN gateway**
+  - Acceptance: oversized ORIGIN heading, a clearly inactive LOGIN entry, monochrome identity, and no legacy member content.
+  - Verify: page is present in shared navigation across all six public pages; the inactive login collects no credentials and makes no authentication claim.
+  - Files: `origin.html`, `styles.css`, all shared-navigation pages, `tests/test_site.py`, `SPEC-ORIGIN.md`.
+- [ ] **Task 6.2: Implement real authentication and contributor access**
+  - Acceptance: free-tier-compatible email sign-in, secure sessions, owner-approved ORIGIN access, and no public exposure of privileged keys.
+  - Verify: real email delivery, session handling, authorization/RLS, and duplicate-application protections pass integration tests.
+  - Dependency: Supabase Auth configuration and verified email delivery. No paid provider or recurring infrastructure may be enabled without owner review.
+- [ ] **Task 6.3: Build Founder application and approval workflow**
+  - Acceptance: one application per person; owner receives application details; no Founder number is assigned before approval; permanent unique numbers are owner-designed and owner-assigned based on contribution.
+  - Verify: duplicate prevention, owner approval/decline, audit history, and privacy controls.
+
