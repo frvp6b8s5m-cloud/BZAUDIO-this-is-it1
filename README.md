@@ -33,6 +33,7 @@ This is a static-first site with no frontend framework or runtime package depend
 - `solutions.html` — pathways for live production, worship, education, studios, venues, and audio professionals
 - `about.html` — company purpose and trust standards
 - `contact.html` — email-only contact page with a direct quote/inquiry email link
+- `origin.html` — minimal private contributor gateway; LOGIN remains visibly inactive until authentication is implemented
 
 ## Brand and content rules
 
