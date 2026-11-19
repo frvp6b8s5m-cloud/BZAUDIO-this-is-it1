@@ -192,7 +192,7 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn('content="PROJECT ORIGIN — the private BZaudio contributor community."', html)
         self.assertIn(">PROJECT <em>ORIGIN</em></h1>", html)
         self.assertIn("CUSTOMER ACCOUNTS ARE SEPARATE", html)
-        self.assertIn("An application is not automatic membership.", html)
+        self.assertIn("Account creation alone does not grant membership.", html)
         self.assertIn('id="origin-signup-form"', html)
         self.assertIn('id="origin-login-form"', html)
         self.assertIn('id="origin-apply-form"', html)
