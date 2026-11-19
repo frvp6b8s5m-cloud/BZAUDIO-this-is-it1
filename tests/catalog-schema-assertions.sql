@@ -76,7 +76,7 @@ insert into public.catalog_products (manufacturer_id, slug, name, lifecycle_stat
 select id, 'ci-product', 'CI Product', 'active'
 from public.catalog_manufacturers where slug = 'ci-manufacturer';
 
-do $
+do $$
 declare
   product_id uuid;
   blocked boolean := false;
@@ -93,7 +93,7 @@ begin
     raise exception 'Product was verified without approved source evidence';
   end if;
 end
-$;
+$$;
 
 insert into catalog_private.source_records (
   manufacturer_id, source_url, source_type, source_title, review_status
@@ -117,7 +117,7 @@ insert into public.catalog_variants (product_id, variant_name, lifecycle_status)
 select id, 'CI variant', 'active'
 from public.catalog_products where slug = 'ci-product';
 
-do $
+do $$
 declare
   variant_id uuid;
   blocked boolean := false;
@@ -134,7 +134,7 @@ begin
     raise exception 'Variant was verified without approved source evidence';
   end if;
 end
-$;
+$$;
 
 insert into catalog_private.product_source_links (
   variant_id, source_record_id, fact_scope, verification_status
@@ -154,7 +154,7 @@ from public.catalog_products p
 join public.catalog_variants v on v.product_id = p.id
 where p.slug = 'ci-product' and v.variant_name = 'CI variant';
 
-do $
+do $$
 declare
   media_id uuid;
   blocked boolean := false;
@@ -171,7 +171,7 @@ begin
     raise exception 'Media was published without approved usage rights';
   end if;
 end
-$;
+$$;
 
 insert into catalog_private.media_rights (
   media_id, rights_holder, permission_type, allowed_channels,
@@ -185,7 +185,7 @@ update public.catalog_media
 set is_published = true
 where alt_text = 'CI test image';
 
-do $
+do $$
 begin
   if (select count(*) from public.catalog_products where slug = 'ci-product' and is_published) <> 1 then
     raise exception 'Approved product did not publish';
@@ -197,6 +197,6 @@ begin
     raise exception 'Media with approved rights did not publish';
   end if;
 end
-$;
+$$;
 
 select 'catalog migration RLS/grants/publication assertions passed' as result;
