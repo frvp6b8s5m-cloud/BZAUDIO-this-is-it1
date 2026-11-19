@@ -2,7 +2,7 @@
 
 **Module id:** `product-catalog`  
 **Initiative:** BZaudio commerce and customer platform  
-**Status:** Draft — awaiting owner approval  
+**Status:** Owner-approved specification (2026-11-18)  
 **Capability map:** Approved six-module architecture; this specification covers Module 1 only.  
 **Build order:** Product Catalog → Customer Accounts → Online Store → Dropshipping and Fulfillment → ORIGIN → Administration and final integration testing.
 
