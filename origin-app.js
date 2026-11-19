@@ -4,7 +4,11 @@
   const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Mdh9SVACqNFMlUNOaNUHNw_24rr-_ld';
   const status = document.querySelector('#origin-status');
   const panel = document.querySelector('#origin-account-panel');
-  if (!panel || !window.supabase) return;
+  if (!panel) return;
+  if (!window.supabase) {
+    if (status) { status.textContent = 'Secure account services could not load. Refresh the page or try again later.'; status.dataset.state = 'error'; }
+    return;
+  }
   const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
   const $ = (id) => document.getElementById(id);
   const say = (message, error = false) => {
@@ -70,9 +74,86 @@
     const { data: members, error: memberError } = await client.from('project_origin_members').select('user_id,member_since,active').eq('active',true);
     if (memberError) throw memberError;
     $('origin-founder-member').innerHTML = members.map(m => '<option value="'+m.user_id+'">'+m.user_id+'</option>').join('');
-    const { data: founders, error: founderError } = await client.from('project_origin_founders').select('display_name,founder_number,contribution_amount,publicly_listed').order('founder_number');
+    const { data: founders, error: founderError } = await client.rpc('project_origin_admin_founders');
     if (founderError) throw founderError;
-    $('origin-founder-list').innerHTML = founders.length ? founders.map(f => '<p>#'+f.founder_number+' — '+escapeHtml(f.display_name)+' — $'+Number(f.contribution_amount).toFixed(2)+(f.publicly_listed?' — public':' — private')+'</p>').join('') : '<p>No Founder numbers assigned. Assignments are always manual.</p>';
+    $('origin-founder-list').innerHTML = founders.length ? founders.map(f => '<p>#'+f.founder_number+' — '+escapeHtml(f.display_name)+' — 
+  }
+
+  $('origin-signup-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = $('origin-auth-email').value.trim();
+    const password = $('origin-auth-password').value;
+    try {
+      say('Creating your account…');
+      const { data, error } = await client.auth.signUp({email, password, options:{emailRedirectTo:location.origin + location.pathname}});
+      if (error) throw error;
+      say(data.session ? 'Account created. You are signed in.' : 'Check your email to confirm your account, then sign in. If no email arrives, the site owner must finish email delivery setup.');
+    } catch (e) { say(e.message || 'Could not create the account.', true); }
+  });
+
+  $('origin-login-trigger').addEventListener('click', () => {
+    $('origin-signup-form').hidden = true;
+    $('origin-login-form').hidden = false;
+    $('origin-login-email').value = $('origin-auth-email').value;
+  });
+  $('origin-login-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    try {
+      say('Signing in…');
+      const { error } = await client.auth.signInWithPassword({email:$('origin-login-email').value.trim(),password:$('origin-login-password').value});
+      if (error) throw error;
+      await load(); say('You are signed in.');
+    } catch (e) { say(e.message || 'Could not sign in.', true); }
+  });
+
+  $('origin-logout').addEventListener('click', async () => { await client.auth.signOut(); await load(); say('Signed out.'); });
+  $('origin-apply-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    try {
+      const payload = {user_id:currentUser.id,full_name:$('origin-full-name').value.trim(),email:currentUser.email,message:$('origin-message').value.trim()};
+      const {error} = await client.from('project_origin_applications').insert(payload);
+      if (error) throw error;
+      say('Application submitted successfully. It is pending owner review; submission does not grant membership.');
+      await load();
+    } catch (e) { say(e.code === '23505' ? 'An application already exists for this account.' : (e.message || 'Application could not be submitted.'), true); }
+  });
+
+  $('origin-pending-list').addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-decision]');
+    if (!button) return;
+    const card = button.closest('[data-app]');
+    try {
+      button.disabled = true;
+      const {error} = await client.rpc('project_origin_review_application',{p_application_id:card.dataset.app,p_decision:button.dataset.decision,p_review_note:null});
+      if (error) throw error;
+      say('Application '+button.dataset.decision+'.');
+      await loadAdmin();
+    } catch (e) { button.disabled = false; say(e.message || 'Review failed.', true); }
+  });
+
+  $('origin-founder-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    try {
+      const {error} = await client.rpc('project_origin_assign_founder',{
+        p_user_id:$('origin-founder-member').value,
+        p_display_name:$('origin-founder-name').value.trim(),
+        p_founder_number:Number($('origin-founder-number').value),
+        p_contribution_amount:Number($('origin-founder-contribution').value),
+        p_card_engraving_name:$('origin-founder-engraving').value.trim(),
+        p_publicly_listed:$('origin-founder-public').checked,
+        p_notes:$('origin-founder-notes').value.trim() || null
+      });
+      if (error) throw error;
+      say('Founder number assigned and recorded. It will never be auto-assigned or reused.');
+      $('origin-founder-form').reset();
+      await loadAdmin();
+    } catch (e) { say(e.message || 'Founder assignment failed.', true); }
+  });
+
+  client.auth.onAuthStateChange(() => { load().catch(e => say(e.message || 'Could not load your account.', true)); });
+  load().catch(e => say(e.message || 'PROJECT ORIGIN is temporarily unavailable. Try again later.', true));
+})();
++Number(f.contribution_amount).toFixed(2)+(f.publicly_listed?' — public':' — private')+'</p>').join('') : '<p>No Founder numbers assigned. Assignments are always manual.</p>';
   }
 
   $('origin-signup-form').addEventListener('submit', async (event) => {
