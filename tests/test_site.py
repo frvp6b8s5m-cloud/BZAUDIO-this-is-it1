@@ -193,12 +193,10 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn(">PROJECT <em>ORIGIN</em></h1>", html)
         self.assertIn("CUSTOMER ACCOUNTS ARE SEPARATE", html)
         self.assertIn("An application is not automatic membership.", html)
-        self.assertIn("MEMBER LOGIN IS NOT AVAILABLE YET", html)
-        self.assertIn("CONTRIBUTOR APPLICATIONS ARE NOT OPEN YET", html)
-        self.assertIn('aria-disabled="true"', html)
-        self.assertNotIn("<input", html.lower())
-        self.assertNotIn("password", html.lower())
-        self.assertNotIn("supabase", html.lower())
+        self.assertIn('id="origin-signup-form"', html)
+        self.assertIn('id="origin-login-form"', html)
+        self.assertIn('id="origin-apply-form"', html)
+        self.assertIn("supabase-js@2", html.lower())
         self.assertNotIn("ORIGIN PROJECT", html)
 
     def test_equipment_request_is_an_honest_email_inquiry(self):
