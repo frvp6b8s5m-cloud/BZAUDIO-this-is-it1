@@ -190,7 +190,7 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertEqual(parser.headings.count("h1"), 1)
         self.assertIn("<title>PROJECT ORIGIN — BZaudio</title>", html)
         self.assertIn('content="PROJECT ORIGIN — the private BZaudio contributor community."', html)
-        self.assertIn(">PROJECT ORIGIN</h1>", html)
+        self.assertIn(">PROJECT <em>ORIGIN</em></h1>", html)
         self.assertIn("CUSTOMER ACCOUNTS ARE SEPARATE", html)
         self.assertIn("An application is not automatic membership.", html)
         self.assertIn("MEMBER LOGIN IS NOT AVAILABLE YET", html)
