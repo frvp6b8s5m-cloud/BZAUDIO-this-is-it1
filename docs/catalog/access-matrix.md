@@ -1,6 +1,6 @@
 # Catalog Database Access Matrix
 
-**Status:** Owner-approved access contract (2026-11-18). No schema changes or grants have been applied yet.
+**Status:** Owner-approved access contract (2026-11-18). Schema, RLS policies, and explicit grants are represented in the development migration and tested in isolated PostgreSQL CI; no live Supabase changes have been applied.
 
 ## Trust boundaries
 
