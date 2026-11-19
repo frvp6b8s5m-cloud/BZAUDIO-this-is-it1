@@ -57,3 +57,31 @@ The official hardware index currently exposes these ranges/categories:
 3. Resolve duplicate/renamed products and regional variants without merging distinct SKUs.
 4. Keep uncertain lifecycle or identity records in review; do not publish them.
 5. Compare the resulting register against the official All Products index before claiming coverage.
+
+## Model-level verification — first batch
+
+**Checked:** 2026-11-19 against official product/support pages. These are confirmed model identities only; orderable regional part numbers, finish/packaging SKUs, live lifecycle, pricing, and reseller eligibility still require separate verification.
+
+| Family | Model identity | Official evidence | Verification notes |
+|---|---|---|---|
+| SQ | SQ-Rack, SQ-5, SQ-6, SQ-7 | https://support.allen-heath.com/hc/en-gb/articles/41332471203985-SQ-5-SQ-6-SQ-7-Getting-Started-Guide | Official guide compares all four current platform models |
+| CQ | CQ-12T, CQ-18T, CQ-20B | https://www.allen-heath.com/hardware/cq/ | Official family page lists all three models |
+| Qu (96 kHz generation) | Qu-5, Qu-5D, Qu-6, Qu-6D, Qu-7, Qu-7D | https://support.allen-heath.com/hc/en-gb/articles/39796618451729-Qu-5-6-7-Getting-Started-Guide | Official guide confirms three frame sizes and Dante-enabled D variants |
+| Avantis | Avantis Solo, Avantis, Avantis Solo Ultra, Avantis Ultra | https://www.allen-heath.com/hardware/avantis/ | Official page differentiates 64-channel/42-bus and Ultra 96-channel/56-bus configurations |
+| Everything I/O | DX012, DX164-W, DX168, DX32, DX88-P, GX4816, DX Hub, AR84, AB168, AR2412, DT22, DT02, DT20, DT164-W, DT168 | https://www.allen-heath.com/hardware/everything-i-o/ | Exact family model names listed on official page; compatibility must be recorded by host mixer |
+| dLive | S Class and C Class surfaces/MixRacks | https://www.allen-heath.com/hardware/dlive-series/ | Official page confirms hardware families; exact MixRack/surface model enumeration remains open |
+
+### Important Qu/SQ lifecycle and naming note
+
+The current official hardware index now distinguishes the Qu family and Qu Classic accessories. The newer Qu-5/6/7 generation has a 96 kHz core and six frame/port variants including Dante suffixes. Keep those distinct from legacy Qu-16/24/32, Qu-Pac, and Qu-SB; do not merge them under one generic model or assume old accessories fit the new range.
+
+The SQ guide identifies SQ-Rack, SQ-5, SQ-6, and SQ-7. It does not by itself prove every accessory or option card is an independently orderable current SKU.
+
+### Remaining A&H model work
+
+- Enumerate exact dLive MixRack and surface models and all current accessories.
+- Verify SQ+ naming and model/variant differences directly from the current product pages before creating separate records.
+- Enumerate all Qu Classic models and determine current/discontinued lifecycle individually.
+- Verify all AHM, GR, Xone, ZED, MixWizard4, XB, CC and IP Controller models.
+- Enumerate networking cards/modules separately from host products.
+- Capture manufacturer part numbers/order codes only where the manufacturer publishes them; do not fabricate a SKU from the model name.
