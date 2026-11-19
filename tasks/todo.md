@@ -190,3 +190,10 @@
   - Acceptance: one application per person; owner receives application details; no Founder number is assigned before approval; permanent unique numbers are owner-designed and owner-assigned based on contribution.
   - Verify: duplicate prevention, owner approval/decline, audit history, and privacy controls.
 
+
+
+## Equipment request workflow
+- [x] Build a multi-item equipment inquiry form with customer name/email, manufacturer, model, quantity, and optional project notes.
+- [x] Link all eight product categories to a prefilled request.
+- [x] Keep the workflow email-only and clearly disclose that the visitor must send the email; no order, payment, or supplier action is triggered.
+- [ ] Replace the email handoff with a secure server-backed inquiry inbox only after a verified free email/notification route is configured and tested.

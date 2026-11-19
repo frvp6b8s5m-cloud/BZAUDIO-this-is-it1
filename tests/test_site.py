@@ -94,7 +94,7 @@ class WebsiteFoundationTests(unittest.TestCase):
 
     def test_all_approved_pages_exist_and_have_one_clear_heading(self):
         expected_pages = {
-            "index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"
+            "index.html", "products.html", "solutions.html", "about.html", "contact.html", "request.html", "origin.html"
         }
         self.assertTrue(expected_pages.issubset({path.name for path in ROOT.glob("*.html")}))
         for page_name in expected_pages:
@@ -110,7 +110,7 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertIn('src="script.js"', html)
 
     def test_every_page_uses_the_same_five_page_navigation(self):
-        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"}
+        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html", "request.html", "origin.html"}
         for page_name in expected:
             with self.subTest(page=page_name):
                 parser = SiteParser()
@@ -164,7 +164,7 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 
     def test_official_brand_logo_is_used_in_every_page_header_and_footer(self):
-        for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"]:
+        for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html", "request.html", "origin.html"]:
             with self.subTest(page=page_name):
                 html = (ROOT / page_name).read_text(encoding="utf-8")
                 self.assertIn('src="assets/bzaudio-logo.png"', html)
@@ -199,3 +199,23 @@ class WebsiteFoundationTests(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+
+    def test_equipment_request_is_an_honest_email_inquiry(self):
+        html = (ROOT / "request.html").read_text(encoding="utf-8")
+        self.assertIn('id="equipment-request-form"', html)
+        self.assertIn('name="customer-name"', html)
+        self.assertIn('name="customer-email"', html)
+        self.assertIn('id="add-request-item"', html)
+        self.assertIn("This is an inquiry, not an order.", html)
+        self.assertIn("You must send the email yourself.", html)
+        self.assertIn("NO CHECKOUT / NO PAYMENT / NO AUTOMATIC ORDER", html)
+        js = (ROOT / "script.js").read_text(encoding="utf-8")
+        self.assertIn("mailto:benrz101@gmail.com", js)
+        self.assertIn("encodeURIComponent(body)", js)
+
+    def test_product_categories_open_prefilled_request_flow(self):
+        html = (ROOT / "products.html").read_text(encoding="utf-8")
+        for category in ["mixing-consoles", "speakers-subwoofers", "microphones", "wireless-systems",
+                         "headphones", "processors-effects", "amplifiers", "cables-accessories"]:
+            with self.subTest(category=category):
+                self.assertIn("request.html?category=" + category, html)

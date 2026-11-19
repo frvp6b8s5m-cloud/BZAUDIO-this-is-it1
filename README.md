@@ -42,3 +42,7 @@ This is a static-first site with no frontend framework or runtime package depend
 - Do not add unlicensed photography, invented product data, testimonials, pricing, or compatibility claims.
 - Contact is email only: benrz101@gmail.com. The mail link opens the visitor's configured email app; no phone number or fake submission form is used.
 - GitHub Pages is the intended host. Production deployment remains separately approval-gated.
+
+## Equipment requests
+
+The Products page links each category to an equipment-request builder. Visitors can add up to eight line items and continue to a pre-addressed email to `benrz101@gmail.com`. This is an inquiry only: it opens the visitor's configured email app, requires the visitor to press Send, and does not create an order, take payment, reserve stock, or contact a supplier automatically. BZaudio must confirm availability and pricing manually.
