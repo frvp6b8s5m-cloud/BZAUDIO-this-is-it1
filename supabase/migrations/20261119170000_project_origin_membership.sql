@@ -216,7 +216,7 @@ create policy "admins read audit log" on public.project_origin_audit
 grant select, insert on public.project_origin_applications to authenticated;
 grant update on public.project_origin_applications to authenticated;
 grant select on public.project_origin_admins, public.project_origin_members, public.project_origin_member_content to authenticated;
-grant select on public.project_origin_founders to anon, authenticated;
+grant select (display_name, founder_number, card_engraving_name) on public.project_origin_founders to anon, authenticated;
 grant insert, update, delete on public.project_origin_members, public.project_origin_founders, public.project_origin_member_content to authenticated;
 grant select on public.project_origin_audit to authenticated;
 grant usage, select on sequence public.project_origin_audit_id_seq to authenticated;
