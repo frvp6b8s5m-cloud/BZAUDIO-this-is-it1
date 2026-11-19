@@ -5,7 +5,7 @@
 **Workflow run:** https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/actions/runs/44425222203
 
 ## Result
-<badge>PASS</badge> The catalog migration successfully applied to a disposable PostgreSQL 17 service container in GitHub Actions.
+**PASS.** The catalog migration successfully applied to a disposable PostgreSQL 17 service container in GitHub Actions.
 
 The same run also passed:
 - Python static-site tests.
