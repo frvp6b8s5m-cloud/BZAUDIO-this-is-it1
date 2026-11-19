@@ -33,3 +33,11 @@ Build order: public-gateway → accounts → applications → admin-approval →
 - Build and test incrementally on feature branches with reviewable pull requests.
 - Do not apply live Supabase migrations, change production authentication settings, configure DNS, activate paid services, or enable public membership flows without a separate verified release gate and explicit approval.
 - Existing static GitHub Pages hosting remains the public site.
+
+
+## Implementation status — 2026-11-19
+- Public gateway and browser account/application/admin/member UI are implemented on the feature branch.
+- Additive Supabase migration defines RLS-protected applications, memberships, admin review, audit history, manual Founder assignment, and member content.
+- Owner bootstrap uses the auth account email allowlist for benrz101@gmail.com.
+- The live database migration has not been applied. Auth redirect/email delivery settings have not been configured. Owner email notifications are not active.
+- Public UI must remain unreleased until the migration and Auth settings are applied and end-to-end tests pass.
