@@ -2,6 +2,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 import unittest
+import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -238,6 +239,24 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertGreater(width, 0)
         self.assertGreater(height, 0)
         self.assertGreater(width / height, 1.5, "The official horizontal wordmark should retain its landscape aspect ratio")
+        position = 8
+        chunk_types = []
+        while position < len(data):
+            self.assertGreaterEqual(len(data) - position, 12, "PNG must contain complete chunks")
+            length = int.from_bytes(data[position:position + 4], "big")
+            chunk_type = data[position + 4:position + 8]
+            chunk_end = position + 12 + length
+            self.assertLessEqual(chunk_end, len(data), "PNG chunk must not be truncated")
+            expected_crc = int.from_bytes(data[position + 8 + length:chunk_end], "big")
+            self.assertEqual(zlib.crc32(data[position + 4:position + 8 + length]), expected_crc,
+                             f"Invalid PNG checksum in {chunk_type!r}")
+            chunk_types.append(chunk_type)
+            position = chunk_end
+            if chunk_type == b"IEND":
+                self.assertEqual(length, 0)
+                break
+        self.assertEqual(chunk_types[-1], b"IEND", "PNG must end with a complete IEND chunk")
+        self.assertEqual(position, len(data), "PNG must not contain trailing or truncated data")
         self.assertIn("object-fit:contain", self.css)
         self.assertIn(".wordmark img", self.css)
         self.assertIn(".footer-wordmark img", self.css)
