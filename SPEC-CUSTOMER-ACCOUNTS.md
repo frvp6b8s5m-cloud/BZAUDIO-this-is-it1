@@ -18,7 +18,7 @@ Allow anyone to create a BZaudio customer account. Accounts provide a customer i
 ## Technical constraints
 - Use the existing Supabase Auth and public.profiles foundation after verifying current settings and policies.
 - No paid branches, SMTP subscriptions, or paid authentication services.
-- The project's SMTP/email deliverability settings must be verified before enabling public signup for arbitrary email addresses. If automated auth email cannot be sent reliably at $0, keep account activation disabled and report the exact blocker; do not fake login.
+- Supabase's built-in SMTP is not suitable for public signups: it only sends to project-team email addresses and currently allows 2 messages per hour. Public email-based signup therefore requires a verified custom SMTP sender. If a genuinely free sender is not available, leave email auth inactive.\n- Google sign-in avoids email confirmation messages but requires a Google OAuth client and configuration. Do not configure it without the owner's selection and credentials.\n- Do not disable email confirmation as a workaround; that would allow unverified email addresses to register.
 - Static GitHub Pages frontend; no secrets in browser code.
 
 ## Success criteria
