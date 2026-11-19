@@ -183,18 +183,23 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("CREATIVE SOUNDS / EST. 2025", self.html)
         self.assertIn('class="hero-logo-stage"', self.html)
 
-    def test_origin_gateway_is_minimal_and_does_not_fake_authentication(self):
+    def test_project_origin_gateway_is_clear_and_does_not_fake_membership(self):
         html = (ROOT / "origin.html").read_text(encoding="utf-8")
         parser = SiteParser()
         parser.feed(html)
         self.assertEqual(parser.headings.count("h1"), 1)
-        self.assertIn(">ORIGIN</h1>", html)
-        self.assertIn("LOGIN", html)
+        self.assertIn("<title>PROJECT ORIGIN — BZaudio</title>", html)
+        self.assertIn('content="PROJECT ORIGIN — the private BZaudio contributor community."', html)
+        self.assertIn(">PROJECT ORIGIN</h1>", html)
+        self.assertIn("CUSTOMER ACCOUNTS ARE SEPARATE", html)
+        self.assertIn("An application is not automatic membership.", html)
+        self.assertIn("MEMBER LOGIN IS NOT AVAILABLE YET", html)
+        self.assertIn("CONTRIBUTOR APPLICATIONS ARE NOT OPEN YET", html)
         self.assertIn('aria-disabled="true"', html)
-        self.assertIn("MEMBER ACCESS IS NOT ACTIVE YET", html)
         self.assertNotIn("<input", html.lower())
         self.assertNotIn("password", html.lower())
         self.assertNotIn("supabase", html.lower())
+        self.assertNotIn("ORIGIN PROJECT", html)
 
     def test_equipment_request_is_an_honest_email_inquiry(self):
         html = (ROOT / "request.html").read_text(encoding="utf-8")
