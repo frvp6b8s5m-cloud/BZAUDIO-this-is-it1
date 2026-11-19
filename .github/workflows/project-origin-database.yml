@@ -1,0 +1,38 @@
+name: PROJECT ORIGIN database migration tests
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'tests/project_origin_migration_test.sql'
+      - '.github/workflows/project-origin-database.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/migrations/**'
+      - 'tests/project_origin_migration_test.sql'
+      - '.github/workflows/project-origin-database.yml'
+
+jobs:
+  project-origin-migration:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: origin_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d origin_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply migration and exercise authorization flows
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -v ON_ERROR_STOP=1 -h localhost -U postgres -d origin_test -f tests/project_origin_migration_test.sql

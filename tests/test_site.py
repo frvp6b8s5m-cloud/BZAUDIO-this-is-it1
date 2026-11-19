@@ -183,18 +183,21 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("CREATIVE SOUNDS / EST. 2025", self.html)
         self.assertIn('class="hero-logo-stage"', self.html)
 
-    def test_origin_gateway_is_minimal_and_does_not_fake_authentication(self):
+    def test_project_origin_gateway_is_clear_and_does_not_fake_membership(self):
         html = (ROOT / "origin.html").read_text(encoding="utf-8")
         parser = SiteParser()
         parser.feed(html)
         self.assertEqual(parser.headings.count("h1"), 1)
-        self.assertIn(">ORIGIN</h1>", html)
-        self.assertIn("LOGIN", html)
-        self.assertIn('aria-disabled="true"', html)
-        self.assertIn("MEMBER ACCESS IS NOT ACTIVE YET", html)
-        self.assertNotIn("<input", html.lower())
-        self.assertNotIn("password", html.lower())
-        self.assertNotIn("supabase", html.lower())
+        self.assertIn("<title>PROJECT ORIGIN — BZaudio</title>", html)
+        self.assertIn('content="PROJECT ORIGIN — the private BZaudio contributor community."', html)
+        self.assertIn(">PROJECT <em>ORIGIN</em></h1>", html)
+        self.assertIn("CUSTOMER ACCOUNTS ARE SEPARATE", html)
+        self.assertIn("Account creation alone does not grant membership.", html)
+        self.assertIn('id="origin-signup-form"', html)
+        self.assertIn('id="origin-login-form"', html)
+        self.assertIn('id="origin-apply-form"', html)
+        self.assertIn("supabase-js@2", html.lower())
+        self.assertNotIn("ORIGIN PROJECT", html)
 
     def test_equipment_request_is_an_honest_email_inquiry(self):
         html = (ROOT / "request.html").read_text(encoding="utf-8")
@@ -265,6 +268,18 @@ class WebsiteFoundationTests(unittest.TestCase):
             with self.subTest(page=page_path.name):
                 html = page_path.read_text(encoding="utf-8")
                 self.assertIn('src="assets/bzaudio-logo.png"', html)
+
+    def test_project_origin_account_ui_is_wired_to_supabase_and_never_exposes_service_role(self):
+        html = (ROOT / "origin.html").read_text(encoding="utf-8")
+        js = (ROOT / "origin-app.js").read_text(encoding="utf-8")
+        self.assertIn('id="origin-signup-form"', html)
+        self.assertIn('id="origin-apply-form"', html)
+        self.assertIn('id="origin-admin-panel"', html)
+        self.assertIn("project_origin_review_application", js)
+        self.assertIn("project_origin_assign_founder", js)
+        self.assertIn("sb_publishable_", js)
+        self.assertNotIn("service_role", js.lower())
+        self.assertIn('src="origin-app.js"', html)
 
 
 if __name__ == "__main__":
