@@ -217,3 +217,16 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_manufacturer_directory_has_source_links_and_request_prefill(self):
+        html = (ROOT / "products.html").read_text(encoding="utf-8")
+        for name in ["dLive", "Avantis", "SQ / SQ+", "Qu", "CQ", "RIVAGE PM", "DM7", "DM5",
+                     "DM3", "MGX Digital Mixer", "TF", "TF-RACK", "SM58", "SM57", "BETA 58A",
+                     "SM7B", "Nexadyne 8", "KSM8", "KSM9"]:
+            with self.subTest(product=name):
+                self.assertIn(name, html)
+        self.assertIn("https://www.allen-heath.com/hardware/", html)
+        self.assertIn("https://usa.yamaha.com/business/audio/products/mixers/", html)
+        self.assertIn("https://www.shure.com/en-US/products/microphones", html)
+        self.assertIn("request.html?manufacturer=", html)
+        self.assertIn("Individual SKU, regional variant", html)
