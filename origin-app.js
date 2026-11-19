@@ -76,6 +76,11 @@
     } catch (e) { say(e.message || 'Could not create the account.', true); }
   });
 
+  $('origin-login-trigger').addEventListener('click', () => {
+    $('origin-signup-form').hidden = true;
+    $('origin-login-form').hidden = false;
+    $('origin-login-email').value = $('origin-auth-email').value;
+  });
   $('origin-login-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     try {
