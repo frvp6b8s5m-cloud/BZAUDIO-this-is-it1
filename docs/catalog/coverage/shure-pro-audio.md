@@ -64,6 +64,27 @@ The Shure USA product index currently features models including KSM11, SM39, SM4
 - Wireless systems, in-ear monitoring, earphones, software, mixers/DSP, loudspeakers, and accessories are present in the official taxonomy and require separate model-by-model enumeration.
 - Shure's application pages identify live performance, broadcast, location sound, theatre, houses of worship, and studio recording as relevant professional use cases.
 
+## Manufacturer product-code source — 2026-07-30
+
+Shure publishes a dated official product list PDF:
+https://content-files.shure.com/docs/List-of-Products-fnl-30-07-2026.pdf
+
+This is a valuable order-code discovery source, but it is not by itself proof that every listed code is currently marketed in the United States or available through an authorized dropship supplier. It includes several product groups and package variants.
+
+Examples surfaced in the list include:
+
+- Microflex Advance: MXA920-S, MXA920-R, MXA902-S-USB, MXA902-S, MXA901-R, MXA710, MXA310, MXA910.
+- Microflex Wireless: MXWNDX8, MXWNDX8G, MXWNDX4, MXWNDX4G, MXWNDX2, MXWNCS8/4/2, MXWAPXD2, MXWAPX8/4, MXWAPT8/4/2, MXW8X, MXW8, MXW6X, MXW6, MXW2X and MXW2 microphone-package variants, MXW1X and MXW1.
+- ULX-D: ULXD8, ULXD6, ULXD4, ULXD4Q, ULXD4D, plus handheld/bodypack variants.
+- Axient Digital: ADX5D, ADX3, AD4Q, AD4D, AD3, ADX/AD transmitters and capsule variants.
+- SLX-D: SLXD4Q+, SLXD4, SLXD4D, SLXD3, SLXD5, SLXD1, SLXD2 transmitter variants, and multiple system packages.
+- GLX-D+: GLXD24R+, GLXD24+, GLXD16+, GLXD14R+, GLXD14+, GLXD6+, GLXD4R+, GLXD4+, and transmitter/package variants.
+- Content creation: MV-TWO, MV-TWO-KIT, MV-R, MV-ONE, MV88+W, MV88+W-KIT, MVX2U, MV88-USBC, MV7X, MV7i, MV7+, MV6.
+- Performance IEM: P10T, P10TR, P10R+, ADXR, ADTQ, ADTD.
+
+These are product-code discovery examples, not an exhaustive transcribed list. A separate SKU-level extraction and product-page cross-check is required. Preserve Shure's numeric product code as a source identifier, but do not mistake it for a retail UPC or a regional orderable SKU unless the manufacturer confirms that mapping.
+
+
 ## Important controls
 
 - Distinguish microphone capsule/model from wireless system package, transmitter/receiver, frequency band, connector, finish, included accessories, and regional package SKU.
