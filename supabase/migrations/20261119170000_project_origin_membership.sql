@@ -21,6 +21,7 @@ create table if not exists public.project_origin_applications (
   reviewed_by uuid references auth.users(id),
   review_note text
 );
+create unique index if not exists project_origin_applications_email_lower_uidx on public.project_origin_applications (lower(email));
 alter table public.project_origin_applications enable row level security;
 
 create table if not exists public.project_origin_members (
