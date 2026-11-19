@@ -96,3 +96,24 @@
 @media(prefers-reduced-motion:reduce){
  .project-origin-orbit i{transform:none}
 }
+
+/* PROJECT ORIGIN live account experience */
+.origin-account-panel{max-width:760px;margin-top:2rem;padding:clamp(1.2rem,3vw,2rem);border:1px solid rgba(0,0,0,.24);background:#fff}
+.origin-account-panel h3{margin:1.8rem 0 1rem;font:.65rem var(--mono);letter-spacing:.13em}
+.origin-account-panel [hidden]{display:none!important}
+.origin-status{min-height:1.5rem;margin:0 0 1rem;color:#333;font-size:.78rem;line-height:1.7}
+.origin-status[data-state=error]{color:#9a1c1c}
+.origin-form{display:grid;gap:1rem;margin:1rem 0 2rem}
+.origin-form label{display:grid;gap:.45rem;color:#333;font-size:.75rem}
+.origin-form label span{display:inline;color:#777}
+.origin-form input,.origin-form textarea,.origin-form select{width:100%;min-height:2.8rem;padding:.75rem;border:1px solid #aaa;background:#fff;color:#111;font:inherit}
+.origin-form input[type=checkbox]{width:1.1rem;min-height:1.1rem}
+.origin-form button,.origin-account-heading button,.origin-admin-actions button{min-height:2.8rem;padding:.75rem 1rem;border:1px solid #111;background:#111;color:#fff;font:.57rem var(--mono);letter-spacing:.1em;cursor:pointer}
+.origin-form button:hover,.origin-account-heading button:hover,.origin-admin-actions button:hover{background:#333}
+.origin-form-actions,.origin-account-heading,.origin-admin-actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.origin-form-actions button+button,.origin-admin-actions button+button{background:#fff;color:#111}
+.origin-account-heading{justify-content:space-between;border-bottom:1px solid #ddd;padding-bottom:1rem;font-size:.75rem}
+.origin-admin-item,.origin-content-card{margin:1rem 0;padding:1rem;border:1px solid #ddd;background:#fafafa}
+.origin-admin-item h3,.origin-content-card h3{margin:.2rem 0 .7rem}
+.origin-admin-item p,.origin-content-card p{font-size:.78rem;line-height:1.8;overflow-wrap:anywhere}
+@media(max-width:680px){.origin-account-panel{padding:1rem}.origin-form-actions{align-items:stretch;flex-direction:column}.origin-form-actions button{width:100%}}
