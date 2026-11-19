@@ -1,6 +1,6 @@
 # BZaudio Product Catalog — Task List
 
-**Status:** Implementation in progress. Tasks 1–2 are complete. Task 3 migration and isolated PostgreSQL/RLS tests are drafted and passing in GitHub Actions; Supabase production remains unchanged.  
+**Status:** Implementation in progress. Tasks 1–3 are complete in the development branch. The migration and isolated PostgreSQL/RLS tests pass in free GitHub Actions; Supabase production remains unchanged.  
 **Spec:** `SPEC-CATALOG.md`  
 **Plan:** `tasks/catalog-plan.md`  
 **Branch:** `feature/website-foundation`
@@ -38,14 +38,14 @@
 
 ## Phase 2 — Database and import foundation
 
-- [ ] **Task 3: Implement catalog migrations, constraints, and RLS** *(in progress — migration drafted and passing isolated CI tests; no paid branch or production application)*
+- [x] **Task 3: Implement catalog migrations, constraints, and RLS** *(complete in development branch; isolated CI verification passed)*
   - **Description:** Create versioned Supabase migrations for the approved catalog model, indexes, validation constraints, and least-privilege policies. The first migration is drafted at `supabase/migrations/20261118232000_create_physical_equipment_catalog.sql`; it has not been applied to any database. Owner requires $0 recurring infrastructure. Supabase development branches are excluded. A public GitHub Actions workflow now applies the migration to a disposable PostgreSQL 17 service and runs least-privilege/RLS checks; this is a PostgreSQL integration check, not yet a full Supabase Auth/Data API integration test. Do not apply DDL to the live project as a substitute for a test environment.
   - **Acceptance criteria:**
     - [x] Migration applies cleanly to a disposable non-production PostgreSQL 17 database in GitHub Actions at no recurring infrastructure cost.
     - [ ] Full Supabase-local integration with Auth/Data API roles and recovery procedure is still required before production application.
     - [ ] Anonymous users can read only published, approved catalog fields; unauthenticated writes are denied.
     - [ ] Admin/import-only fields and supplier data remain private; duplicate manufacturer/model/variant identities are constrained.
-  - **Verification:** GitHub Actions run `44431082147` passed: migration applied to disposable PostgreSQL 17; anon/authenticated visibility and write denial; private-schema denial; service-role private read. This uses role stand-ins and does not replace full Supabase-local integration. Never use the production database for destructive test runs.
+  - **Verification:** GitHub Actions run `44431082147` passed: migration applied to disposable PostgreSQL 17; anon/authenticated visibility and write denial; private-schema denial; service-role private read. Recovery notes are in `docs/catalog/schema.md`. This uses role stand-ins and does not replace full Supabase Auth/Data API integration. Never use the production database for destructive test runs.
   - **Dependencies:** Tasks 1–2.
   - **Files likely touched:** `supabase/migrations/*`, `tests/catalog-rls.test.*`, `docs/catalog/schema.md`.
   - **Estimated scope:** Medium.
@@ -62,8 +62,9 @@
   - **Estimated scope:** Medium.
 
 ### Checkpoint — Data foundation
-- [ ] Migrations and RLS tests pass in a non-production environment.
+- [x] Migration and RLS tests pass in a disposable non-production PostgreSQL 17 environment.
 - [ ] Import tests prove idempotency, quarantine, and auditability.
+- [ ] Full Supabase Auth/Data API verification remains a pre-production release requirement.
 - [ ] No manufacturer records are published without required source evidence.
 
 ## Phase 3 — Manufacturer source coverage
