@@ -1,47 +1,49 @@
 # BZaudio Website — Task Breakdown
 
-**Status:** Proposed tasks for owner review. No implementation is authorized until `tasks/plan.md` and this task list are approved.
+**Status:** Owner-approved plan. Implementation is underway on `feature/website-foundation`; production deployment remains separately approval-gated.
 
 ## Phase 0 — Prerequisites and architecture decisions
 
-- [ ] **Task 0.1: Configure GitHub Pages deployment approach (planning only)**
-  - Acceptance: GitHub Pages is the selected host; repository deployment source, custom-domain preference, preview workflow, and rollback approach are documented.
-  - Verify: repository/Pages constraints are recorded; no production setting or DNS is changed.
+- [x] **Task 0.1: Select GitHub Pages as the hosting target (configuration/deployment still deferred)**
+  - Acceptance: GitHub Pages is selected and the repository root is the planned static source; custom-domain preference remains open.
+  - Verify: GitHub Pages documentation was checked; no production setting or DNS was changed.
   - Dependencies: None.
   - Files likely touched: `tasks/plan.md`, architecture decision notes.
   - Scope: Small.
 
-- [ ] **Task 0.2: Select the minimal frontend stack and quality tooling**
-  - Acceptance: framework/static approach, versions, content strategy, accessibility approach, and exact install/build/test commands are documented with trade-offs.
-  - Verify: selected approach is compatible with the confirmed host and repository workflow; no dependency is installed before plan approval.
+- [x] **Task 0.2: Select the minimal frontend stack and quality tooling**
+  - Acceptance: static HTML/CSS/vanilla JavaScript, no runtime dependencies or build step, Python standard-library tests, and local preview command are documented.
+  - Verify: architecture is compatible with GitHub Pages and avoids unnecessary dependencies.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.3: Define email-only contact activation**
-  - Acceptance: contact section and quote-request email pathway have a configurable destination; no phone number or invented address is included; activation is deferred until the owner supplies the address after launch.
-  - Verify: plan describes a tested mailto link/email draft and clearly states it opens the visitor's email app; no fake on-site form or third-party service is implied.
+- [x] **Task 0.3: Define and configure email-only contact**
+  - Acceptance: email-only contact and quote request; no phone number; owner-supplied address is configured; no fake submission form.
+  - Verify: `contact.html` uses `mailto:benrz101@gmail.com` and explains that it opens the visitor's configured email app.
   - Dependencies: Task 0.1.
   - Files likely touched: `tasks/plan.md`.
   - Scope: Small.
 
-- [ ] **Task 0.4: Apply approved catalog and content workflow**
-  - Acceptance: approved categories are documented (mixing consoles; speakers/subwoofers; microphones; wireless; headphones; processors/effects; amplifiers; cables/accessories); individual product data remains source-verified; GitHub commits are the initial content workflow; licensed photo provenance is tracked.
+- [x] **Task 0.4: Apply approved catalog and content workflow (media and model data remain future inputs)**
+  - Acceptance: approved categories and GitHub-based content editing are documented; individual product data and licensed media are explicitly held until verified.
   - Verify: no unverified product facts or unlicensed public imagery are introduced.
   - Dependencies: None.
   - Files likely touched: content inventory/asset provenance notes.
   - Scope: Small.
 
 ### Checkpoint — Architecture approval
-- [ ] GitHub Pages, email-only deferred contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack and custom-domain preference are recorded.
-- [ ] Risks and decisions are recorded.
-- [ ] Owner approves the technical architecture before implementation tasks begin.
+- [x] GitHub Pages, owner-supplied email-only contact, approved category taxonomy, and GitHub-based content editing are reflected in the architecture; stack is recorded and custom-domain preference is explicitly left open.
+- [x] Risks and decisions are recorded.
+- [x] Owner approved the technical architecture on 2026-11-13.
+
+**Foundation note:** on 2026-11-18, the complete visual system was redesigned across Home, Products, Solutions, About, and Contact from the official BZaudio logo. The new direction is monochrome black/white, oval geometry, expressive editorial typography, and a logo-led homepage. This supersedes the earlier lime-accent architectural design. Automated checks and responsive visual review are being completed; production deployment remains approval-gated.
 
 ## Phase 1 — Foundation and C1 Brand experience
 
-- [ ] **Task 1.1: Establish minimal application foundation**
-  - Acceptance: selected app structure, scripts, formatting/lint/type checks, and build pipeline are configured without unnecessary dependencies.
-  - Verify: clean install, development command, production build, and baseline checks pass.
+- [x] **Task 1.1: Establish minimal application foundation**
+  - Acceptance: static root structure, local preview instructions, and Python standard-library regression tests are in place; no install or build step is required.
+  - Verify: `python3 -m unittest discover -s tests -v` passes all 12 Python tests and 2 Node.js interaction tests; `node --check script.js` passes.
   - Dependencies: Phase 0 checkpoint.
   - Files likely touched: approximately 3–5 configuration/source files.
   - Scope: Medium.
@@ -60,6 +62,8 @@
   - Files likely touched: approximately 3–5 component/style/test files.
   - Scope: Medium.
 
+- [x] Implement the official BZaudio logo in the shared header/footer and refresh the homepage hero; automated static-site regression tests pass. Visual sign-off remains pending.
+
 - [ ] **Task 1.4: Build the home/brand experience**
   - Acceptance: brand belief, company proposition, clear customer pathways, and primary quote/contact call to action are presented in a premium architectural-cinematic layout.
   - Verify: content hierarchy is clear in a short usability review; motion is reduced when requested and does not delay core content.
@@ -74,6 +78,13 @@
 - [ ] Accessibility and motion checks pass for the shared shell.
 
 ## Phase 2 — C2 Product discovery
+
+- [x] **Task 2.0: Build the approved product-category directory**
+  - Acceptance: all eight owner-approved categories have a clear description and a next-step path; no unsupported model-level product facts are displayed.
+  - Verify: all category links resolve to the contact page; the five-page navigation and responsive layout pass automated checks.
+  - Dependencies: Task 1.2 and Task 1.3.
+  - Files touched: `products.html`, `styles.css`.
+  - Scope: Medium.
 
 - [ ] **Task 2.1: Define verified product content model**
   - Acceptance: product/category schema supports sourced facts, optional fields, media provenance, and unavailable data without fabricated defaults.
@@ -96,14 +107,14 @@
 
 ## Phase 3 — C3 Solutions
 
-- [ ] **Task 3.1: Approve solution content and claim boundaries**
+- [x] **Task 3.1: Approve solution content and claim boundaries**
   - Acceptance: initial customer/application pathways and their source/approval owners are documented; educational content is distinguished from engineered design.
   - Verify: each solution claim has evidence or is clearly framed as general guidance.
   - Dependencies: Phase 1 checkpoint; may proceed alongside Phase 2 content review.
   - Files likely touched: solution content inventory.
   - Scope: Small.
 
-- [ ] **Task 3.2: Build solutions pages and product pathways**
+- [x] **Task 3.2: Build solutions pages and product pathways**
   - Acceptance: concise solution pages explain relevant use cases and link to appropriate verified products or quote/contact paths.
   - Verify: all links work; no unvalidated coverage, power, rigging, acoustic, or compatibility claims are presented as engineering results.
   - Dependencies: Task 3.1 and shared design system; Task 2.2 only where product links are required.
@@ -111,30 +122,30 @@
   - Scope: Medium.
 
 ### Checkpoint — Solutions
-- [ ] Each page has a clear audience and purpose.
-- [ ] Guidance is appropriately qualified and links to next steps.
-- [ ] No unsupported engineering claims appear.
+- [x] Each page has a clear audience and purpose.
+- [x] Guidance is appropriately qualified and links to next steps.
+- [x] No unsupported engineering claims appear.
 
 ## Phase 4 — C4 Customer contact
 
-- [ ] **Task 4.1: Build accessible quote/contact form UI and validation**
-  - Acceptance: approved fields, labels, inline validation, clear consent/privacy language, and success/error states are implemented accessibly.
-  - Verify: keyboard, screen-reader semantics, invalid inputs, and mobile layouts are checked.
-  - Dependencies: Phase 0 contact architecture approval; Task 1.3.
-  - Files likely touched: approximately 3–5 form/schema/component/test files.
-  - Scope: Medium.
+- [x] **Task 4.1: Build the email-only contact information page**
+  - Acceptance: the page explains how to start a conversation, displays the owner-supplied email, and clearly states that the link opens the visitor's email app; no phone number, placeholder email, inactive form, or false submission promise appears.
+  - Verify: the contact page is in the shared navigation, has accessible semantic structure, and passes the site-wide page tests.
+  - Dependencies: Task 1.3.
+  - Files touched: `contact.html`, `styles.css`.
+  - Scope: Small.
 
-- [ ] **Task 4.2: Connect and verify real form delivery**
-  - Acceptance: valid submissions reach the approved configurable destination; secrets remain server-side; spam protection and failure handling are active.
-  - Verify: test submissions confirm delivery; provider/service failure is surfaced honestly and safely.
-  - Dependencies: Task 4.1 and approved contact service credentials/configuration supplied securely by owner.
-  - Files likely touched: approximately 2–5 server/config/test files.
-  - Scope: Medium.
+- [x] **Task 4.2: Configure the owner-supplied email contact**
+  - Acceptance: configure a clearly labeled `mailto:` link for the owner-supplied address and a quote-request email subject. Explain that it opens the visitor's configured email app.
+  - Verify: destination matches the address supplied by the owner; no phone number or fabricated address is introduced.
+  - Dependencies: Task 4.1 and owner-provided email address.
+  - Files touched: `contact.html`, `README.md`.
+  - Scope: Small.
 
 ### Checkpoint — Customer contact
-- [ ] Email destination is supplied by the owner and the mailto link is tested before activation.
-- [ ] The visitor is told that the link opens their configured email app.
-- [ ] No phone number, invented email, fake form submission, or exposed private data appears.
+- [x] Email destination is supplied by the owner and the mailto link is configured.
+- [x] The visitor is told that the link opens their configured email app.
+- [x] No phone number, invented email, fake form submission, or exposed private data appears.
 
 ## Phase 5 — Integrated quality and release readiness
 
@@ -163,3 +174,26 @@
 - [ ] All acceptance criteria and verification evidence are available.
 - [ ] No unresolved critical accessibility, security, performance, or content issues remain.
 - [ ] Owner reviews the release candidate and explicitly approves production deployment.
+
+
+## Phase 6 — ORIGIN gateway
+
+- [x] **Task 6.1: Build the minimal ORIGIN gateway**
+  - Acceptance: oversized ORIGIN heading, a clearly inactive LOGIN entry, monochrome identity, and no legacy member content.
+  - Verify: page is present in shared navigation across all six public pages; the inactive login collects no credentials and makes no authentication claim.
+  - Files: `origin.html`, `styles.css`, all shared-navigation pages, `tests/test_site.py`, `SPEC-ORIGIN.md`.
+- [ ] **Task 6.2: Implement real authentication and contributor access**
+  - Acceptance: free-tier-compatible email sign-in, secure sessions, owner-approved ORIGIN access, and no public exposure of privileged keys.
+  - Verify: real email delivery, session handling, authorization/RLS, and duplicate-application protections pass integration tests.
+  - Dependency: Supabase Auth configuration and verified email delivery. No paid provider or recurring infrastructure may be enabled without owner review.
+- [ ] **Task 6.3: Build Founder application and approval workflow**
+  - Acceptance: one application per person; owner receives application details; no Founder number is assigned before approval; permanent unique numbers are owner-designed and owner-assigned based on contribution.
+  - Verify: duplicate prevention, owner approval/decline, audit history, and privacy controls.
+
+
+
+## Equipment request workflow
+- [x] Build a multi-item equipment inquiry form with customer name/email, manufacturer, model, quantity, and optional project notes.
+- [x] Link all eight product categories to a prefilled request.
+- [x] Keep the workflow email-only and clearly disclose that the visitor must send the email; no order, payment, or supplier action is triggered.
+- [ ] Replace the email handoff with a secure server-backed inquiry inbox only after a verified free email/notification route is configured and tested.
