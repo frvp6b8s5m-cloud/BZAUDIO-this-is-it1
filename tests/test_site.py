@@ -182,11 +182,6 @@ class WebsiteFoundationTests(unittest.TestCase):
         self.assertIn("CREATIVE SOUNDS / EST. 2025", self.html)
         self.assertIn('class="hero-logo-stage"', self.html)
 
-
-if __name__ == "__main__":
-    unittest.main()
-
-
     def test_origin_gateway_is_minimal_and_does_not_fake_authentication(self):
         html = (ROOT / "origin.html").read_text(encoding="utf-8")
         parser = SiteParser()
@@ -199,3 +194,8 @@ if __name__ == "__main__":
         self.assertNotIn("<input", html.lower())
         self.assertNotIn("password", html.lower())
         self.assertNotIn("supabase", html.lower())
+
+
+if __name__ == "__main__":
+    unittest.main()
+
