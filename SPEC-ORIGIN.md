@@ -1,5 +1,7 @@
 # Spec: BZaudio Origin Gateway
 
+**Implementation status:** Gateway page and shared navigation implemented in `feature/website-foundation`; automated checks passed. Authentication and member access remain intentionally inactive.
+
 ## Objective
 Create a new, intentionally minimal Origin page that extends the approved monochrome BZaudio identity. Origin is a private-area entry point, not a public product/marketing page. The page should communicate its identity through one oversized word — **ORIGIN** — and one **LOGIN** entry point. The content and experience shown after successful access are explicitly out of scope until the owner defines them.
 
@@ -73,11 +75,11 @@ Example page structure:
 - Deploy to production or change production settings without separate approval.
 
 ## Success Criteria
-- [ ] origin.html exists and follows the new BZaudio visual identity.
-- [ ] The page's only primary content is the large ORIGIN heading and a clearly identified LOGIN entry point.
-- [ ] Origin is present in the navigation on all six pages.
-- [ ] No legacy Origin content remains on the new page.
-- [ ] The login placeholder does not collect credentials or claim to authenticate.
+- [x] origin.html exists and follows the new BZaudio visual identity.
+- [x] The page's only primary content is the large ORIGIN heading and a clearly identified LOGIN entry point.
+- [x] Origin is present in the navigation on all six pages.
+- [x] No legacy Origin content remains on the new page.
+- [x] The login placeholder does not collect credentials or claim to authenticate.
 - [ ] Automated checks pass and responsive/accessibility review is completed.
 
 ## Open Questions
