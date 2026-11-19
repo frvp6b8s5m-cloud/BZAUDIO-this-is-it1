@@ -1,6 +1,6 @@
 # BZaudio Product Catalog — Task List
 
-**Status:** Implementation in progress. Tasks 1–3 are complete in the development branch. The migration and isolated PostgreSQL/RLS tests pass in free GitHub Actions; Supabase production remains unchanged.  
+**Status:** Implementation in progress. Tasks 1–3 are complete in the development branch. The migration and isolated PostgreSQL/RLS tests pass in free GitHub Actions; three manufacturer coverage registers now document official category/range discovery and gaps. Supabase production remains unchanged.  
 **Spec:** `SPEC-CATALOG.md`  
 **Plan:** `tasks/catalog-plan.md`  
 **Branch:** `feature/website-foundation`
@@ -45,7 +45,7 @@
     - [ ] Full Supabase-local integration with Auth/Data API roles and recovery procedure is still required before production application.
     - [ ] Anonymous users can read only published, approved catalog fields; unauthenticated writes are denied.
     - [ ] Admin/import-only fields and supplier data remain private; duplicate manufacturer/model/variant identities are constrained.
-  - **Verification:** GitHub Actions run `44431082147` passed: migration applied to disposable PostgreSQL 17; anon/authenticated visibility and write denial; private-schema denial; service-role private read. Recovery notes are in `docs/catalog/schema.md`. This uses role stand-ins and does not replace full Supabase Auth/Data API integration. Never use the production database for destructive test runs.
+  - **Verification:** Latest GitHub Actions run `44437135628` passed: migration applied to disposable PostgreSQL 17; anon/authenticated visibility and write denial; private-schema denial; service-role private read. Recovery notes are in `docs/catalog/schema.md`. This uses role stand-ins and does not replace full Supabase Auth/Data API integration. Never use the production database for destructive test runs.
   - **Dependencies:** Tasks 1–2.
   - **Files likely touched:** `supabase/migrations/*`, `tests/catalog-rls.test.*`, `docs/catalog/schema.md`.
   - **Estimated scope:** Medium.
@@ -69,7 +69,8 @@
 
 ## Phase 3 — Manufacturer source coverage
 
-- [x] Initial official source audit completed for Allen & Heath hardware, Yamaha professional-audio mixers, and Shure microphones. This establishes family-level coverage only; per-model and per-variant verification remains open. See `docs/catalog/coverage/initial-source-audit.md`.
+- [x] Initial official source audit completed for Allen & Heath hardware, Yamaha professional audio, and Shure professional audio. This establishes family/category-level coverage only; per-model and per-variant verification remains open. See `docs/catalog/coverage/initial-source-audit.md`.
+- [x] Manufacturer-specific coverage registers created: `docs/catalog/coverage/allen-heath.md`, `docs/catalog/coverage/yamaha-pro-audio.md`, and `docs/catalog/coverage/shure-pro-audio.md`. Each includes official sources, discovered categories/families, and explicit gaps. None claims a complete SKU inventory.
 
 
 - [ ] **Task 5: Establish source register and Allen & Heath coverage** *(source discovery started; SKU verification and ingestion remain open)*
