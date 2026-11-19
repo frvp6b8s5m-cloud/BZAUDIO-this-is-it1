@@ -1,30 +1,30 @@
 # PROJECT ORIGIN — Task List
 
-## Implemented on feature branch
+## Implemented
 - [x] Public PROJECT ORIGIN gateway and responsive visual design.
-- [x] Supabase Auth signup/sign-in browser interface using publishable key only.
-- [x] Contributor application interface with one-per-account and case-insensitive one-per-email constraints in the migration.
+- [x] Supabase Auth signup/sign-in browser interface using the public publishable key only.
+- [x] Contributor application flow with one-per-account and case-insensitive one-per-email database uniqueness.
 - [x] Owner review RPC with approve/decline, audit record, and membership creation on approval.
 - [x] Private member-content access policy for active members.
 - [x] Manual Founder assignment RPC; unique, permanent number; no automatic assignment.
 - [x] Public Founder recognition restricted to records explicitly marked public.
-- [x] Website regression, JavaScript syntax, and interaction checks pass on latest commit.
-- [x] Dedicated PostgreSQL 17 migration test passes: schema creation, owner bootstrap, applicant insert, owner approval, membership creation, manual Founder assignment, public recognition, and private contribution-data permissions.
-- [x] Revoke default PUBLIC execution on all privileged SECURITY DEFINER functions; expose only safe public Founder columns and use an owner-only register RPC.
-- [x] Add a working switch between sign-in and account creation forms.
+- [x] Dedicated PostgreSQL 17 migration/security test previously passed on the feature branch.
+- [x] Website quality checks passed on the latest code commit before the most recent client repair.
+- [x] Live Supabase migration applied on 2026-11-19 and confirmed in the migration ledger.
+- [x] Live schema tables verified; no applicant records exist yet.
+- [x] Repair the malformed PROJECT ORIGIN browser client script; fresh CI verification is running.
 
-## Remaining release gates
-- [ ] Review and apply supabase/migrations/20261119170000_project_origin_membership.sql to the live Supabase project.
-- [ ] Configure Supabase Auth site URL and GitHub Pages redirect allowlist.
-- [ ] Configure verified SMTP delivery for signup confirmation and owner application notifications.
-- [ ] Implement and verify automatic owner application notification after SMTP provider setup.
-- [ ] Create/confirm owner account at benrz101@gmail.com; verify owner bootstrap and admin access.
-- [ ] Run end-to-end tests: signup → confirmation → application → owner review → member access → Founder assignment → public listing.
+## Remaining launch gates
+- [ ] Configure Supabase Auth Site URL and GitHub Pages redirect allowlist.
+- [ ] Configure reliable verified SMTP for signup confirmations.
+- [ ] Implement and verify automatic owner application email notifications; SMTP for Auth alone does not send application alerts.
+- [ ] Create the owner Auth account at benrz101@gmail.com; verify the owner-bootstrap trigger creates admin access. The account does not currently exist.
+- [ ] Run end-to-end tests: signup → email confirmation → application → owner review → member access → manual Founder assignment → public recognition.
 - [ ] Browser visual inspection at mobile and desktop widths.
-- [ ] Merge and publish only after all release gates pass.
+- [ ] Merge and publish only after the launch gates and CI checks pass.
 
 ## Owner-controlled rules
-- Founder number remains manually designed and assigned by the owner.
+- Founder numbers remain personally designed and manually assigned by the owner.
 - Contribution-to-number mapping remains undefined and must not be inferred or automated.
 - Do not expose service-role secrets or grant membership on account creation alone.
 - No paid infrastructure or paid email provider without separate approval.
