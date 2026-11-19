@@ -41,7 +41,7 @@ This is a static-first site with no frontend framework or runtime package depend
 - Respect reduced-motion preferences and keyboard navigation.
 - Do not add unlicensed photography, invented product data, testimonials, pricing, or compatibility claims.
 - Contact is email only: benrz101@gmail.com. The mail link opens the visitor's configured email app; no phone number or fake submission form is used.
-- GitHub Pages is the intended host. Production deployment remains separately approval-gated.
+- GitHub Pages is the public static-site host. A GitHub Actions workflow deploys the site from `main` after the static-site tests pass. The public site is an informational and inquiry-only release; account login, ORIGIN applications, supplier fulfillment, inventory, and checkout are not active.
 
 ## Equipment requests
 
