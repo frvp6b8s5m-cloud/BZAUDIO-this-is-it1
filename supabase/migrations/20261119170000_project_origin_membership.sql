@@ -150,6 +150,39 @@ begin
 end;
 $$;
 
+create or replace function public.project_origin_admin_founders()
+returns table(display_name text, founder_number integer, contribution_amount numeric, publicly_listed boolean)
+language plpgsql security definer set search_path = public, auth
+as $
+begin
+  if not public.project_origin_is_admin() then
+    raise exception 'Not authorized' using errcode = '42501';
+  end if;
+  return query
+    select f.display_name, f.founder_number, f.contribution_amount, f.publicly_listed
+    from public.project_origin_founders f
+    order by f.founder_number;
+end;
+$;
+
+-- SECURITY DEFINER functions in public must not inherit PostgreSQL's default
+-- PUBLIC execute grant. The bootstrap function is trigger-only.
+revoke all on function public.project_origin_is_admin() from public, anon;
+revoke all on function public.project_origin_review_application(uuid,text,text) from public, anon;
+revoke all on function public.project_origin_assign_founder(uuid,text,integer,numeric,text,boolean,text) from public, anon;
+revoke all on function public.project_origin_admin_founders() from public, anon;
+revoke all on function public.project_origin_bootstrap_owner() from public, anon, authenticated;
+grant execute on function public.project_origin_is_admin() to authenticated;
+grant execute on function public.project_origin_review_application(uuid,text,text) to authenticated;
+grant execute on function public.project_origin_assign_founder(uuid,text,integer,numeric,text,boolean,text) to authenticated;
+grant execute on function public.project_origin_admin_founders() to authenticated;
+
+-- Public Founder recognition must never expose contribution amounts, account IDs,
+-- reviewer IDs, or private notes through the Data API.
+revoke select on public.project_origin_founders from anon, authenticated;
+grant select (display_name, founder_number, card_engraving_name)
+  on public.project_origin_founders to anon, authenticated;
+
 create policy "admins read admin allowlist" on public.project_origin_admins
   for select to authenticated using (public.project_origin_is_admin());
 create policy "applicants create own application" on public.project_origin_applications
