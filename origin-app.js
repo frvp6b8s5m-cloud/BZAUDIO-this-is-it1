@@ -96,6 +96,13 @@
     $('origin-login-form').hidden = false;
     $('origin-login-email').value = $('origin-auth-email').value;
   });
+  $('origin-create-trigger').addEventListener('click', () => {
+    $('origin-login-form').hidden = true;
+    $('origin-signup-form').hidden = false;
+    $('origin-auth-email').value = $('origin-login-email').value;
+    $('origin-auth-password').value = '';
+  });
+
   $('origin-login-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     try {
