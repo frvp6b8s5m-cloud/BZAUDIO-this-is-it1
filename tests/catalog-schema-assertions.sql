@@ -67,4 +67,136 @@ begin
 end
 $$;
 
-select 'catalog migration RLS/grants assertions passed' as result;
+
+-- Publication guards must reject missing source evidence and missing media rights.
+insert into public.catalog_manufacturers (slug, name, website_url)
+values ('ci-manufacturer', 'CI Manufacturer', 'https://www.shure.com');
+
+insert into public.catalog_products (manufacturer_id, slug, name, lifecycle_status)
+select id, 'ci-product', 'CI Product', 'active'
+from public.catalog_manufacturers where slug = 'ci-manufacturer';
+
+do $
+declare
+  product_id uuid;
+  blocked boolean := false;
+begin
+  select id into product_id from public.catalog_products where slug = 'ci-product';
+
+  begin
+    update public.catalog_products set is_verified = true where id = product_id;
+  exception when check_violation then
+    blocked := true;
+  end;
+
+  if not blocked then
+    raise exception 'Product was verified without approved source evidence';
+  end if;
+end
+$;
+
+insert into catalog_private.source_records (
+  manufacturer_id, source_url, source_type, source_title, review_status
+)
+select id, 'https://www.shure.com/en-US/products', 'manufacturer', 'CI source', 'approved'
+from public.catalog_manufacturers where slug = 'ci-manufacturer';
+
+insert into catalog_private.product_source_links (
+  product_id, source_record_id, fact_scope, verification_status
+)
+select p.id, s.id, 'identity', 'verified'
+from public.catalog_products p
+cross join catalog_private.source_records s
+where p.slug = 'ci-product' and s.source_title = 'CI source';
+
+update public.catalog_products
+set is_verified = true, is_published = true
+where slug = 'ci-product';
+
+insert into public.catalog_variants (product_id, variant_name, lifecycle_status)
+select id, 'CI variant', 'active'
+from public.catalog_products where slug = 'ci-product';
+
+do $
+declare
+  variant_id uuid;
+  blocked boolean := false;
+begin
+  select id into variant_id from public.catalog_variants where variant_name = 'CI variant';
+
+  begin
+    update public.catalog_variants set is_verified = true where id = variant_id;
+  exception when check_violation then
+    blocked := true;
+  end;
+
+  if not blocked then
+    raise exception 'Variant was verified without approved source evidence';
+  end if;
+end
+$;
+
+insert into catalog_private.product_source_links (
+  variant_id, source_record_id, fact_scope, verification_status
+)
+select v.id, s.id, 'identity', 'verified'
+from public.catalog_variants v
+cross join catalog_private.source_records s
+where v.variant_name = 'CI variant' and s.source_title = 'CI source';
+
+update public.catalog_variants
+set is_verified = true, is_published = true
+where variant_name = 'CI variant';
+
+insert into public.catalog_media (product_id, variant_id, asset_url, alt_text)
+select p.id, v.id, 'https://www.shure.com/assets/ci-test.jpg', 'CI test image'
+from public.catalog_products p
+join public.catalog_variants v on v.product_id = p.id
+where p.slug = 'ci-product' and v.variant_name = 'CI variant';
+
+do $
+declare
+  media_id uuid;
+  blocked boolean := false;
+begin
+  select id into media_id from public.catalog_media where alt_text = 'CI test image';
+
+  begin
+    update public.catalog_media set is_published = true where id = media_id;
+  exception when check_violation then
+    blocked := true;
+  end;
+
+  if not blocked then
+    raise exception 'Media was published without approved usage rights';
+  end if;
+end
+$;
+
+insert into catalog_private.media_rights (
+  media_id, rights_holder, permission_type, allowed_channels,
+  proof_reference, approval_status, reviewed_at
+)
+select id, 'CI Rights Holder', 'written permission', array['website'],
+  'ci-test-proof', 'approved', now()
+from public.catalog_media where alt_text = 'CI test image';
+
+update public.catalog_media
+set is_published = true
+where alt_text = 'CI test image';
+
+do $
+begin
+  if (select count(*) from public.catalog_products where slug = 'ci-product' and is_published) <> 1 then
+    raise exception 'Approved product did not publish';
+  end if;
+  if (select count(*) from public.catalog_variants where variant_name = 'CI variant' and is_published) <> 1 then
+    raise exception 'Approved variant did not publish';
+  end if;
+  if (select count(*) from public.catalog_media where alt_text = 'CI test image' and is_published) <> 1 then
+    raise exception 'Media with approved rights did not publish';
+  end if;
+end
+$;
+
+select 'catalog migration RLS/grants/publication assertions passed' as result;
