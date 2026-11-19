@@ -16,7 +16,18 @@
   let currentUser = null;
   let isAdmin = false;
 
+  async function loadPublicFounders() {
+    const target = $('origin-public-founders');
+    if (!target) return;
+    const { data, error } = await client.from('project_origin_founders')
+      .select('display_name,founder_number,card_engraving_name').eq('publicly_listed', true)
+      .order('founder_number', {ascending:true});
+    if (error) { target.textContent = 'Founder recognition is temporarily unavailable.'; return; }
+    target.innerHTML = data.length ? data.map(f => '<p><strong>#'+f.founder_number+'</strong> — '+escapeHtml(f.display_name)+'</p>').join('') : '<p>Public Founder recognition will appear here when approved and published.</p>';
+  }
+
   async function load() {
+    await loadPublicFounders();
     const { data: { user }, error } = await client.auth.getUser();
     if (error) throw error;
     currentUser = user;
