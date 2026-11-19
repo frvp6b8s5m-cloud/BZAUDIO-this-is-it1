@@ -271,6 +271,18 @@ class WebsiteFoundationTests(unittest.TestCase):
                 html = page_path.read_text(encoding="utf-8")
                 self.assertIn('src="assets/bzaudio-logo.png"', html)
 
+    def test_project_origin_account_ui_is_wired_to_supabase_and_never_exposes_service_role(self):
+        html = (ROOT / "origin.html").read_text(encoding="utf-8")
+        js = (ROOT / "origin-app.js").read_text(encoding="utf-8")
+        self.assertIn('id="origin-signup-form"', html)
+        self.assertIn('id="origin-apply-form"', html)
+        self.assertIn('id="origin-admin-panel"', html)
+        self.assertIn("project_origin_review_application", js)
+        self.assertIn("project_origin_assign_founder", js)
+        self.assertIn("sb_publishable_", js)
+        self.assertNotIn("service_role", js.lower())
+        self.assertIn('src="origin-app.js"', html)
+
 
 if __name__ == "__main__":
     unittest.main()
