@@ -271,6 +271,136 @@ create table catalog_private.audit_events (
 create index catalog_audit_events_record_idx
   on catalog_private.audit_events (record_type, record_id, occurred_at desc);
 
+-- Publication guards: trusted service code cannot mark products or media
+-- public unless the required private evidence has been reviewed and approved.
+create function catalog_private.guard_product_publication()
+returns trigger
+language plpgsql
+security invoker
+set search_path = pg_catalog, catalog_private, public
+as $
+begin
+  if new.is_verified or new.is_published then
+    if not exists (
+      select 1
+      from catalog_private.product_source_links l
+      join catalog_private.source_records s on s.id = l.source_record_id
+      where l.product_id = new.id
+        and l.fact_scope = 'identity'
+        and l.verification_status = 'verified'
+        and s.review_status = 'approved'
+    ) then
+      raise exception using
+        errcode = '23514',
+        message = 'Product verification requires approved identity source evidence';
+    end if;
+  end if;
+
+  if new.is_published and (not new.is_verified or new.lifecycle_status <> 'active') then
+    raise exception using
+      errcode = '23514',
+      message = 'Only verified active products can be published';
+  end if;
+
+  return new;
+end;
+$;
+
+create trigger catalog_products_publication_guard
+before insert or update of is_verified, is_published, lifecycle_status
+on public.catalog_products
+for each row execute function catalog_private.guard_product_publication();
+
+create function catalog_private.guard_variant_publication()
+returns trigger
+language plpgsql
+security invoker
+set search_path = pg_catalog, catalog_private, public
+as $
+begin
+  if new.is_verified or new.is_published then
+    if not exists (
+      select 1
+      from public.catalog_products p
+      where p.id = new.product_id
+        and p.is_verified
+        and p.lifecycle_status = 'active'
+    ) then
+      raise exception using
+        errcode = '23514',
+        message = 'Variant verification requires a verified active parent product';
+    end if;
+
+    if not exists (
+      select 1
+      from catalog_private.product_source_links l
+      join catalog_private.source_records s on s.id = l.source_record_id
+      where l.variant_id = new.id
+        and l.fact_scope = 'identity'
+        and l.verification_status = 'verified'
+        and s.review_status = 'approved'
+    ) then
+      raise exception using
+        errcode = '23514',
+        message = 'Variant verification requires approved identity source evidence';
+    end if;
+  end if;
+
+  if new.is_published and not exists (
+    select 1 from public.catalog_products p
+    where p.id = new.product_id and p.is_published
+  ) then
+    raise exception using
+      errcode = '23514',
+      message = 'Only variants of published products can be published';
+  end if;
+
+  return new;
+end;
+$;
+
+create trigger catalog_variants_publication_guard
+before insert or update of product_id, is_verified, is_published, lifecycle_status
+on public.catalog_variants
+for each row execute function catalog_private.guard_variant_publication();
+
+create function catalog_private.guard_media_publication()
+returns trigger
+language plpgsql
+security invoker
+set search_path = pg_catalog, catalog_private, public
+as $
+begin
+  if new.is_published and not exists (
+    select 1
+    from catalog_private.media_rights r
+    where r.media_id = new.id
+      and r.approval_status = 'approved'
+      and r.reviewed_at is not null
+      and (r.expires_at is null or r.expires_at > now())
+      and r.allowed_channels @> array['website']
+  ) then
+    raise exception using
+      errcode = '23514',
+      message = 'Media publication requires current approved website usage rights';
+  end if;
+
+  return new;
+end;
+$;
+
+create trigger catalog_media_publication_guard
+before insert or update of is_published, product_id, variant_id
+on public.catalog_media
+for each row execute function catalog_private.guard_media_publication();
+
+revoke all on function catalog_private.guard_product_publication() from public, anon, authenticated;
+revoke all on function catalog_private.guard_variant_publication() from public, anon, authenticated;
+revoke all on function catalog_private.guard_media_publication() from public, anon, authenticated;
+grant execute on function catalog_private.guard_product_publication() to service_role;
+grant execute on function catalog_private.guard_variant_publication() to service_role;
+grant execute on function catalog_private.guard_media_publication() to service_role;
+
 -- RLS is enabled on every new table. Browser roles receive read-only access
 -- only to explicitly approved public catalog rows.
 alter table public.catalog_manufacturers enable row level security;
