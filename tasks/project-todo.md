@@ -2,7 +2,7 @@
 
 **Active development branch:** `feature/email-first-storefront`
 **Recurring infrastructure budget:** $0
-**Production deployment:** not approved by this task tracker; separate final release review remains required.
+**Production deployment:** not approved by this task tracker; separate final release review remains required.\n**Database state:** migration is tested in disposable CI only; it has NOT been applied to the live Supabase project.
 
 ## Completed and verified in this branch
 
@@ -19,8 +19,8 @@
 
 - [x] Approved physical catalog data contract and access matrix.
 - [x] Drafted physical equipment catalog migration in GitHub.
-- [ ] Verify migration passes disposable PostgreSQL CI, including RLS and least-privilege grants.
-- [ ] Review and harden migration based on CI results.
+- [x] Verify migration passes disposable PostgreSQL CI, including RLS and least-privilege grants.
+- [x] Review migration structure and least-privilege grants against the disposable PostgreSQL CI assertions.
 - [ ] Build idempotent, validated, server-side import and quarantine pipeline.
 - [ ] Verify Allen & Heath, Yamaha professional audio, and Shure music/pro-audio product-family coverage from official sources.
 - [ ] Populate model-level products only from verified sources; no guessed specs, prices, MAP, stock, or image rights.
