@@ -38,6 +38,9 @@ Build order: public-gateway → accounts → applications → admin-approval →
 ## Implementation status — 2026-11-19
 - Public gateway and browser account/application/admin/member UI are implemented on the feature branch.
 - Additive Supabase migration defines RLS-protected applications, memberships, admin review, audit history, manual Founder assignment, and member content.
+- Privileged SECURITY DEFINER routines have explicit execute revocations; public Founder reads are column-limited, and private contribution amounts are available only through an owner-checked RPC.
+- Dedicated PostgreSQL 17 CI test passes for migration execution, owner bootstrap, application approval, membership, Founder assignment, and public/private access boundaries.
+- Website quality and JavaScript checks pass on the current feature branch.
 - Owner bootstrap uses the auth account email allowlist for benrz101@gmail.com.
 - The live database migration has not been applied. Auth redirect/email delivery settings have not been configured. Owner email notifications are not active.
 - Public UI must remain unreleased until the migration and Auth settings are applied and end-to-end tests pass.
