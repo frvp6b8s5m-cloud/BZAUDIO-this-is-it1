@@ -94,7 +94,7 @@ class WebsiteFoundationTests(unittest.TestCase):
 
     def test_all_approved_pages_exist_and_have_one_clear_heading(self):
         expected_pages = {
-            "index.html", "products.html", "solutions.html", "about.html", "contact.html"
+            "index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"
         }
         self.assertTrue(expected_pages.issubset({path.name for path in ROOT.glob("*.html")}))
         for page_name in expected_pages:
@@ -110,7 +110,7 @@ class WebsiteFoundationTests(unittest.TestCase):
                 self.assertIn('src="script.js"', html)
 
     def test_every_page_uses_the_same_five_page_navigation(self):
-        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html"}
+        expected = {"index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"}
         for page_name in expected:
             with self.subTest(page=page_name):
                 parser = SiteParser()
@@ -164,11 +164,15 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 
     def test_official_brand_logo_is_used_in_every_page_header_and_footer(self):
-        for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html"]:
+        for page_name in ["index.html", "products.html", "solutions.html", "about.html", "contact.html", "origin.html"]:
             with self.subTest(page=page_name):
                 html = (ROOT / page_name).read_text(encoding="utf-8")
                 self.assertIn('src="assets/bzaudio-logo.png"', html)
                 self.assertIn('alt="BZaudio"', html)
+                if page_name != "origin.html":
+                    self.assertIn('class="footer-wordmark"', html)
+                else:
+                    self.assertIn('class="origin-footer"', html)
                 self.assertNotIn('class="wordmark-symbol"', html)
 
     def test_homepage_uses_the_new_brand_hero_copy(self):
@@ -181,3 +185,17 @@ class WebsiteFoundationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def test_origin_gateway_is_minimal_and_does_not_fake_authentication(self):
+        html = (ROOT / "origin.html").read_text(encoding="utf-8")
+        parser = SiteParser()
+        parser.feed(html)
+        self.assertEqual(parser.headings.count("h1"), 1)
+        self.assertIn(">ORIGIN</h1>", html)
+        self.assertIn("LOGIN", html)
+        self.assertIn('aria-disabled="true"', html)
+        self.assertIn("MEMBER ACCESS IS NOT ACTIVE YET", html)
+        self.assertNotIn("<input", html.lower())
+        self.assertNotIn("password", html.lower())
+        self.assertNotIn("supabase", html.lower())
