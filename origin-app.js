@@ -80,7 +80,7 @@
     event.preventDefault();
     try {
       say('Signing in…');
-      const { error } = await client.auth.signInWithPassword({email:$('origin-auth-email').value.trim(),password:$('origin-auth-password').value});
+      const { error } = await client.auth.signInWithPassword({email:$('origin-login-email').value.trim(),password:$('origin-login-password').value});
       if (error) throw error;
       await load(); say('You are signed in.');
     } catch (e) { say(e.message || 'Could not sign in.', true); }
