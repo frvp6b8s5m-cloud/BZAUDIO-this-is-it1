@@ -9,6 +9,9 @@
 - [x] Manual Founder assignment RPC; unique, permanent number; no automatic assignment.
 - [x] Public Founder recognition restricted to records explicitly marked public.
 - [x] Website regression, JavaScript syntax, and interaction checks pass on latest commit.
+- [x] Dedicated PostgreSQL 17 migration test passes: schema creation, owner bootstrap, applicant insert, owner approval, membership creation, manual Founder assignment, public recognition, and private contribution-data permissions.
+- [x] Revoke default PUBLIC execution on all privileged SECURITY DEFINER functions; expose only safe public Founder columns and use an owner-only register RPC.
+- [x] Add a working switch between sign-in and account creation forms.
 
 ## Remaining release gates
 - [ ] Review and apply supabase/migrations/20261119170000_project_origin_membership.sql to the live Supabase project.
