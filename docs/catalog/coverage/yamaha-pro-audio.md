@@ -64,6 +64,20 @@ The official index exposes:
 
 Exact model and regional SKU enumeration remains open.
 
+## Model-level verification — first 2026 batch
+
+**Checked:** 2026-11-19 against Yamaha USA's official product pages/news.
+
+| Family | Exact model identities confirmed | Source | Notes |
+|---|---|---|---|
+| DM5 | DM5, DM5 Compact | https://usa.yamaha.com/business/audio/news/2026/0910-dm5.html | Yamaha's 2026-09-10 launch announcement explicitly names both models |
+| MGX | MGX16 B/W, MGX12 B/W, MGX16V B/W, MGX12V B/W | https://usa.yamaha.com/business/audio/news/2026/yamaha-launches-MGX-URX-CC1.html | Four lineup names; B/W denotes two finish variants and must be normalized as separate orderable variants only after SKU/order-code verification |
+| URX interfaces | URX44 B/W, URX22 B/W, URX44V B/W | https://usa.yamaha.com/business/audio/news/2026/yamaha-launches-MGX-URX-CC1.html | Officially announced alongside MGX; include only after confirming scope for Yamaha professional-audio interfaces |
+| CC1 controller | CC1 | https://usa.yamaha.com/business/audio/news/2026/yamaha-launches-MGX-URX-CC1.html | Official launch identifies one controller; verify whether this belongs under accessories/controllers in BZaudio's scope |
+
+Yamaha's mixer index also currently lists RIVAGE PM, DM7, DM5, DM3, MGX, TF, TF-RACK, MGP, MG, EMX7/EMX5, EMX5014C and AG. It explicitly marks CL and QL as discontinued. Do not promote series-level names to orderable SKUs without inspecting the linked model pages.
+
+
 ## Known gaps
 
 The following categories are in the official index but have not yet had a complete family/model audit in this register:
