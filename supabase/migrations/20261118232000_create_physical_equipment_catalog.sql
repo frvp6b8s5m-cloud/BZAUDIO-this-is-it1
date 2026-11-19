@@ -289,6 +289,8 @@ begin
         and l.fact_scope = 'identity'
         and l.verification_status = 'verified'
         and s.review_status = 'approved'
+        and s.source_type = 'manufacturer'
+        and s.manufacturer_id = new.manufacturer_id
     ) then
       raise exception using
         errcode = '23514',
@@ -335,10 +337,13 @@ begin
       select 1
       from catalog_private.product_source_links l
       join catalog_private.source_records s on s.id = l.source_record_id
+      join public.catalog_products p on p.id = new.product_id
       where l.variant_id = new.id
         and l.fact_scope = 'identity'
         and l.verification_status = 'verified'
         and s.review_status = 'approved'
+        and s.source_type = 'manufacturer'
+        and s.manufacturer_id = p.manufacturer_id
     ) then
       raise exception using
         errcode = '23514',
