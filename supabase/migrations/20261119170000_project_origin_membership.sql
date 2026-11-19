@@ -153,7 +153,7 @@ $$;
 create or replace function public.project_origin_admin_founders()
 returns table(display_name text, founder_number integer, contribution_amount numeric, publicly_listed boolean)
 language plpgsql security definer set search_path = public, auth
-as $
+as $$
 begin
   if not public.project_origin_is_admin() then
     raise exception 'Not authorized' using errcode = '42501';
@@ -163,7 +163,7 @@ begin
     from public.project_origin_founders f
     order by f.founder_number;
 end;
-$;
+$$;
 
 -- SECURITY DEFINER functions in public must not inherit PostgreSQL's default
 -- PUBLIC execute grant. The bootstrap function is trigger-only.
